@@ -190,38 +190,5 @@
     </section>
   </main>
 
-<script>
-async function handleFormSubmit(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const thankYouMessage = document.getElementById("thankyou-message");
-
-  try {
-    const response = await fetch("https://centro-email.emilyzhao1023.workers.dev", {
-      method: form.method,
-      body: new FormData(form)
-    });
-
-    if (!response.ok) {
-      throw new Error("Form submission failed");
-    }
-
-    form.style.display = "none";
-    if (thankYouMessage) {
-      thankYouMessage.style.display = "block";
-    }
-  } catch (error) {
-    alert("Submission failed. Please try again.");
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('form[action="https://centro-email.emilyzhao1023.workers.dev"]');
-  if (form) {
-    form.addEventListener("submit", handleFormSubmit);
-  }
-});
-</script>
-
 </body>
 </html>
