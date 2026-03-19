@@ -125,7 +125,7 @@
         <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
           <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">Request a Quote</h2>
           <p style="margin: 0 0 24px; color: #4b5563; max-width: 680px;">Send us your inquiry for shipping container parts, repair materials, or custom container components.</p>
-          <form onsubmit="handleFormSubmit(event)" style="margin-bottom: 0;">
+          <form action="https://centro-email.emilyzhao1023.workers.dev" method="POST" onsubmit="handleFormSubmit(event)" style="margin-bottom: 0;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
               <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
                 Name
@@ -147,7 +147,7 @@
             <div style="margin-top: 18px;">
               <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
                 Product Interested In
-                <input type="text" name="product_interest" style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
+                <input type="text" name="product" style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
               </label>
             </div>
             <div style="margin-top: 18px;">
@@ -190,11 +190,25 @@
     </section>
   </main>
 <script>
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.target;
-  form.style.display = "none";
-  document.getElementById("thankyou-message").style.display = "block";
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: new FormData(form)
+    });
+
+    if (!response.ok) {
+      throw new Error("Form submission failed");
+    }
+
+    form.style.display = "none";
+    document.getElementById("thankyou-message").style.display = "block";
+  } catch (error) {
+    console.error(error);
+  }
 }
 </script>
 </body>
