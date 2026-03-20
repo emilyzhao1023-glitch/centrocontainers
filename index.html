@@ -8,6 +8,81 @@
     name="description"
     content="Centro Containers is a China-based shipping container parts supplier offering dry container structural parts, door hardware, corner fittings, flooring systems, and repair consumables."
   />
+  <style>
+    .hero {
+      position: relative;
+      height: 80vh;
+      min-height: 520px;
+      background-image: url('public/images/Hero.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-overlay {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(10,20,40,0.75), rgba(10,20,40,0.2));
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      padding: 0 24px 0 80px;
+      color: #ffffff;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 15px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      margin: 0 0 25px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: #2f5bea;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(47, 91, 234, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        min-height: 460px;
+      }
+
+      .hero-content {
+        padding: 56px 24px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
 </head>
 <body style="margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1f2937; background: #f3f4f6; line-height: 1.6;">
   <div style="background: #111827; color: #ffffff;">
@@ -29,15 +104,17 @@
   </div>
 
   <main>
-    <section id="home" style="background: linear-gradient(135deg, #e5eef9 0%, #f8fafc 100%); border-bottom: 1px solid #dbe4ee;">
-      <div style="max-width: 1160px; margin: 0 auto; padding: 78px 24px 88px;">
-        <div style="max-width: 760px;">
-          <div style="display: inline-block; padding: 8px 12px; border-radius: 999px; background: #dbeafe; color: #1d4ed8; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">Container parts supply</div>
-          <h1 style="margin: 18px 0 18px; font-size: 3rem; line-height: 1.15; color: #111827;">Dry Container Parts &amp; Repair Consumables</h1>
-          <p style="margin: 0 0 28px; max-width: 680px; font-size: 1.08rem; color: #4b5563;">
-            We supply a full range of shipping container parts and repair consumables, including structural parts, door hardware, corner fittings, flooring systems, and repair materials for dry containers.
+    <section id="home" class="hero">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <span class="hero-tag">CONTAINER PARTS SUPPLY</span>
+          <h1>Dry Container Parts &amp; Repair Consumables</h1>
+          <p>
+            We supply a full range of shipping container parts and repair consumables,
+            including structural parts, door hardware, corner fittings, flooring systems,
+            and repair materials for dry containers.
           </p>
-          <a href="contact.html" style="display: inline-block; padding: 14px 24px; background: #1d4ed8; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 700;">Get a Quote</a>
+          <a href="contact.html" class="hero-btn">Get a Quote</a>
         </div>
       </div>
     </section>
