@@ -9,6 +9,65 @@
     content="Centro Containers is a China-based shipping container parts supplier offering dry container structural parts, door hardware, corner fittings, flooring systems, and repair consumables."
   />
   <style>
+    .site-shell {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+      background: #f3f4f6;
+      line-height: 1.6;
+    }
+
+    .site-header-wrap {
+      background: #0d1b2a;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+    }
+
+    .site-header {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: #ffffff;
+      margin-left: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .site-nav a:first-child {
+      margin-left: 0;
+    }
+
+    .site-nav a:hover {
+      color: #2f5bea;
+    }
+
     .hero {
       position: relative;
       height: 80vh;
@@ -69,6 +128,22 @@
     }
 
     @media (max-width: 768px) {
+      .site-header {
+        padding: 14px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 12px 20px;
+      }
+
+      .site-nav a {
+        margin-left: 0;
+      }
+
       .hero {
         height: auto;
         min-height: 460px;
@@ -84,22 +159,17 @@
     }
   </style>
 </head>
-<body style="margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1f2937; background: #f3f4f6; line-height: 1.6;">
-  <div style="background: #111827; color: #ffffff;">
-    <header style="max-width: 1160px; margin: 0 auto; padding: 22px 24px 18px;">
-      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
-        <div>
-          <div style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.02em;">Centro Containers</div>
-          <div style="margin-top: 6px; color: #cbd5e1; font-size: 0.98rem;">Shipping Container Parts Supplier</div>
-        </div>
-        <nav aria-label="Primary navigation">
-          <a href="#home" style="color: #e5e7eb; text-decoration: none; margin: 0 14px 0 0; font-size: 0.96rem;">Home</a>
-          <a href="products.html" style="color: #e5e7eb; text-decoration: none; margin: 0 14px 0 0; font-size: 0.96rem;">Products</a>
-          <a href="#production" style="color: #e5e7eb; text-decoration: none; margin: 0 14px 0 0; font-size: 0.96rem;">Production</a>
-          <a href="#about" style="color: #e5e7eb; text-decoration: none; margin: 0 14px 0 0; font-size: 0.96rem;">About</a>
-          <a href="contact.html" style="color: #e5e7eb; text-decoration: none; font-size: 0.96rem;">Contact</a>
-        </nav>
-      </div>
+<body class="site-shell">
+  <div class="site-header-wrap">
+    <header class="site-header">
+      <a href="#home" class="logo">Centro Containers</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="products.html">Products</a>
+        <a href="#production">Production</a>
+        <a href="#about">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </header>
   </div>
 
