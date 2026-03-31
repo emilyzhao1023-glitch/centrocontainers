@@ -83,28 +83,49 @@ async function sendInquiryEmail(env, fields, metadata) {
 
 function validateSubmission(fields, honeypotValue, formStartTime, now) {
   if (honeypotValue) {
-    return "Spam detected";
+    return { error: "Spam detected" };
   }
 
   const parsedStart = Number(formStartTime);
   if (!Number.isFinite(parsedStart) || now - parsedStart < MIN_SUBMISSION_AGE_MS) {
-    return "Submission rejected";
+    return { error: "Submission rejected" };
   }
 
-  if (!fields.name || fields.name.length < 2 || fields.name.length > 120) {
-    return "Please provide a valid name";
+  const missingRequiredFields = [];
+  if (!fields.name) {
+    missingRequiredFields.push("name");
   }
-
-  if (!fields.email || !EMAIL_REGEX.test(fields.email)) {
-    return "Please provide a valid email";
+  if (!fields.email) {
+    missingRequiredFields.push("email");
   }
-
   if (!fields.message) {
-    return "Message is required";
+    missingRequiredFields.push("message");
+  }
+
+  if (missingRequiredFields.length > 0) {
+    return {
+      error: "Missing required fields",
+      missing_fields: missingRequiredFields
+    };
+  }
+
+  if (fields.name.length < 2 || fields.name.length > 120) {
+    return { error: "Please provide a valid name" };
+  }
+
+  if (!EMAIL_REGEX.test(fields.email)) {
+    return { error: "Please provide a valid email" };
+  }
+
+  if (fields.message.length < 10) {
+    return {
+      error: "Message is too short",
+      min_length: 10
+    };
   }
 
   if (fields.message.length > 8000) {
-    return "Message is too long";
+    return { error: "Message is too long" };
   }
 
   const combinedContent = [
@@ -117,11 +138,11 @@ function validateSubmission(fields, honeypotValue, formStartTime, now) {
   ].join(" ");
 
   if (countUrls(combinedContent) > MAX_URL_COUNT) {
-    return "Too many URLs in submission";
+    return { error: "Too many URLs in submission" };
   }
 
   if (hasSuspiciousContent(combinedContent)) {
-    return "Suspicious content detected";
+    return { error: "Suspicious content detected" };
   }
 
   return null;
@@ -160,7 +181,7 @@ export default {
       const validationError = validateSubmission(fields, honeypotValue, formStartTime, Date.now());
 
       if (validationError) {
-        return jsonResponse({ success: false, error: validationError }, 400);
+        return jsonResponse({ success: false, ...validationError }, 400);
       }
 
       const metadata = extractClientMetadata(request);
