@@ -47,6 +47,8 @@
           <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">Inquiry Form</h2>
           <p style="margin: 0 0 24px; color: #4b5563;">Share your requirement details and our sales team will respond with suitable product information.</p>
           <form action="https://centro-email.emilyzhao1023.workers.dev" method="POST" onsubmit="return submitForm(event)" style="margin-bottom: 0;">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+            <input type="hidden" name="form_start_time" />
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
               <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
                 Name
@@ -99,6 +101,20 @@
   </main>
 
 <script>
+function initializeFormStartTimes() {
+  const inquiryForms = document.querySelectorAll('form[onsubmit="return submitForm(event)"]');
+  const startTime = String(Date.now());
+
+  inquiryForms.forEach((form) => {
+    const startTimeField = form.querySelector('input[name="form_start_time"]');
+    if (startTimeField) {
+      startTimeField.value = startTime;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initializeFormStartTimes);
+
 async function submitForm(event) {
   event.preventDefault();
 
