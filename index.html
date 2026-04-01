@@ -10,548 +10,1230 @@
   />
   <style>
     :root {
-      --bg-dark: #0b1730;
-      --bg-mid: #111f3b;
-      --accent: #f59e0b;
-      --accent-strong: #d97706;
-      --text: #1f2937;
-      --muted: #4b5563;
-      --surface: #ffffff;
-      --line: #e5e7eb;
+      --primary: #0a2a5e;
+      --accent: #e8b400;
+      --accent2: #1e6fc5;
+      --light: #f4f7fc;
+      --gray: #6b7280;
+      --border: #e2e8f0;
     }
 
-    * { box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #f3f4f6;
-      line-height: 1.6;
+      color: #1a1a2e;
+      background: #fff;
     }
 
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-
-    .site-header-wrap {
-      width: 100%;
-      background: var(--bg-dark);
-      color: #fff;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+    nav {
+      background: var(--primary);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
       position: sticky;
       top: 0;
-      z-index: 30;
-    }
-
-    .site-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      gap: 20px;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 800;
       color: #fff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 1px;
       text-decoration: none;
-      letter-spacing: 0.01em;
-      white-space: nowrap;
     }
 
     .logo-accent { color: var(--accent); }
 
-    .site-nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
 
-    .site-nav a {
-      color: #fff;
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 9px 22px;
+      border-radius: 4px;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .nav-cta:hover { background: #ffd54f; }
+
+    /* HERO */
+    .hero {
+      background-image:
+        linear-gradient(rgba(10, 42, 94, 0.65), rgba(10, 42, 94, 0.65)),
+        url('public/images/Hero.png');
+      background-size: cover;
+      background-position: center;
+      padding: 90px 40px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,.04) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(232,180,0,.08) 0%, transparent 40%);
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232,180,0,.18);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
       text-transform: uppercase;
     }
 
-    .site-nav a:hover { color: #93c5fd; }
-
-    .hero {
-      min-height: 620px;
-      background-image: linear-gradient(100deg, rgba(8, 15, 30, 0.55), rgba(8, 15, 30, 0.15)), url('public/images/Hero.png');
-      background-size: cover;
-      background-position: center;
-      position: relative;
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 18px;
     }
 
-    .hero-overlay {
-      min-height: 620px;
-      background: linear-gradient(100deg, rgba(8, 15, 30, 0.84), rgba(8, 15, 30, 0.35));
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      color: rgba(255,255,255,.82);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .hero-btns {
       display: flex;
-      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .hero-content { max-width: 700px; color: #fff; }
-
-    .hero-tag {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid rgba(245, 158, 11, 0.45);
-      color: #fde68a;
-      font-size: 12px;
-      letter-spacing: 0.08em;
+    .btn-primary {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 14px 34px;
+      border-radius: 5px;
       font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 { margin: 0 0 16px; font-size: 52px; line-height: 1.12; }
-
-    .hero p { margin: 0 0 28px; max-width: 640px; color: rgba(255, 255, 255, 0.93); }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .btn {
-      font-family: Arial, Helvetica, sans-serif;
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 8px;
+      font-size: .95rem;
       text-decoration: none;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
+      transition: all .2s;
+      display: inline-block;
     }
 
-    .btn-primary { background: var(--accent); color: #111827; }
-    .btn-primary:hover { background: #fbbf24; }
+    .btn-primary:hover {
+      background: #ffd54f;
+      transform: translateY(-2px);
+    }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.45);
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.6);
+      color: #fff;
+      padding: 14px 34px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,.08);
+    }
+
+    /* STATS */
+    .stats-bar {
+      background: var(--accent);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      padding: 18px 44px;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,.1);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: .75rem;
+      font-weight: 600;
+      color: rgba(10,42,94,.7);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    /* SECTIONS */
+    section { padding: 70px 40px; }
+
+    .section-label {
+      color: var(--accent2);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      color: var(--gray);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .title-block .section-sub { margin: 0 auto; }
+
+    /* CAT TABS */
+    .cat-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 38px;
+    }
+
+    .cat-tab {
+      padding: 8px 22px;
+      border-radius: 24px;
+      border: 2px solid var(--border);
+      color: var(--gray);
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      background: #fff;
+    }
+
+    .cat-tab:hover,
+    .cat-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
       color: #fff;
     }
 
-    section { padding: 72px 0 24px; }
-    .section-head { max-width: 760px; margin-bottom: 24px; }
-    .section-head h2 { margin: 0 0 10px; font-size: 2rem; color: #111827; }
-    .section-head p { margin: 0; color: var(--muted); }
-
-    .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-    .tab-btn {
-      font-family: Arial, Helvetica, sans-serif;
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      color: #1e293b;
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .tab-btn.active { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+    /* PRODUCT GRID */
+    .products-bg { background: var(--light); }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 22px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .product-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .product-image-placeholder {
-      height: 128px;
-      border-radius: 10px;
-      background:
-        linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%),
-        repeating-linear-gradient(45deg, rgba(148, 163, 184, 0.18) 0, rgba(148, 163, 184, 0.18) 10px, rgba(255,255,255,0.14) 10px, rgba(255,255,255,0.14) 20px);
-      border: 1px dashed #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .product-card h3 { margin: 0; font-size: 1.05rem; color: #0f172a; }
-    .code { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: 12px; font-weight: 700; }
-    .product-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-    .quote-strip {
-      margin-top: 24px;
-      padding: 24px;
-      border-radius: 14px;
-      background: #111827;
-      color: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .contact-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 22px; }
-
-    .panel {
       background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
-    }
-
-    .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    label { font-weight: 700; font-size: 0.95rem; color: #374151; display: block; }
-    input, select, textarea {
-      width: 100%;
-      margin-top: 8px;
-      padding: 12px 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111827;
-      background: #fff;
-    }
-
-    .info-panel { background: var(--bg-mid); color: #fff; }
-    .info-card {
-      margin-top: 12px;
-      padding: 14px 16px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 16px;
-      border-radius: 10px;
-      padding: 14px;
-      font-weight: 700;
-    }
-    .feedback.ok { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-    .feedback.error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
-
-    footer {
-      margin-top: 64px;
-      background: #0b1730;
-      color: #cbd5e1;
-      padding: 36px 0;
-    }
-
-    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: start; }
-    .footer-links a { color: #dbeafe; text-decoration: none; display: inline-block; margin-right: 14px; }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.65);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 100;
-    }
-    .modal.open { display: flex; }
-    .modal-content {
-      max-width: 620px;
-      width: 100%;
-      background: #fff;
-      border-radius: 12px;
-      padding: 22px;
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      right: 12px;
-      top: 10px;
-      border: none;
-      background: transparent;
-      font-size: 22px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+      transition: transform .25s, box-shadow .25s;
       cursor: pointer;
     }
 
-    @media (max-width: 900px) {
-      .hero h1 { font-size: 38px; }
-      .hero, .hero-overlay { min-height: 520px; }
-      .contact-layout, .footer-grid { grid-template-columns: 1fr; }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 32px rgba(0,0,0,.13);
+    }
+
+    .product-card[style*="none"] { display: none; }
+
+    .card-img {
+      height: 170px;
+      background: linear-gradient(135deg,#dce8f8,#c8d9f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      position: relative;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 3px;
+    }
+
+    .card-body { padding: 16px 18px; }
+
+    .card-cat {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .card-title {
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 7px;
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: .82rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 13px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 11px;
+    }
+
+    .card-model {
+      font-size: .72rem;
+      color: #9ca3af;
+      font-family: monospace;
+    }
+
+    .card-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 6px 15px;
+      border-radius: 4px;
+      font-size: .78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .card-btn:hover { background: var(--accent2); }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px 22px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: box-shadow .2s;
+    }
+
+    .feature-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+
+    .feat-icon {
+      font-size: 2.2rem;
+      margin-bottom: 13px;
+    }
+
+    .feat-title {
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 7px;
+    }
+
+    .feat-desc {
+      font-size: .83rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg,var(--primary),#1a5aab);
+      text-align: center;
+      color: #fff;
+      padding: 70px 40px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      opacity: .85;
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 10px;
+      padding: 20px 28px;
+      min-width: 175px;
+    }
+
+    .contact-card .cc-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: .82rem;
+      opacity: .8;
+      margin-bottom: 3px;
+    }
+
+    .contact-card strong { font-size: .92rem; }
+
+    /* QUOTE FORM */
+    .quote-section { background: var(--light); }
+
+    .quote-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 14px;
+      padding: 44px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 10px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: .9rem;
+      color: #1a1a2e;
+      outline: none;
+      transition: border-color .2s;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .97rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .submit-btn:hover { background: var(--accent2); }
+
+    .form-note {
+      font-size: .78rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .form-status.ok {
+      display: block;
+      background: #ecfdf5;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .form-status.err {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #081628;
+      color: rgba(255,255,255,.65);
+      padding: 48px 40px 24px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h4 {
+      color: #fff;
+      font-size: .92rem;
+      margin-bottom: 14px;
+    }
+
+    footer ul { list-style: none; }
+
+    footer ul li { margin-bottom: 8px; }
+
+    footer ul a {
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: color .2s;
+    }
+
+    footer ul a:hover { color: var(--accent); }
+
+    .footer-logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 11px;
+    }
+
+    .footer-logo .logo-accent { color: var(--accent); }
+
+    .footer-desc {
+      font-size: .84rem;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 18px;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 520px;
+      width: 92%;
+      padding: 34px;
+      position: relative;
+      animation: mIn .22s ease;
+    }
+
+    @keyframes mIn {
+      from { transform: scale(.93); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--gray);
+      line-height: 1;
+    }
+
+    .modal h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .modal-cat {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .modal-specs {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .86rem;
+    }
+
+    .spec-row:last-child { border-bottom: none; }
+
+    .spec-key { color: var(--gray); }
+    .spec-val { color: var(--primary); font-weight: 600; }
+
+    .modal-desc {
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .mbtn-p {
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
+      padding: 11px;
+      border-radius: 6px;
+      border: none;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .mbtn-o {
+      flex: 1;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 11px;
+      border-radius: 6px;
+      background: none;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .mbtn-p:hover { background: var(--accent2); }
+    .mbtn-o:hover { background: var(--light); }
+
+    @media(max-width:768px) {
+      .hero h1 { font-size: 1.85rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      section { padding: 48px 16px; }
+      .stat-item { padding: 14px 20px; }
+      .quote-wrap { padding: 26px 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="site-header-wrap">
-    <div class="container">
-      <header class="site-header">
-        <a href="#home" class="logo"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="#home">Home</a>
-          <a href="#catalog">Products</a>
-          <a href="#about">About</a>
-          <a href="#inquiry">Inquiry</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#products" class="logo"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#quote">Get Quote</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#quote" class="nav-cta">Request Quote</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Custom Size Available</div>
+    <h1>Dry Container Parts for Repair, Replacement &amp; Custom Projects</h1>
+    <p>Complete range of dry container parts, repair materials, and customizable-size components for maintenance, replacement, and project-based sourcing.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Browse All Products</a>
+      <a href="#quote" class="btn-outline">Get a Free Quote</a>
     </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">29+</div><div class="stat-label">Product Lines</div></div>
+    <div class="stat-item"><div class="stat-num">ISO</div><div class="stat-label">Focused Supply</div></div>
+    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Countries Served</div></div>
   </div>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-overlay">
-        <div class="container">
-          <div class="hero-content">
-            <span class="hero-tag">CUSTOM SIZE AVAILABLE</span>
-            <h1>Dry Container Parts for Repair, Replacement & Custom Projects</h1>
-            <p>Complete range of dry container parts, repair materials, and customizable-size components for maintenance, replacement, and project-based sourcing.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#inquiry">Request a Quote</a>
-              <a class="btn btn-secondary" href="#catalog">View Catalog</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="catalog">
-      <div class="container">
-        <div class="section-head">
-          <h2>Product Catalog</h2>
-          <p>Built for international buyers sourcing dry container replacement parts, repair materials, and project-based component batches.</p>
-        </div>
-
-        <div class="tabs" role="tablist" aria-label="Product categories">
-          <button class="tab-btn active" data-tab="all">All</button>
-          <button class="tab-btn" data-tab="structural">Structural</button>
-          <button class="tab-btn" data-tab="door">Door Hardware</button>
-          <button class="tab-btn" data-tab="flooring">Flooring</button>
-        </div>
-
-        <div class="product-grid" id="product-grid"></div>
-
-        <div class="quote-strip">
-          <div>
-            <strong>Need custom sizes or mixed product sets?</strong>
-            <div>Send your list with target quantity and destination market for a tailored quotation.</div>
-          </div>
-          <a class="btn btn-primary" href="#inquiry">Start Inquiry</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="panel">
-          <div class="section-head" style="margin-bottom: 0;">
-            <h2>Why Centro Containers</h2>
-            <p>We focus on practical export support: clear communication, dependable supply planning, and stable quality for repeat orders in container service and repair markets.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="inquiry">
-      <div class="container">
-        <div class="contact-layout">
-          <div class="panel">
-            <h2 style="margin-top:0;">Request a Quote</h2>
-            <p style="color:#4b5563;">Share your requirements and our sales team will reply with product options, lead time, and shipping support.</p>
-            <form id="inquiry-form" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
-              <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
-              <input type="hidden" name="form_start_time" id="form-start-time" />
-
-              <div class="field-grid">
-                <label>Name
-                  <input type="text" name="name" required />
-                </label>
-                <label>Company
-                  <input type="text" name="company" />
-                </label>
-                <label>Email
-                  <input type="email" name="email" required />
-                </label>
-                <label>Phone / WhatsApp
-                  <input type="text" name="phone" />
-                </label>
-                <label>Country
-                  <input type="text" name="country" />
-                </label>
-                <label>Product / Category
-                  <input type="text" name="product" />
-                </label>
-              </div>
-
-              <label style="margin-top: 14px;">Message / Details
-                <textarea name="message" rows="6" required placeholder="Please tell us your product requirements, quantity, destination market, and contact details such as WhatsApp or phone number."></textarea>
-              </label>
-
-              <div style="margin-top:16px;">
-                <button class="btn btn-primary" type="submit">Send Inquiry</button>
-              </div>
-            </form>
-            <div id="form-feedback" class="feedback" aria-live="polite"></div>
-          </div>
-
-          <aside id="contact" class="panel info-panel">
-            <h2 style="margin-top:0;color:#fff;">Get In Touch</h2>
-            <p style="color:#cbd5e1;">For pricing, lead times, and technical fit, contact our export sales team directly.</p>
-            <div class="info-card"><strong>Email:</strong> <a href="mailto:sales@centrocontainers.com" style="color:#fff;">sales@centrocontainers.com</a></div>
-            <div class="info-card"><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/8618663951355" style="color:#fff;">+86 186 6395 1355</a></div>
-            <div class="info-card"><strong>Website:</strong> <a href="https://centrocontainers.com" style="color:#fff;">centrocontainers.com</a></div>
-            <div class="info-card"><strong>Location:</strong> Qingdao, China</div>
-          </aside>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <a href="#home" class="logo" style="font-size:20px;"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
-        <p style="margin:10px 0 0;">Your reliable source for dry container parts worldwide. ISO certified, globally delivered.</p>
-      </div>
-      <div>
-        <div><strong>Email:</strong> sales@centrocontainers.com</div>
-        <div><strong>Phone / WhatsApp:</strong> +86 186 6395 1355</div>
-        <div><strong>Website:</strong> centrocontainers.com</div>
-        <div><strong>Location:</strong> Qingdao, China</div>
-      </div>
+  <!-- PRODUCTS -->
+  <section class="products-bg" id="products">
+    <div class="title-block">
+      <div class="section-label">Product Catalog</div>
+      <div class="section-title">Dry Container Parts</div>
+      <div class="section-sub">Complete range of structural, sealing and hardware components for 20ft &amp; 40ft dry containers.</div>
     </div>
+
+    <div class="cat-tabs">
+      <div class="cat-tab active" onclick="filterCat('all',this)">All Products</div>
+      <div class="cat-tab" onclick="filterCat('structural',this)">Structural Panels</div>
+      <div class="cat-tab" onclick="filterCat('rails',this)">Rails &amp; Members</div>
+      <div class="cat-tab" onclick="filterCat('hardware',this)">Door Hardware</div>
+      <div class="cat-tab" onclick="filterCat('sealing',this)">Sealing &amp; Gaskets</div>
+      <div class="cat-tab" onclick="filterCat('accessories',this)">Accessories</div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <!-- STRUCTURAL -->
+      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Roof Panel" data-cat-label="Structural Panel" data-model="CC-P01" data-specs='[["Material","2.0mm Cold-Rolled Carbon Steel"],["Corrugations","4 or 5 CORR"],["Size (std)","2.0×1045×2356 mm"],["Variants","Custom size available"]]' data-desc="Standard 5-corrugation roof panels for 20ft/40ft dry containers. Also available in patch sizes for repairs.">
+        <div class="card-img">🏗️<div class="card-badge">HOT</div></div>
+        <div class="card-body">
+          <div class="card-cat">Structural Panel</div>
+          <div class="card-title">Roof Panel</div>
+          <div class="card-desc">5-corrugation cold-rolled steel roof panels. Patch sizes available for repair projects.</div>
+          <div class="card-footer"><span class="card-model">CC-P01</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Side Panel" data-cat-label="Structural Panel" data-model="CC-P02" data-specs='[["Material","Corten / Carbon Steel"],["Application","20ft & 40ft containers"],["Corrugations","Standard corrugated profile"],["Finish","Anti-corrosion paint"]]' data-desc="Corrugated side wall panels for standard and high-cube dry containers. Available in corten steel for extended corrosion resistance.">
+        <div class="card-img">🧱</div>
+        <div class="card-body">
+          <div class="card-cat">Structural Panel</div>
+          <div class="card-title">Side Panel</div>
+          <div class="card-desc">Corrugated side panels for 20ft and 40ft dry containers. Corten steel option available.</div>
+          <div class="card-footer"><span class="card-model">CC-P02</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Front End Panel" data-cat-label="Structural Panel" data-model="CC-P03" data-specs='[["Material","High-Tensile Carbon Steel"],["Application","20ft & 40ft containers"],["Function","Front wall structural rigidity"],["Finish","Anti-corrosion paint"]]' data-desc="Heavy-duty front wall panels providing key structural rigidity to the container frame.">
+        <div class="card-img">🔲</div>
+        <div class="card-body">
+          <div class="card-cat">Structural Panel</div>
+          <div class="card-title">Front End Panel</div>
+          <div class="card-desc">Heavy-duty front wall panels providing structural rigidity to the container frame.</div>
+          <div class="card-footer"><span class="card-model">CC-P03</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Door Panel" data-cat-label="Structural Panel" data-model="CC-P04" data-specs='[["Material","Carbon Steel"],["Profile","Corrugated"],["Application","Rear door assembly"],["Finish","Anti-corrosion paint"]]' data-desc="Corrugated rear door panels with precision tolerances for airtight closure.">
+        <div class="card-img">🚪</div>
+        <div class="card-body">
+          <div class="card-cat">Structural Panel</div>
+          <div class="card-title">Door Panel</div>
+          <div class="card-desc">Corrugated rear door panels with precision tolerances for airtight closure.</div>
+          <div class="card-footer"><span class="card-model">CC-P04</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <!-- RAILS & MEMBERS -->
+      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Front Corner Post" data-cat-label="Rails & Members" data-model="CC-P05" data-specs='[["Material","High-Tensile Steel"],["Application","20ft & 40ft containers"],["Function","Front vertical structure"],["Compatibility","ISO standard"]]' data-desc="Load-bearing front vertical corner posts compatible with standard 20ft/40ft ISO containers.">
+        <div class="card-img">🏛️</div>
+        <div class="card-body">
+          <div class="card-cat">Rails & Members</div>
+          <div class="card-title">Front Corner Post</div>
+          <div class="card-desc">Load-bearing front vertical corner posts. ISO compatible. 20ft &amp; 40ft versions available.</div>
+          <div class="card-footer"><span class="card-model">CC-P05</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Rear Corner Post (Outer/Inner)" data-cat-label="Rails & Members" data-model="CC-P06" data-specs='[["Material","High-Tensile Steel"],["Type","Outer & Inner"],["Function","Rear door frame structure"],["Compatibility","Standard ISO containers"]]' data-desc="Outer and inner rear corner posts for door frame assembly.">
+        <div class="card-img">🔩</div>
+        <div class="card-body">
+          <div class="card-cat">Rails & Members</div>
+          <div class="card-title">Rear Corner Post (Outer/Inner)</div>
+          <div class="card-desc">Outer and inner rear corner posts for door frame assembly. Precision formed for ISO standard containers.</div>
+          <div class="card-footer"><span class="card-model">CC-P06</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Cross Member" data-cat-label="Rails & Members" data-model="CC-P07" data-specs='[["Material","High-Tensile Steel"],["Application","Container floor base"],["Function","Floor support"],["Variants","Multiple section profiles"]]' data-desc="Floor cross members supporting the container base with multiple section profiles available.">
+        <div class="card-img">➕<div class="card-badge">NEW</div></div>
+        <div class="card-body">
+          <div class="card-cat">Rails & Members</div>
+          <div class="card-title">Cross Member</div>
+          <div class="card-desc">Floor cross members supporting the container base. Multiple section profiles available.</div>
+          <div class="card-footer"><span class="card-model">CC-P07</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Bottom Side Rail" data-cat-label="Rails & Members" data-model="CC-P08" data-specs='[["Material","High-Tensile Steel"],["Application","Base perimeter"],["Function","Connects corner posts"],["Finish","Anti-corrosion paint"]]' data-desc="Structural bottom side rails connecting front and rear corner posts at base level.">
+        <div class="card-img">📏</div>
+        <div class="card-body">
+          <div class="card-cat">Rails & Members</div>
+          <div class="card-title">Bottom Side Rail</div>
+          <div class="card-desc">Structural bottom side rails connecting corner posts. High-tensile steel construction.</div>
+          <div class="card-footer"><span class="card-model">CC-P08</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <!-- HARDWARE -->
+      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Corner Casting" data-cat-label="Hardware" data-model="CC-P09" data-specs='[["Standard","ISO 1161"],["Material","Cast Steel"],["Size","178×162×118 mm"],["Positions","BL / BR / TL / TR"],["Pack","Individual or set"]]' data-desc="ISO 1161 standard cast steel corner fittings for dry containers.">
+        <div class="card-img">⬛<div class="card-badge">ISO</div></div>
+        <div class="card-body">
+          <div class="card-cat">Hardware</div>
+          <div class="card-title">Corner Casting</div>
+          <div class="card-desc">ISO 1161 cast steel corner fittings. 178×162×118mm. BL/BR/TL/TR.</div>
+          <div class="card-footer"><span class="card-model">CC-P09</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Door Locking Hardware" data-cat-label="Door Hardware" data-model="CC-P10" data-specs='[["Hinge Blade","Forged / Welded"],["Hinge Pin","SUS304/SUS201"],["Bushings","Carbon steel + Nylon"],["Retainer","Forged / Press type"]]' data-desc="Complete door locking hardware set including hinge blades, hinge pins, lock rods, retainer plates, and bushings.">
+        <div class="card-img">🔐<div class="card-badge">HOT</div></div>
+        <div class="card-body">
+          <div class="card-cat">Door Hardware</div>
+          <div class="card-title">Door Locking Hardware</div>
+          <div class="card-desc">Full set: hinge blades, stainless hinge pins, lock rods, retainer plates, bushings.</div>
+          <div class="card-footer"><span class="card-model">CC-P10</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Ventilator" data-cat-label="Hardware" data-model="CC-P11" data-specs='[["Material","Galvanized Steel"],["Function","Moisture & air circulation"],["Application","Dry cargo containers"],["Compliance","Standard dry container use"]]' data-desc="Standard container ventilators for moisture control and air circulation in dry cargo.">
+        <div class="card-img">💨</div>
+        <div class="card-body">
+          <div class="card-cat">Hardware</div>
+          <div class="card-title">Ventilator</div>
+          <div class="card-desc">Standard container ventilators for moisture control and air circulation in dry cargo.</div>
+          <div class="card-footer"><span class="card-model">CC-P11</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <!-- SEALING -->
+      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Door Gasket" data-cat-label="Sealing" data-model="CC-P12" data-specs='[["Material","EPDM Rubber"],["Function","Weatherproof door seal"],["Profile","Various cross-sections"],["Application","Container rear doors"]]' data-desc="EPDM rubber door gaskets providing weatherproof and airtight door sealing.">
+        <div class="card-img">🔴</div>
+        <div class="card-body">
+          <div class="card-cat">Sealing</div>
+          <div class="card-title">Door Gasket</div>
+          <div class="card-desc">EPDM rubber gaskets for weatherproof, airtight door sealing. Multiple cross-section profiles.</div>
+          <div class="card-footer"><span class="card-model">CC-P12</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Stainless Door Seal" data-cat-label="Sealing" data-model="CC-P13" data-specs='[["Material","Stainless Steel"],["Function","Door perimeter seal"],["Benefit","Corrosion resistant"],["Application","Container doors"]]' data-desc="Stainless steel door seal strips ensuring long-term corrosion resistance and tight closure.">
+        <div class="card-img">🔒</div>
+        <div class="card-body">
+          <div class="card-cat">Sealing</div>
+          <div class="card-title">Stainless Door Seal</div>
+          <div class="card-desc">Stainless steel door seal strips for long-term corrosion resistance in maritime environments.</div>
+          <div class="card-footer"><span class="card-model">CC-P13</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Sealant" data-cat-label="Sealing" data-model="CC-P14" data-specs='[["Type","Polyurethane / Silicone"],["Application","Joints & seams"],["Cure","Room temperature"],["Use","New build & repair"]]' data-desc="Polyurethane and silicone-based container sealants for joints, seams and repair applications.">
+        <div class="card-img">🟡</div>
+        <div class="card-body">
+          <div class="card-cat">Sealing</div>
+          <div class="card-title">Sealant</div>
+          <div class="card-desc">PU and silicone sealants for container joints, seams and repair. UV and water resistant.</div>
+          <div class="card-footer"><span class="card-model">CC-P14</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <!-- ACCESSORIES -->
+      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Corten Plate" data-cat-label="Accessories" data-model="CC-P15" data-specs='[["Material","Corten Steel (Weathering)"],["Standard","ASTM A588 / EN10025-5"],["Application","Panel repair patches"],["Benefit","Self-rusting protective layer"]]' data-desc="Weathering steel plates for container repair and fabrication.">
+        <div class="card-img">🟫</div>
+        <div class="card-body">
+          <div class="card-cat">Accessories</div>
+          <div class="card-title">Corten Plate</div>
+          <div class="card-desc">Weathering steel plates for container repair. Self-protecting patina.</div>
+          <div class="card-footer"><span class="card-model">CC-P15</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Plywood" data-cat-label="Accessories" data-model="CC-P16" data-specs='[["Material","Hardwood / Bamboo Plywood"],["Thickness","28mm (standard)"],["Treatment","Anti-fungal & ISPM 15"],["Application","Container floor board"]]' data-desc="Container floor plywood boards. Hardwood or bamboo construction, 28mm standard thickness.">
+        <div class="card-img">🪵</div>
+        <div class="card-body">
+          <div class="card-cat">Accessories</div>
+          <div class="card-title">Plywood</div>
+          <div class="card-desc">28mm container floor plywood. Hardwood/bamboo. ISPM 15 certified.</div>
+          <div class="card-footer"><span class="card-model">CC-P16</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Tapping Screw" data-cat-label="Accessories" data-model="CC-P17" data-specs='[["Material","Carbon Steel / SUS304"],["Head Type","Hex washer head"],["Standard","ISO / DIN"],["Application","Panel & component fixing"]]' data-desc="Self-tapping screws for container panel and component fastening.">
+        <div class="card-img">🔩</div>
+        <div class="card-body">
+          <div class="card-cat">Accessories</div>
+          <div class="card-title">Tapping Screw</div>
+          <div class="card-desc">Self-tapping screws for container panels. Carbon steel and SUS304 options.</div>
+          <div class="card-footer"><span class="card-model">CC-P17</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us">
+    <div class="title-block">
+      <div class="section-label">Why Choose Us</div>
+      <div class="section-title">Quality You Can Rely On</div>
+      <div class="section-sub">We support international buyers with practical sourcing, stable supply coordination, and clear communication for container repair and replacement projects.</div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feat-icon">🏭</div><div class="feat-title">Factory-Backed Supply</div><div class="feat-desc">Reliable sourcing support for dry container replacement parts and repair components.</div></div>
+      <div class="feature-card"><div class="feat-icon">✅</div><div class="feat-title">ISO-Focused Quality</div><div class="feat-desc">Products follow widely used international standards for dry container applications.</div></div>
+      <div class="feature-card"><div class="feat-icon">🌍</div><div class="feat-title">Global Shipping</div><div class="feat-desc">We support export shipments to buyers in multiple regions with practical delivery coordination.</div></div>
+      <div class="feature-card"><div class="feat-icon">📦</div><div class="feat-title">Full Parts Range</div><div class="feat-desc">One-stop sourcing from structural steel components to seals, hardware, and accessories.</div></div>
+      <div class="feature-card"><div class="feat-icon">💬</div><div class="feat-title">Technical Support</div><div class="feat-desc">Part matching, drawing review, and practical communication for inquiry-to-order workflows.</div></div>
+      <div class="feature-card"><div class="feat-icon">💰</div><div class="feat-title">Competitive Pricing</div><div class="feat-desc">Flexible MOQ and workable pricing for spot purchases and long-term supply cooperation.</div></div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-section" id="contact">
+    <div class="section-label" style="color:rgba(255,255,255,.6)">Get In Touch</div>
+    <h2>Ready to Source Your Container Parts?</h2>
+    <p>Contact our team for pricing, technical specs, lead times, and export coordination.</p>
+    <a href="#quote" class="btn-primary">Request a Free Quote →</a>
+    <div class="contact-grid">
+      <div class="contact-card"><div class="cc-icon">📧</div><p>Email</p><strong>sales@centrocontainers.com</strong></div>
+      <div class="contact-card"><div class="cc-icon">📞</div><p>Phone / WhatsApp</p><strong>+86 186 6395 1355</strong></div>
+      <div class="contact-card"><div class="cc-icon">🌐</div><p>Website</p><strong>centrocontainers.com</strong></div>
+      <div class="contact-card"><div class="cc-icon">📍</div><p>Location</p><strong>Qingdao, China</strong></div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="quote-section" id="quote">
+    <div class="title-block">
+      <div class="section-label">Quick Inquiry</div>
+      <div class="section-title">Request a Quote</div>
+      <div class="section-sub">Fill in your requirements and we will get back to you as soon as possible.</div>
+    </div>
+    <div class="quote-wrap">
+      <form id="quoteForm" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+        <input type="hidden" name="form_start_time" id="form_start_time">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" placeholder="Company name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" name="phone" placeholder="+1 234 567 8900">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" name="country" placeholder="Your country">
+          </div>
+          <div class="form-group">
+            <label>Product Category</label>
+            <select name="product">
+              <option value="">-- Select category --</option>
+              <option>Structural Panels (Roof / Side / Front / Door)</option>
+              <option>Rails & Members (Cross Member / Side Rail / Corner Post)</option>
+              <option>Corner Casting</option>
+              <option>Door Locking Hardware</option>
+              <option>Sealing & Gaskets</option>
+              <option>Accessories (Plywood / Corten / Screws)</option>
+              <option>Multiple / Full Set</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="text" id="quantity" placeholder="e.g. 100 pcs / 5 sets">
+          </div>
+          <div class="form-group">
+            <label>Reference Product Code</label>
+            <input type="text" id="reference_code" placeholder="e.g. CC-P01">
+          </div>
+        </div>
+
+        <div class="form-group full" style="margin-bottom:16px">
+          <label>Product Details / Special Requirements *</label>
+          <textarea name="message" id="message" placeholder="Please describe the parts you need — product name, model number, dimensions, container size (20ft/40ft), and any special requirements..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">📩 Send Inquiry</button>
+        <div class="form-note">We typically respond within 24 hours on business days.</div>
+        <div id="formStatus" class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo"><span class="logo-accent">CENTRO</span>CONTAINERS</div>
+      <div class="footer-desc">Your reliable source for dry container parts worldwide. ISO-focused supply, export support, and practical communication.</div>
+      <div style="font-size:.82rem;color:rgba(255,255,255,.4)">📧 sales@centrocontainers.com &nbsp;|&nbsp; 📞 +86 186 6395 1355</div>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#products">Structural Panels</a></li>
+        <li><a href="#products">Rails & Members</a></li>
+        <li><a href="#products">Corner Castings</a></li>
+        <li><a href="#products">Door Hardware</a></li>
+        <li><a href="#products">Seals & Gaskets</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#why-us">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://centrocontainers.com" target="_blank">Official Website</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#quote">Request Quote</a></li>
+        <li><a href="#contact">Technical Support</a></li>
+        <li><a href="#products">Product Catalog</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">© 2026 Centro Containers. All rights reserved.</div>
   </footer>
 
-  <div class="modal" id="product-modal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <h3 id="modal-title" style="margin:0 0 8px;"></h3>
-      <div id="modal-code" class="code" style="margin-bottom:10px;"></div>
-      <p id="modal-desc" style="margin:0 0 10px;color:#374151;"></p>
-      <ul id="modal-specs" style="margin:0;padding-left:20px;color:#4b5563;"></ul>
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('show')">✕</button>
+      <div class="modal-cat" id="mCat"></div>
+      <h3 id="mTitle"></h3>
+      <div class="modal-specs" id="mSpecs"></div>
+      <div class="modal-desc" id="mDesc"></div>
+      <div class="modal-btns">
+        <button class="mbtn-p" onclick="window.location='#quote'">Request Quote</button>
+        <button class="mbtn-o" onclick="document.getElementById('modalOverlay').classList.remove('show')">Close</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const products = [
-      { code: 'CC-P01', category: 'structural', name: 'Side Wall Corrugated Panel', desc: 'Steel panel used for dry container side wall replacement and repair.', specs: ['Material: Corten steel', 'Thickness options available', 'Custom length support'] },
-      { code: 'CC-P02', category: 'structural', name: 'Roof Panel', desc: 'Roof panel for dry container top repairs and build projects.', specs: ['High weather resistance', 'Multiple profile options', 'Custom dimensions accepted'] },
-      { code: 'CC-P03', category: 'door', name: 'Container Door Lock Rod Set', desc: 'Lock rod assembly for replacement and door hardware maintenance.', specs: ['Left/right configuration', 'Corrosion protection finish', 'Batch order support'] },
-      { code: 'CC-P04', category: 'door', name: 'Door Hinge Bracket', desc: 'Heavy-duty hinge bracket component for door frame repair.', specs: ['Weld-ready design', 'Stable fit for standard doors', 'Project quantity friendly'] },
-      { code: 'CC-P05', category: 'flooring', name: 'Container Plywood Flooring', desc: 'Durable flooring panel for repair and refurbishment operations.', specs: ['Multiple thickness options', 'Moisture-resistant treatment', 'Export packing available'] },
-      { code: 'CC-P06', category: 'flooring', name: 'Floor Fastener Set', desc: 'Fastening kit designed for container flooring installation.', specs: ['Repair workshop ready', 'Consistent hardware quality', 'Mixed model shipment support'] },
-      { code: 'CC-P07', category: 'all', name: 'Door Gasket Rubber', desc: 'Sealing strip for container door leakage prevention and replacement.', specs: ['Flexible profile options', 'Long service life', 'Custom cut length'] },
-      { code: 'CC-P08', category: 'all', name: 'Corner Casting', desc: 'Container corner fitting for structural replacement and fabrication.', specs: ['Standard compatibility', 'Reliable load performance', 'Inspection support available'] }
-    ];
-
-    function getTabProducts(tab) {
-      if (tab === 'all') return products;
-      return products.filter((item) => item.category === tab);
-    }
-
-    function renderProducts(tab = 'all') {
-      const grid = document.getElementById('product-grid');
-      const items = getTabProducts(tab);
-      grid.innerHTML = items.map((item) => `
-        <article class="product-card" data-code="${item.code}" data-name="${item.name}">
-          <div class="product-image-placeholder">Product Image</div>
-          <span class="code">${item.code}</span>
-          <h3>${item.name}</h3>
-          <p>${item.desc}</p>
-          <button class="btn" type="button" style="background:#e5e7eb;color:#111827;" data-view="${item.code}">View Details</button>
-        </article>
-      `).join('');
-    }
-
-    function setupTabs() {
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          buttons.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderProducts(btn.dataset.tab);
-        });
+    function filterCat(cat, el) {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.querySelectorAll('.product-card').forEach(c => {
+        c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
       });
     }
 
-    function setupModal() {
-      const modal = document.getElementById('product-modal');
-      const closeBtn = modal.querySelector('.modal-close');
-      const title = document.getElementById('modal-title');
-      const code = document.getElementById('modal-code');
-      const desc = document.getElementById('modal-desc');
-      const specs = document.getElementById('modal-specs');
+    function openModal(card) {
+      const title = card.dataset.title;
+      const catLabel = card.dataset.catLabel;
+      const model = card.dataset.model;
+      const desc = card.dataset.desc;
+      const specs = JSON.parse(card.dataset.specs || '[]');
 
-      document.addEventListener('click', (e) => {
-        const trigger = e.target.closest('[data-view]');
-        if (!trigger) return;
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mCat').textContent = catLabel + ' · ' + model;
+      document.getElementById('mDesc').textContent = desc;
 
-        const item = products.find((p) => p.code === trigger.dataset.view);
-        if (!item) return;
-
-        title.textContent = item.name;
-        code.textContent = item.code;
-        desc.textContent = item.desc;
-        specs.innerHTML = item.specs.map((s) => `<li>${s}</li>`).join('');
-
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
+      let specsHtml = '';
+      specs.forEach(([k, v]) => {
+        specsHtml += `<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`;
       });
+      document.getElementById('mSpecs').innerHTML = specsHtml;
+      document.getElementById('modalOverlay').classList.add('show');
+    }
 
-      function closeModal() {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        document.getElementById('modalOverlay').classList.remove('show');
       }
-
-      closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-      });
     }
 
-    function initForm() {
-      const form = document.getElementById('inquiry-form');
-      const feedback = document.getElementById('form-feedback');
-      const startTimeField = document.getElementById('form-start-time');
-      startTimeField.value = String(Date.now());
+    async function submitForm(e) {
+      e.preventDefault();
 
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        feedback.className = 'feedback';
-        feedback.textContent = '';
+      const form = document.getElementById('quoteForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+      const startTime = document.getElementById('form_start_time');
+      const messageField = document.getElementById('message');
+      const quantity = document.getElementById('quantity').value.trim();
+      const referenceCode = document.getElementById('reference_code').value.trim();
+      const phone = form.querySelector('[name="phone"]').value.trim();
 
+      status.className = 'form-status';
+      status.textContent = '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const originalMessage = messageField.value.trim();
+      const extraLines = [];
+
+      if (phone) extraLines.push(`Phone / WhatsApp: ${phone}`);
+      if (quantity) extraLines.push(`Quantity: ${quantity}`);
+      if (referenceCode) extraLines.push(`Reference Product Code: ${referenceCode}`);
+
+      const finalMessage = extraLines.length
+        ? `${originalMessage}\n\n${extraLines.join('\n')}`
+        : originalMessage;
+
+      messageField.value = finalMessage;
+
+      try {
         const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData
+        });
 
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: formData
-          });
+        if (!response.ok) throw new Error('Submit failed');
 
-          if (!response.ok) throw new Error('Submit failed');
+        form.reset();
+        startTime.value = String(Date.now());
+        submitBtn.disabled = false;
+        submitBtn.textContent = '📩 Send Inquiry';
+        status.className = 'form-status ok';
+        status.textContent = '✅ Inquiry sent successfully. We will contact you within 24 hours.';
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '📩 Send Inquiry';
+        status.className = 'form-status err';
+        status.textContent = 'Submission failed. Please try again or email sales@centrocontainers.com.';
+      } finally {
+        messageField.value = '';
+      }
+    }
 
-          form.reset();
-          startTimeField.value = String(Date.now());
-          feedback.className = 'feedback ok';
-          feedback.textContent = 'Thank you for your inquiry. Our team will contact you shortly.';
-        } catch (error) {
-          feedback.className = 'feedback error';
-          feedback.textContent = 'Submission failed. Please try again or email sales@centrocontainers.com.';
+    document.getElementById('quoteForm').addEventListener('submit', submitForm);
+    document.getElementById('form_start_time').value = String(Date.now());
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
         }
       });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderProducts('all');
-      setupTabs();
-      setupModal();
-      initForm();
     });
   </script>
 </body>
