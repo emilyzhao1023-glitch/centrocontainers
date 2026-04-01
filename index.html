@@ -3,399 +3,555 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Centro Containers | Shipping Container Parts Supplier</title>
+  <title>Centro Containers | Dry Container Parts Supply</title>
   <meta
     name="description"
-    content="Centro Containers is a China-based shipping container parts supplier offering dry container structural parts, door hardware, corner fittings, flooring systems, and repair consumables."
+    content="Centro Containers supplies dry container parts, repair materials, and customizable-size components for international B2B buyers."
   />
   <style>
-    .site-shell {
+    :root {
+      --bg-dark: #0b1730;
+      --bg-mid: #111f3b;
+      --accent: #f59e0b;
+      --accent-strong: #d97706;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --surface: #ffffff;
+      --line: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #1f2937;
+      color: var(--text);
       background: #f3f4f6;
       line-height: 1.6;
     }
 
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
     .site-header-wrap {
       width: 100%;
-      background: #0b1730;
-      color: #ffffff;
+      background: var(--bg-dark);
+      color: #fff;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+      position: sticky;
+      top: 0;
+      z-index: 30;
     }
 
-    .site-header,
-    header {
-      width: 100%;
+    .site-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 56px;
-      background: #0b1730;
-      box-sizing: border-box;
-      gap: 24px;
+      padding: 16px 0;
+      gap: 20px;
     }
 
-    .logo,
-    .site-logo,
-    header .logo {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 0;
-      letter-spacing: 0.01em;
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
       text-decoration: none;
+      letter-spacing: 0.01em;
       white-space: nowrap;
     }
 
-    nav,
-    .site-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
+    .logo-accent { color: var(--accent); }
 
-    nav a,
+    .site-nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: flex-end; }
+
     .site-nav a {
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      transition: color 0.2s ease;
     }
 
-    nav a:hover,
-    .site-nav a:hover {
-      color: #4c78ff;
-    }
+    .site-nav a:hover { color: #93c5fd; }
 
     .hero {
-      position: relative;
-      height: 80vh;
-      min-height: 520px;
+      min-height: 620px;
       background-image: url('public/images/Hero.png');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
+      position: relative;
     }
 
     .hero-overlay {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(10,20,40,0.75), rgba(10,20,40,0.2));
+      min-height: 620px;
+      background: linear-gradient(100deg, rgba(8, 15, 30, 0.84), rgba(8, 15, 30, 0.35));
       display: flex;
       align-items: center;
     }
 
-    .hero-content {
-      max-width: 600px;
-      padding: 0 24px 0 80px;
-      color: #ffffff;
-    }
+    .hero-content { max-width: 700px; color: #fff; }
 
     .hero-tag {
       display: inline-block;
-      background: rgba(255,255,255,0.15);
       padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: #fde68a;
       font-size: 12px;
-      margin-bottom: 15px;
       letter-spacing: 0.08em;
       font-weight: 700;
+      margin-bottom: 16px;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.15;
-      margin: 0 0 20px;
-    }
+    .hero h1 { margin: 0 0 16px; font-size: 52px; line-height: 1.12; }
 
-    .hero p {
-      font-size: 16px;
-      margin: 0 0 25px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.92);
-    }
+    .hero p { margin: 0 0 28px; max-width: 640px; color: rgba(255, 255, 255, 0.93); }
 
-    .hero-btn {
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
       display: inline-block;
-      background: #2f5bea;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 6px;
+      padding: 12px 22px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 700;
-      box-shadow: 0 12px 30px rgba(47, 91, 234, 0.3);
+      border: none;
+      cursor: pointer;
+      font: inherit;
     }
 
-    @media (max-width: 768px) {
-      .site-header,
-      header {
-        padding: 14px 24px;
-      }
+    .btn-primary { background: var(--accent); color: #111827; }
+    .btn-primary:hover { background: #fbbf24; }
 
-      nav,
-      .site-nav {
-        justify-content: flex-end;
-        gap: 12px 20px;
-      }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+    }
 
-      .hero {
-        height: auto;
-        min-height: 460px;
-      }
+    section { padding: 72px 0 24px; }
+    .section-head { max-width: 760px; margin-bottom: 24px; }
+    .section-head h2 { margin: 0 0 10px; font-size: 2rem; color: #111827; }
+    .section-head p { margin: 0; color: var(--muted); }
 
-      .hero-content {
-        padding: 56px 24px;
-      }
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .tab-btn {
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #1e293b;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab-btn.active { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
 
-      .hero h1 {
-        font-size: 36px;
-      }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .product-image-placeholder {
+      height: 128px;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%),
+        repeating-linear-gradient(45deg, rgba(148, 163, 184, 0.18) 0, rgba(148, 163, 184, 0.18) 10px, rgba(255,255,255,0.14) 10px, rgba(255,255,255,0.14) 20px);
+      border: 1px dashed #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .product-card h3 { margin: 0; font-size: 1.05rem; color: #0f172a; }
+    .code { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: 12px; font-weight: 700; }
+    .product-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    .quote-strip {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 14px;
+      background: #111827;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 22px; }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    label { font-weight: 700; font-size: 0.95rem; color: #374151; display: block; }
+    input, textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font: inherit;
+      color: #111827;
+      background: #fff;
+    }
+
+    .info-panel { background: var(--bg-mid); color: #fff; }
+    .info-card {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      border-radius: 10px;
+      padding: 14px;
+      font-weight: 700;
+    }
+    .feedback.ok { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .feedback.error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    footer {
+      margin-top: 64px;
+      background: #0b1730;
+      color: #cbd5e1;
+      padding: 36px 0;
+    }
+
+    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: start; }
+    .footer-links a { color: #dbeafe; text-decoration: none; display: inline-block; margin-right: 14px; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+    .modal.open { display: flex; }
+    .modal-content {
+      max-width: 620px;
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      padding: 22px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 38px; }
+      .hero, .hero-overlay { min-height: 520px; }
+      .contact-layout, .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body class="site-shell">
+<body>
   <div class="site-header-wrap">
-    <header class="site-header">
-      <a href="#home" class="logo">Centro Containers</a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#home">Home</a>
-        <a href="products.html">Products</a>
-        <a href="#production">Production</a>
-        <a href="#about">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+    <div class="container">
+      <header class="site-header">
+        <a href="#home" class="logo"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#catalog">Products</a>
+          <a href="#about">About</a>
+          <a href="#inquiry">Inquiry</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+    </div>
   </div>
 
   <main>
     <section id="home" class="hero">
       <div class="hero-overlay">
-        <div class="hero-content">
-          <span class="hero-tag">CONTAINER PARTS SUPPLY</span>
-          <h1>Dry Container Parts &amp; Repair Consumables</h1>
-          <p>
-            We supply a full range of shipping container parts and repair consumables,
-            including structural parts, door hardware, corner fittings, flooring systems,
-            and repair materials for dry containers.
-          </p>
-          <a href="contact.html" class="hero-btn">Get a Quote</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" style="max-width: 1160px; margin: 0 auto; padding: 72px 24px 24px;">
-      <div style="max-width: 700px; margin-bottom: 28px;">
-        <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">Product Categories</h2>
-        <p style="margin: 0; color: #4b5563;">A focused product structure for dry container maintenance, replacement, and repair requirements.</p>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px;">
-        <article style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h3 style="margin: 0 0 10px; font-size: 1.1rem; color: #111827;">Container Structural Parts</h3>
-          <p style="margin: 0; color: #4b5563;">Support frame repairs and assembly with practical structural components for dry container bodies.</p>
-        </article>
-        <article style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h3 style="margin: 0 0 10px; font-size: 1.1rem; color: #111827;">Container Door Parts</h3>
-          <p style="margin: 0; color: #4b5563;">Source essential locking, sealing, and hinge-related parts used in container door maintenance.</p>
-        </article>
-        <article style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h3 style="margin: 0 0 10px; font-size: 1.1rem; color: #111827;">Container Corner Fittings</h3>
-          <p style="margin: 0; color: #4b5563;">Provide standardized corner components suited to container fabrication and replacement projects.</p>
-        </article>
-        <article style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h3 style="margin: 0 0 10px; font-size: 1.1rem; color: #111827;">Container Flooring</h3>
-          <p style="margin: 0; color: #4b5563;">Supply flooring options and related components for repairs, replacements, and ongoing upkeep.</p>
-        </article>
-        <article style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h3 style="margin: 0 0 10px; font-size: 1.1rem; color: #111827;">Container Repair Consumables</h3>
-          <p style="margin: 0; color: #4b5563;">Cover repair workflows with everyday consumables used in container refurbishment and service operations.</p>
-        </article>
-      </div>
-    </section>
-
-    <section style="max-width: 1160px; margin: 0 auto; padding: 48px 24px 24px;">
-      <div style="background: #111827; color: #ffffff; border-radius: 14px; padding: 36px 28px;">
-        <div style="max-width: 700px; margin-bottom: 24px;">
-          <h2 style="margin: 0 0 12px; font-size: 2rem;">Why Choose Us</h2>
-          <p style="margin: 0; color: #cbd5e1;">Built for buyers who value dependable supply, straightforward communication, and practical execution.</p>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
-          <div style="padding: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;">
-            <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Stable Quality</h3>
-            <p style="margin: 0; color: #dbe4ee;">We focus on consistent specifications and dependable quality for repeat purchasing needs.</p>
-          </div>
-          <div style="padding: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;">
-            <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Flexible Supply</h3>
-            <p style="margin: 0; color: #dbe4ee;">We support varied order planning and practical supply coordination for different project scales.</p>
-          </div>
-          <div style="padding: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;">
-            <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Practical Support</h3>
-            <p style="margin: 0; color: #dbe4ee;">We help customers move from inquiry to production with clear, workable manufacturing coordination.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="production" style="max-width: 1160px; margin: 0 auto; padding: 72px 24px 24px;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; align-items: start;">
-        <div>
-          <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">Production Capability</h2>
-          <p style="margin: 0; color: #4b5563;">Our coordination capabilities support metal-component production workflows including steel cutting, bending, sheet forming, and welding for related container part applications.</p>
-        </div>
-        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <div style="display: grid; grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 14px;">
-            <div style="padding: 16px; border-radius: 10px; background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: center;">Steel Cutting</div>
-            <div style="padding: 16px; border-radius: 10px; background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: center;">Bending</div>
-            <div style="padding: 16px; border-radius: 10px; background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: center;">Sheet Forming</div>
-            <div style="padding: 16px; border-radius: 10px; background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: center;">Welding</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" style="max-width: 1160px; margin: 0 auto; padding: 72px 24px 24px;">
-      <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-        <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">About</h2>
-        <p style="margin: 0; color: #4b5563; max-width: 860px;">
-          We are a China-based supplier focused on shipping container parts and related metal components, supporting customers with reliable supply and practical manufacturing coordination.
-        </p>
-      </div>
-    </section>
-
-    <section id="inquiry" style="max-width: 1160px; margin: 0 auto; padding: 72px 24px 24px;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; align-items: start;">
-        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 32px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);">
-          <h2 style="margin: 0 0 12px; font-size: 2rem; color: #111827;">Request a Quote</h2>
-          <p style="margin: 0 0 24px; color: #4b5563; max-width: 680px;">Send us your inquiry for shipping container parts, repair materials, or custom container components.</p>
-          <form action="https://centro-email.emilyzhao1023.workers.dev" method="POST" onsubmit="return submitForm(event)" style="margin-bottom: 0;">
-            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
-            <input type="hidden" name="form_start_time" />
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Name
-                <input type="text" name="name" required style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
-              </label>
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Company
-                <input type="text" name="company" style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
-              </label>
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Email
-                <input type="email" name="email" required style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
-              </label>
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Country
-                <input type="text" name="country" style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
-              </label>
-            </div>
-            <div style="margin-top: 18px;">
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Product Interested In
-                <input type="text" name="product" style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff;" />
-              </label>
-            </div>
-            <div style="margin-top: 18px;">
-              <label style="display: block; font-size: 0.95rem; color: #374151; font-weight: 700;">
-                Message
-                <textarea name="message" rows="6" required placeholder="Please tell us your product requirements, quantity, destination market, and contact details such as WhatsApp or phone number." style="width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font: inherit; color: #111827; box-sizing: border-box; background: #ffffff; resize: vertical;"></textarea>
-              </label>
-            </div>
-            <div style="margin-top: 24px;">
-              <button type="submit" style="display: inline-block; padding: 14px 24px; background: #1d4ed8; color: #ffffff; border: none; border-radius: 6px; font: inherit; font-weight: 700; cursor: pointer;">Send Inquiry</button>
-            </div>
-          </form>
-          <div id="thankyou-message" style="display:none;text-align:center;margin-top:30px;font-size:18px;color:#16a34a;padding:36px 0 12px;">
-            Thank you for your inquiry. We will contact you shortly.
-          </div>
-          <p style="margin: 20px 0 0; color: #4b5563;">You can also email us directly at <a href="mailto:sales@centrocontainers.com" style="color: #1d4ed8; font-weight: 700; text-decoration: none;">sales@centrocontainers.com</a></p>
-        </div>
-
-        <aside style="background: #111827; color: #ffffff; border-radius: 12px; padding: 32px; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);">
-          <h2 style="margin: 0 0 12px; font-size: 2rem;">Business Inquiry</h2>
-          <p style="margin: 0 0 18px; color: #cbd5e1;">Discuss pricing, lead times, and product specifications with our sales team for container parts and repair supply programs.</p>
-          <div style="padding: 18px 20px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 16px;">
-            <div style="font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; color: #93c5fd; font-weight: 700;">Coverage</div>
-            <p style="margin: 8px 0 0; color: #e5e7eb;">Shipping container parts, repair materials, and custom component sourcing support.</p>
-          </div>
-          <div style="padding: 18px 20px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-            <div style="font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; color: #93c5fd; font-weight: 700;">Email</div>
-            <a href="mailto:sales@centrocontainers.com" style="display: inline-block; margin-top: 8px; color: #ffffff; font-size: 1.05rem; font-weight: 700; text-decoration: none;">sales@centrocontainers.com</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="contact" style="max-width: 1160px; margin: 0 auto; padding: 48px 24px 88px;">
-      <div style="background: #1d4ed8; color: #ffffff; border-radius: 14px; padding: 36px 28px;">
-        <h2 style="margin: 0 0 12px; font-size: 2rem;">Direct Contact</h2>
-        <p style="margin: 0 0 24px; color: #dbeafe; max-width: 640px;">Prefer to reach us directly? Our team typically responds within 24 hours.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; align-items: stretch;">
-          <div style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 20px;">
-            <div style="font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: #bfdbfe; font-weight: 700; margin-bottom: 8px;">Email</div>
-            <a href="mailto:sales@centrocontainers.com" style="color: #ffffff; font-size: 1.05rem; font-weight: 700; text-decoration: none; word-break: break-word;">sales@centrocontainers.com</a>
-          </div>
-          <div style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 20px;">
-            <div style="font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: #bfdbfe; font-weight: 700; margin-bottom: 8px;">WhatsApp</div>
-            <a href="https://wa.me/8618663951355" style="color: #ffffff; font-size: 1.05rem; font-weight: 700; text-decoration: none;">+8618663951355</a>
-            <div style="margin-top: 18px;">
-              <a href="https://wa.me/8618663951355" style="display: inline-block; padding: 12px 20px; background: #16a34a; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 700; box-shadow: 0 10px 20px rgba(22,163,74,0.25);">Chat on WhatsApp</a>
+        <div class="container">
+          <div class="hero-content">
+            <span class="hero-tag">CUSTOM SIZE AVAILABLE</span>
+            <h1>Dry Container Parts for Every Repair Need</h1>
+            <p>Complete range of dry container parts, repair materials, and customizable-size components for maintenance, replacement, and project-based sourcing.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#inquiry">Request a Quote</a>
+              <a class="btn btn-secondary" href="#catalog">View Catalog</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <h2>Product Catalog</h2>
+          <p>Built for international buyers sourcing dry container replacement parts, repair materials, and project-based component batches.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Product categories">
+          <button class="tab-btn active" data-tab="all">All</button>
+          <button class="tab-btn" data-tab="structural">Structural</button>
+          <button class="tab-btn" data-tab="door">Door Hardware</button>
+          <button class="tab-btn" data-tab="flooring">Flooring</button>
+        </div>
+
+        <div class="product-grid" id="product-grid"></div>
+
+        <div class="quote-strip">
+          <div>
+            <strong>Need custom sizes or mixed product sets?</strong>
+            <div>Send your list with target quantity and destination market for a tailored quotation.</div>
+          </div>
+          <a class="btn btn-primary" href="#inquiry">Start Inquiry</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="panel">
+          <div class="section-head" style="margin-bottom: 0;">
+            <h2>Why Centro Containers</h2>
+            <p>We focus on practical export support: clear communication, dependable supply planning, and stable quality for repeat orders in container service and repair markets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inquiry">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="panel">
+            <h2 style="margin-top:0;">Request a Quote</h2>
+            <p style="color:#4b5563;">Share your requirements and our sales team will reply with product options, lead time, and shipping support.</p>
+            <form id="inquiry-form" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+              <input type="hidden" name="form_start_time" id="form-start-time" />
+
+              <div class="field-grid">
+                <label>Name
+                  <input type="text" name="name" required />
+                </label>
+                <label>Company
+                  <input type="text" name="company" />
+                </label>
+                <label>Email
+                  <input type="email" name="email" required />
+                </label>
+                <label>Phone / WhatsApp
+                  <input type="text" name="phone" />
+                </label>
+                <label>Country
+                  <input type="text" name="country" />
+                </label>
+                <label>Product / Category
+                  <input type="text" name="product" />
+                </label>
+              </div>
+
+              <label style="margin-top: 14px;">Message / Details
+                <textarea name="message" rows="6" required placeholder="Please tell us your product requirements, quantity, destination market, and contact details such as WhatsApp or phone number."></textarea>
+              </label>
+
+              <div style="margin-top:16px;">
+                <button class="btn btn-primary" type="submit">Send Inquiry</button>
+              </div>
+            </form>
+            <div id="form-feedback" class="feedback" aria-live="polite"></div>
+          </div>
+
+          <aside id="contact" class="panel info-panel">
+            <h2 style="margin-top:0;color:#fff;">Get In Touch</h2>
+            <p style="color:#cbd5e1;">For pricing, lead times, and technical fit, contact our export sales team directly.</p>
+            <div class="info-card"><strong>Email:</strong> <a href="mailto:sales@centrocontainers.com" style="color:#fff;">sales@centrocontainers.com</a></div>
+            <div class="info-card"><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/8618663951355" style="color:#fff;">+86 186 6395 1355</a></div>
+            <div class="info-card"><strong>Website:</strong> <a href="https://centrocontainers.com" style="color:#fff;">centrocontainers.com</a></div>
+            <div class="info-card"><strong>Location:</strong> Qingdao, China</div>
+          </aside>
         </div>
       </div>
     </section>
   </main>
 
-<script>
-function initializeFormStartTimes() {
-  const inquiryForms = document.querySelectorAll('form[onsubmit="return submitForm(event)"]');
-  const startTime = String(Date.now());
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <a href="#home" class="logo" style="font-size:20px;"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
+        <p style="margin:10px 0 0;">Dry container parts supply for maintenance, replacement, and project sourcing.</p>
+      </div>
+      <div>
+        <div><strong>Email:</strong> sales@centrocontainers.com</div>
+        <div><strong>Phone / WhatsApp:</strong> +86 186 6395 1355</div>
+        <div><strong>Website:</strong> centrocontainers.com</div>
+        <div><strong>Location:</strong> Qingdao, China</div>
+      </div>
+    </div>
+  </footer>
 
-  inquiryForms.forEach((form) => {
-    const startTimeField = form.querySelector('input[name="form_start_time"]');
-    if (startTimeField) {
-      startTimeField.value = startTime;
+  <div class="modal" id="product-modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+      <h3 id="modal-title" style="margin:0 0 8px;"></h3>
+      <div id="modal-code" class="code" style="margin-bottom:10px;"></div>
+      <p id="modal-desc" style="margin:0 0 10px;color:#374151;"></p>
+      <ul id="modal-specs" style="margin:0;padding-left:20px;color:#4b5563;"></ul>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { code: 'CC-P01', category: 'structural', name: 'Side Wall Corrugated Panel', desc: 'Steel panel used for dry container side wall replacement and repair.', specs: ['Material: Corten steel', 'Thickness options available', 'Custom length support'] },
+      { code: 'CC-P02', category: 'structural', name: 'Roof Panel', desc: 'Roof panel for dry container top repairs and build projects.', specs: ['High weather resistance', 'Multiple profile options', 'Custom dimensions accepted'] },
+      { code: 'CC-P03', category: 'door', name: 'Container Door Lock Rod Set', desc: 'Lock rod assembly for replacement and door hardware maintenance.', specs: ['Left/right configuration', 'Corrosion protection finish', 'Batch order support'] },
+      { code: 'CC-P04', category: 'door', name: 'Door Hinge Bracket', desc: 'Heavy-duty hinge bracket component for door frame repair.', specs: ['Weld-ready design', 'Stable fit for standard doors', 'Project quantity friendly'] },
+      { code: 'CC-P05', category: 'flooring', name: 'Container Plywood Flooring', desc: 'Durable flooring panel for repair and refurbishment operations.', specs: ['Multiple thickness options', 'Moisture-resistant treatment', 'Export packing available'] },
+      { code: 'CC-P06', category: 'flooring', name: 'Floor Fastener Set', desc: 'Fastening kit designed for container flooring installation.', specs: ['Repair workshop ready', 'Consistent hardware quality', 'Mixed model shipment support'] },
+      { code: 'CC-P07', category: 'all', name: 'Door Gasket Rubber', desc: 'Sealing strip for container door leakage prevention and replacement.', specs: ['Flexible profile options', 'Long service life', 'Custom cut length'] },
+      { code: 'CC-P08', category: 'all', name: 'Corner Casting', desc: 'Container corner fitting for structural replacement and fabrication.', specs: ['Standard compatibility', 'Reliable load performance', 'Inspection support available'] }
+    ];
+
+    function getTabProducts(tab) {
+      if (tab === 'all') return products;
+      return products.filter((item) => item.category === tab);
     }
-  });
-}
 
-document.addEventListener("DOMContentLoaded", initializeFormStartTimes);
+    function renderProducts(tab = 'all') {
+      const grid = document.getElementById('product-grid');
+      const items = getTabProducts(tab);
+      grid.innerHTML = items.map((item) => `
+        <article class="product-card" data-code="${item.code}" data-name="${item.name}">
+          <div class="product-image-placeholder">Image Placeholder</div>
+          <span class="code">${item.code}</span>
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <button class="btn" type="button" style="background:#e5e7eb;color:#111827;" data-view="${item.code}">View Details</button>
+        </article>
+      `).join('');
+    }
 
-async function submitForm(event) {
-  event.preventDefault();
+    function setupTabs() {
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          buttons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderProducts(btn.dataset.tab);
+        });
+      });
+    }
 
-  const form = event.target;
-  const formData = new FormData(form);
+    function setupModal() {
+      const modal = document.getElementById('product-modal');
+      const closeBtn = modal.querySelector('.modal-close');
+      const title = document.getElementById('modal-title');
+      const code = document.getElementById('modal-code');
+      const desc = document.getElementById('modal-desc');
+      const specs = document.getElementById('modal-specs');
 
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData
+      document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-view]');
+        if (!trigger) return;
+
+        const item = products.find((p) => p.code === trigger.dataset.view);
+        if (!item) return;
+
+        title.textContent = item.name;
+        code.textContent = item.code;
+        desc.textContent = item.desc;
+        specs.innerHTML = item.specs.map((s) => `<li>${s}</li>`).join('');
+
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    function initForm() {
+      const form = document.getElementById('inquiry-form');
+      const feedback = document.getElementById('form-feedback');
+      const startTimeField = document.getElementById('form-start-time');
+      startTimeField.value = String(Date.now());
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        feedback.className = 'feedback';
+        feedback.textContent = '';
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData
+          });
+
+          if (!response.ok) throw new Error('Submit failed');
+
+          form.reset();
+          startTimeField.value = String(Date.now());
+          feedback.className = 'feedback ok';
+          feedback.textContent = 'Thank you for your inquiry. Our team will contact you shortly.';
+        } catch (error) {
+          feedback.className = 'feedback error';
+          feedback.textContent = 'Submission failed. Please try again or email sales@centrocontainers.com.';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts('all');
+      setupTabs();
+      setupModal();
+      initForm();
     });
-
-    if (!response.ok) {
-      throw new Error("Failed");
-    }
-
-    form.style.display = "none";
-
-    const msg = document.getElementById("thankyou-message");
-    if (msg) {
-      msg.style.display = "block";
-    }
-
-  } catch (e) {
-    alert("Submission failed. Please try again.");
-  }
-
-  return false;
-}
-</script>
-
+  </script>
 </body>
 </html>
