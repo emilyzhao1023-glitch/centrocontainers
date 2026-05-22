@@ -684,6 +684,59 @@
       }
     }
   </style>
+
+
+  <style>
+    .thank-you-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.96);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .thank-you-overlay.is-active {
+      display: flex;
+    }
+
+    .thank-you-box {
+      max-width: 560px;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 46px 34px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    .thank-you-box h2 {
+      color: #0b1f3a;
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .thank-you-box p {
+      color: #64748b;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .thank-you-close {
+      border: none;
+      background: #f5b301;
+      color: #111827;
+      font-weight: 800;
+      padding: 12px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -960,7 +1013,7 @@
         </p>
       </div>
 
-      <form class="form-wrap" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
+      <form id="quoteForm" class="form-wrap" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
         <div class="form-grid">
           <div>
             <label>Your Name</label>
@@ -979,12 +1032,12 @@
 
           <div>
             <label>Country / Region</label>
-            <input type="text" name="country" placeholder="USA / Korea / UAE / Brazil..." />
+            <input type="text" name="country" placeholder="USA / Korea / UAE / Brazil..." required />
           </div>
 
           <div>
             <label>Buyer Type</label>
-            <select name="buyer_type">
+            <select name="buyer_type" required>
               <option value="">Select one</option>
               <option>Container repair depot</option>
               <option>Regional distributor / wholesaler</option>
@@ -996,7 +1049,7 @@
 
           <div>
             <label>Container Type</label>
-            <select name="container_type">
+            <select name="container_type" required>
               <option value="">Select one</option>
               <option>20ft GP</option>
               <option>40ft GP</option>
@@ -1023,7 +1076,7 @@
 
           <div>
             <label>Estimated Quantity</label>
-            <input type="text" name="quantity" placeholder="e.g. 200 pcs / 1 container load" />
+            <input type="text" name="quantity" placeholder="e.g. 200 pcs / 1 container load" required />
           </div>
 
           <div>
@@ -1033,7 +1086,7 @@
 
           <div class="full">
             <label>Message / Specifications</label>
-            <textarea name="message" placeholder="Please tell us sizes, drawings, material requirements, order quantity or target shipment plan."></textarea>
+            <textarea name="message" placeholder="Please tell us sizes, drawings, material requirements, order quantity or target shipment plan." required></textarea>
           </div>
         </div>
 
@@ -1128,6 +1181,78 @@
   >
     WhatsApp Quote
   </a>
+
+
+
+  <div class="thank-you-overlay" id="thankYouOverlay">
+    <div class="thank-you-box">
+      <h2>Thank you!</h2>
+      <p>Your inquiry has been submitted successfully. We will contact you within 24 hours.</p>
+      <button class="thank-you-close" type="button" id="thankYouClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const quoteForm = document.getElementById("quoteForm");
+    const thankYouOverlay = document.getElementById("thankYouOverlay");
+    const thankYouClose = document.getElementById("thankYouClose");
+
+    if (quoteForm) {
+      quoteForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const requiredParts = quoteForm.querySelectorAll("input[name='parts']");
+        const hasSelectedPart = Array.from(requiredParts).some(function (checkbox) {
+          return checkbox.checked;
+        });
+
+        if (!hasSelectedPart) {
+          alert("Please select at least one required product.");
+          return;
+        }
+
+        if (!quoteForm.checkValidity()) {
+          quoteForm.reportValidity();
+          return;
+        }
+
+        const submitButton = quoteForm.querySelector("button[type='submit']");
+        const originalText = submitButton ? submitButton.textContent : "";
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Submitting...";
+        }
+
+        try {
+          const response = await fetch(quoteForm.action, {
+            method: "POST",
+            body: new FormData(quoteForm)
+          });
+
+          if (!response.ok) {
+            throw new Error("Form submission failed");
+          }
+
+          quoteForm.reset();
+          thankYouOverlay.classList.add("is-active");
+        } catch (error) {
+          alert("Sorry, something went wrong. Please try again or contact us by WhatsApp.");
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+          }
+        }
+      });
+    }
+
+    if (thankYouClose) {
+      thankYouClose.addEventListener("click", function () {
+        thankYouOverlay.classList.remove("is-active");
+      });
+    }
+  </script>
 
 </body>
 </html>
