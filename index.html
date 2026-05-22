@@ -3,579 +3,575 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Container Parts Supplier for Repair & Replacement | Roof Panel, Door Hardware, OEM Manufacturer China</title>
-  <meta
-    name="description"
-    content="China shipping container parts supplier for dry container repair, replacement, and custom fabrication projects. Roof panels, side panels, corner castings, door hardware, gaskets, flooring, and OEM processing support."
-  />
+
+  <title>Shipping Container Parts Manufacturer China | OEM Spare Parts & 20ft 40ft Dry Containers</title>
+  <meta name="description" content="China manufacturer of ISO standard shipping container spare parts and 20ft/40ft dry containers. Supply corner castings, roof panels, side panels, door locking hardware, EPDM gaskets and OEM container parts for depots, distributors and container factories." />
+
   <style>
     :root {
-      --primary: #0a2a5e;
-      --accent: #e8b400;
-      --accent2: #1e6fc5;
-      --light: #f4f7fc;
-      --gray: #6b7280;
+      --primary: #0b1f3a;
+      --secondary: #123f73;
+      --accent: #f5b301;
+      --green: #25d366;
+      --text: #1f2937;
+      --muted: #64748b;
+      --light: #f5f7fb;
       --border: #e2e8f0;
+      --white: #ffffff;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      color: #1a1a2e;
-      background: #fff;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
     }
 
-    nav {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .topbar {
       background: var(--primary);
-      padding: 0 40px;
+      color: #dbeafe;
+      font-size: 14px;
+      padding: 10px 0;
+    }
+
+    .topbar-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 64px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      z-index: 50;
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
-      color: #fff;
-      font-size: 1.25rem;
+      font-size: 22px;
       font-weight: 800;
-      letter-spacing: 1px;
-      text-decoration: none;
+      color: var(--primary);
+      letter-spacing: -0.5px;
     }
 
-    .logo-accent { color: var(--accent); }
+    .logo span {
+      color: var(--accent);
+    }
 
     .nav-links {
       display: flex;
-      gap: 28px;
-      list-style: none;
+      gap: 26px;
+      font-size: 15px;
+      color: var(--text);
     }
-
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
 
     .nav-cta {
       background: var(--accent);
-      color: var(--primary);
-      padding: 9px 22px;
-      border-radius: 4px;
+      color: #111827;
+      padding: 10px 16px;
+      border-radius: 999px;
       font-weight: 700;
-      text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 14px;
     }
 
-    .nav-cta:hover { background: #ffd54f; }
-
-    /* HERO */
     .hero {
-      background-image:
-        linear-gradient(rgba(10, 42, 94, 0.65), rgba(10, 42, 94, 0.65)),
-        url('public/images/Hero.png');
+      background:
+        linear-gradient(90deg, rgba(11,31,58,0.96), rgba(18,63,115,0.88)),
+        url("public/images/hero-container-factory.jpg");
       background-size: cover;
       background-position: center;
-      padding: 90px 40px 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      color: var(--white);
+      padding: 92px 0 80px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,.04) 0%, transparent 60%),
-        radial-gradient(circle at 80% 20%, rgba(232,180,0,.08) 0%, transparent 40%);
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
     }
 
-    .hero > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(232,180,0,.18);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 5px 18px;
-      border-radius: 20px;
-      font-size: .78rem;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 179, 1, 0.14);
+      border: 1px solid rgba(245, 179, 1, 0.35);
+      color: #fde68a;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 22px;
-      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
-    .hero h1 {
-      font-size: 2.8rem;
-      color: #fff;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 18px;
+    h1 {
+      font-size: 48px;
+      line-height: 1.12;
+      letter-spacing: -1.6px;
+      margin-bottom: 20px;
     }
-
-    .hero h1 span { color: var(--accent); }
 
     .hero p {
-      color: rgba(255,255,255,.82);
-      font-size: 1.05rem;
-      max-width: 720px;
-      margin: 0 auto 36px;
-      line-height: 1.75;
+      font-size: 18px;
+      color: #dbeafe;
+      max-width: 680px;
+      margin-bottom: 28px;
     }
 
-    .hero-btns {
+    .hero-actions {
       display: flex;
       gap: 14px;
-      justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 15px;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: var(--primary);
-      padding: 14px 34px;
-      border-radius: 5px;
-      font-weight: 700;
-      font-size: .95rem;
-      text-decoration: none;
-      transition: all .2s;
-      display: inline-block;
+      color: #111827;
     }
 
     .btn-primary:hover {
-      background: #ffd54f;
       transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(245,179,1,0.25);
     }
 
     .btn-outline {
-      border: 2px solid rgba(255,255,255,.6);
-      color: #fff;
-      padding: 14px 34px;
-      border-radius: 5px;
-      font-weight: 600;
-      font-size: .95rem;
-      text-decoration: none;
-      transition: all .2s;
-      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
     }
 
     .btn-outline:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,0.12);
     }
 
-    /* STATS */
-    .stats-bar {
-      background: var(--accent);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 760px;
     }
 
-    .stat-item {
-      padding: 18px 44px;
-      text-align: center;
-      border-right: 1px solid rgba(0,0,0,.1);
+    .hero-point {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 14px;
+      color: #e0f2fe;
     }
 
-    .stat-item:last-child { border-right: none; }
+    .hero-card {
+      background: rgba(255,255,255,0.96);
+      color: var(--text);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
 
-    .stat-num {
-      font-size: 1.35rem;
-      font-weight: 800;
+    .hero-card h3 {
+      font-size: 20px;
+      margin-bottom: 14px;
       color: var(--primary);
-      line-height: 1.2;
     }
 
-    .stat-label {
-      font-size: .75rem;
-      font-weight: 600;
-      color: rgba(10,42,94,.7);
-      letter-spacing: .5px;
-      text-transform: uppercase;
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    /* SECTIONS */
-    section { padding: 70px 40px; }
+    .hero-card li::before {
+      content: "✓";
+      color: var(--secondary);
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 42px;
+    }
 
     .section-label {
-      color: var(--accent2);
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: 2px;
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 14px;
       text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 10px;
     }
 
-    .section-title {
-      font-size: 2rem;
-      font-weight: 800;
+    .section-head h2 {
+      font-size: 36px;
+      line-height: 1.2;
       color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .section-sub {
-      color: var(--gray);
-      font-size: 1rem;
-      max-width: 560px;
-      line-height: 1.7;
-    }
-
-    .title-block {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .title-block .section-sub { margin: 0 auto; }
-
-    /* CAT TABS */
-    .cat-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 38px;
-    }
-
-    .cat-tab {
-      padding: 8px 22px;
-      border-radius: 24px;
-      border: 2px solid var(--border);
-      color: var(--gray);
-      font-size: .85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-      background: #fff;
-    }
-
-    .cat-tab:hover,
-    .cat-tab.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-
-    /* PRODUCT GRID */
-    .products-bg { background: var(--light); }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-      gap: 22px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,.07);
-      transition: transform .25s, box-shadow .25s;
-      cursor: pointer;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 32px rgba(0,0,0,.13);
-    }
-
-    .product-card[style*="none"] { display: none; }
-
-    .card-img {
-      height: 170px;
-      background: linear-gradient(135deg,#dce8f8,#c8d9f0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: #fff;
-      padding: 10px;
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: var(--accent);
-      color: var(--primary);
-      font-size: .68rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 3px;
-    }
-
-    .card-body { padding: 16px 18px; }
-
-    .card-cat {
-      font-size: .7rem;
-      font-weight: 700;
-      color: var(--accent2);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .card-title {
-      font-size: .97rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 7px;
-      line-height: 1.4;
-    }
-
-    .card-desc {
-      font-size: .82rem;
-      color: var(--gray);
-      line-height: 1.6;
-      margin-bottom: 13px;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
-      padding-top: 11px;
-    }
-
-    .card-model {
-      font-size: .72rem;
-      color: #9ca3af;
-      font-family: monospace;
-    }
-
-    .card-btn {
-      background: var(--primary);
-      color: #fff;
-      padding: 6px 15px;
-      border-radius: 4px;
-      font-size: .78rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background .2s;
-    }
-
-    .card-btn:hover { background: var(--accent2); }
-
-    /* FEATURES */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 28px 22px;
-      border: 1px solid var(--border);
-      text-align: center;
-      transition: box-shadow .2s;
-    }
-
-    .feature-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); }
-
-    .feat-icon {
-      font-size: 2.2rem;
-      margin-bottom: 13px;
-    }
-
-    .feat-title {
-      font-size: .97rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 7px;
-    }
-
-    .feat-desc {
-      font-size: .83rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    /* CTA */
-    .cta-section {
-      background: linear-gradient(135deg,var(--primary),#1a5aab);
-      text-align: center;
-      color: #fff;
-      padding: 70px 40px;
-    }
-
-    .cta-section h2 {
-      font-size: 2.1rem;
-      font-weight: 800;
+      letter-spacing: -0.8px;
       margin-bottom: 14px;
     }
 
-    .cta-section p {
-      font-size: 1rem;
-      opacity: .85;
-      margin-bottom: 32px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+    .section-head p {
+      color: var(--muted);
+      font-size: 17px;
     }
 
-    .contact-grid {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
-
-    .contact-card {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 10px;
-      padding: 20px 28px;
-      min-width: 175px;
-    }
-
-    .contact-card .cc-icon {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      font-size: .82rem;
-      opacity: .8;
-      margin-bottom: 3px;
-    }
-
-    .contact-card strong { font-size: .92rem; }
-
-    /* QUOTE FORM */
-    .quote-section { background: var(--light); }
-
-    .quote-wrap {
-      max-width: 680px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 14px;
-      padding: 44px;
-      box-shadow: 0 4px 24px rgba(0,0,0,.08);
-    }
-
-    .form-row {
+    .split-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .category-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-placeholder {
+      min-height: 230px;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .category-body {
+      padding: 26px;
+    }
+
+    .category-body h3 {
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .tag-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0 18px;
+    }
+
+    .tag {
+      background: #eff6ff;
+      color: var(--secondary);
+      border: 1px solid #bfdbfe;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .category-body ul {
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .products-bg {
+      background: var(--light);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+    }
+
+    .product-img {
+      min-height: 180px;
+      background: linear-gradient(135deg, #e2e8f0, #f8fafc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      padding: 18px;
+    }
+
+    .product-card-body {
+      padding: 20px;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      color: var(--primary);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .keyword-panel {
+      margin-top: 34px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+
+    .keyword-panel h3 {
+      color: var(--primary);
       margin-bottom: 16px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .keyword-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
-    .form-group.full { grid-column: 1 / -1; }
+    .keyword-columns ul {
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .why-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: var(--white);
+    }
+
+    .why-card strong {
+      display: block;
+      color: var(--primary);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .factory {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .factory-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .factory h2 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .factory p {
+      color: #dbeafe;
+      margin-bottom: 18px;
+    }
+
+    .factory-list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+      color: #e0f2fe;
+    }
+
+    .factory-list li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    .configurator {
+      background: var(--light);
+    }
+
+    .form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
 
     label {
-      font-size: .83rem;
-      font-weight: 600;
+      display: block;
+      font-weight: 700;
       color: var(--primary);
+      margin-bottom: 7px;
+      font-size: 14px;
     }
 
-    input,
-    select,
-    textarea {
-      padding: 10px 13px;
-      border: 1.5px solid var(--border);
-      border-radius: 6px;
-      font-size: .9rem;
-      color: #1a1a2e;
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 13px;
+      font-family: inherit;
+      font-size: 15px;
       outline: none;
-      transition: border-color .2s;
-      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--accent2);
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(18,63,115,0.12);
     }
 
     textarea {
+      min-height: 120px;
       resize: vertical;
-      min-height: 100px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .checkbox-area {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .check-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .check-item input {
+      width: auto;
+      margin-right: 6px;
     }
 
     .submit-btn {
-      width: 100%;
-      padding: 14px;
-      background: var(--primary);
-      color: #fff;
       border: none;
-      border-radius: 6px;
-      font-size: .97rem;
-      font-weight: 700;
+      background: var(--accent);
+      color: #111827;
       cursor: pointer;
-      transition: background .2s;
-      margin-top: 8px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      margin-top: 10px;
     }
 
-    .submit-btn:hover { background: var(--accent2); }
-
-    .form-note {
-      font-size: .78rem;
-      color: var(--gray);
-      text-align: center;
-      margin-top: 12px;
+    .download-strip {
+      background: #fff7ed;
+      border-top: 1px solid #fed7aa;
+      border-bottom: 1px solid #fed7aa;
+      padding: 34px 0;
     }
 
-    .form-status {
-      display: none;
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: .82rem;
-      font-weight: 700;
+    .download-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
     }
 
-    .form-status.ok {
-      display: block;
-      background: #ecfdf5;
-      color: #166534;
-      border: 1px solid #86efac;
+    .download-inner h2 {
+      color: var(--primary);
+      font-size: 26px;
+      margin-bottom: 6px;
     }
 
-    .form-status.err {
-      display: block;
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
+    .download-inner p {
+      color: var(--muted);
     }
 
-
-    /* FAQ */
-    .faq-section {
-      background: #fff;
+    .faq {
+      background: var(--white);
     }
 
     .faq-list {
@@ -587,909 +583,551 @@
 
     .faq-item {
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px 18px;
-      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      background: var(--white);
     }
 
     .faq-item h3 {
-      font-size: 1rem;
       color: var(--primary);
-      margin-bottom: 6px;
+      font-size: 18px;
+      margin-bottom: 8px;
     }
 
     .faq-item p {
-      font-size: .9rem;
-      color: var(--gray);
-      line-height: 1.6;
+      color: var(--muted);
     }
 
-    /* FOOTER */
     footer {
-      background: #081628;
-      color: rgba(255,255,255,.65);
-      padding: 48px 40px 24px;
+      background: #071424;
+      color: #cbd5e1;
+      padding: 40px 0;
+    }
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 24px;
     }
 
-    footer h4 {
-      color: #fff;
-      font-size: .92rem;
-      margin-bottom: 14px;
+    footer h3 {
+      color: var(--white);
+      margin-bottom: 12px;
     }
 
-    footer ul { list-style: none; }
-
-    footer ul li { margin-bottom: 8px; }
-
-    footer ul a {
-      color: rgba(255,255,255,.6);
-      text-decoration: none;
-      font-size: .85rem;
-      transition: color .2s;
+    footer p, footer li {
+      color: #94a3b8;
+      font-size: 14px;
     }
 
-    footer ul a:hover { color: var(--accent); }
-
-    .footer-logo {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 11px;
+    footer ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
     }
 
-    .footer-logo .logo-accent { color: var(--accent); }
-
-    .footer-desc {
-      font-size: .84rem;
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-
-    .footer-bottom {
-      grid-column: 1 / -1;
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding-top: 18px;
-      text-align: center;
-      font-size: .8rem;
-      color: rgba(255,255,255,.35);
-    }
-
-    /* MODAL */
-    .modal-overlay {
-      display: none;
+    .whatsapp-float {
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      z-index: 999;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-    }
-
-    .modal-overlay.show { display: flex; }
-
-    .modal {
-      background: #fff;
-      border-radius: 14px;
-      max-width: 520px;
-      width: 92%;
-      padding: 34px;
-      position: relative;
-      animation: mIn .22s ease;
-    }
-
-    @keyframes mIn {
-      from { transform: scale(.93); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      cursor: pointer;
-      color: var(--gray);
-      line-height: 1;
-    }
-
-    .modal h3 {
-      font-size: 1.25rem;
-      color: var(--primary);
-      margin-bottom: 5px;
-    }
-
-    .modal-cat {
-      font-size: .72rem;
-      font-weight: 700;
-      color: var(--accent2);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .modal-specs {
-      background: var(--light);
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin-bottom: 16px;
-    }
-
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: .86rem;
-    }
-
-    .spec-row:last-child { border-bottom: none; }
-
-    .spec-key { color: var(--gray); }
-    .spec-val { color: var(--primary); font-weight: 600; }
-
-    .modal-desc {
-      font-size: .88rem;
-      color: var(--gray);
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-
-    .modal-btns {
-      display: flex;
-      gap: 12px;
-    }
-
-    .mbtn-p {
-      flex: 1;
-      background: var(--primary);
+      gap: 10px;
+      background: var(--green);
       color: #fff;
-      padding: 11px;
-      border-radius: 6px;
-      border: none;
-      font-size: .88rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
     }
 
-    .mbtn-o {
-      flex: 1;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      padding: 11px;
-      border-radius: 6px;
-      background: none;
-      font-size: .88rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split-grid,
+      .factory-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .mbtn-p:hover { background: var(--accent2); }
-    .mbtn-o:hover { background: var(--light); }
+      .product-grid,
+      .why-grid,
+      .keyword-columns,
+      .checkbox-area {
+        grid-template-columns: 1fr;
+      }
 
-    @media(max-width:768px) {
-      .hero h1 { font-size: 1.85rem; }
-      .form-row { grid-template-columns: 1fr; }
-      footer { grid-template-columns: 1fr 1fr; }
-      nav { padding: 0 16px; }
-      .nav-links { display: none; }
-      section { padding: 48px 16px; }
-      .stat-item { padding: 14px 20px; }
-      .quote-wrap { padding: 26px 16px; }
+      h1 {
+        font-size: 36px;
+      }
+
+      .section-head h2 {
+        font-size: 30px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        font-size: 14px;
+      }
     }
   </style>
-
-<style>
-  .whatsapp-float {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 9999;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 999px;
-    background: #25D366;
-    color: #ffffff;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, opacity 0.4s ease;
-    opacity: 0;
-    transform: translateY(12px);
-    max-width: calc(100vw - 32px);
-  }
-
-  .whatsapp-float.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .whatsapp-float:hover {
-    background: #1fbe5a;
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
-  }
-
-  .whatsapp-float:focus-visible {
-    outline: 3px solid rgba(37, 211, 102, 0.28);
-    outline-offset: 3px;
-  }
-
-  .whatsapp-float__icon-wrap {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.16);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .whatsapp-float__icon-wrap::after {
-    content: "";
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ffffff;
-    opacity: 0.95;
-  }
-
-  .whatsapp-float__icon {
-    width: 20px;
-    height: 20px;
-    display: block;
-    fill: currentColor;
-  }
-
-  .whatsapp-float__text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    min-width: 0;
-  }
-
-  .whatsapp-float__title {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.1px;
-    white-space: nowrap;
-  }
-
-  .whatsapp-float__subtitle {
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.92;
-    margin-top: 2px;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 767px) {
-    .whatsapp-float {
-      right: 16px;
-      bottom: 16px;
-      padding: 10px 14px;
-      gap: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
-    }
-
-    .whatsapp-float__icon-wrap {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-    }
-
-    .whatsapp-float__icon {
-      width: 18px;
-      height: 18px;
-    }
-
-    .whatsapp-float__title {
-      font-size: 13px;
-    }
-
-    .whatsapp-float__subtitle {
-      display: none;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .whatsapp-float {
-      max-width: calc(100vw - 24px);
-      padding: 10px 12px;
-    }
-  }
-</style>
-
 </head>
+
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#products" class="logo"><span class="logo-accent">CENTRO</span>CONTAINERS</a>
-    <ul class="nav-links">
-      <li><a href="#products">Products</a></li>
-      <li><a href="#why-us">Why Us</a></li>
-      <li><a href="#quote">Get Quote</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#quote" class="nav-cta">Request Quote</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">Custom Size Available</div>
-    <h1>Shipping Container Parts Supplier for Repair, Replacement &amp; Custom Projects</h1>
-    <p>Centro Containers supplies shipping container parts for dry container repair, replacement, and custom fabrication projects, including structural panels, corner castings, door hardware, sealing systems, flooring materials, and OEM processing support.</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-primary">Browse All Products</a>
-      <a href="#quote" class="btn-outline">Get a Free Quote</a>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div>China factory supply · ISO container spare parts · OEM fabrication</div>
+      <div>Email: sales@centrocontainers.com | WhatsApp: +86 186 6395 1355</div>
     </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">Steel Cutting</div><div class="stat-label">Practical Processing</div></div>
-    <div class="stat-item"><div class="stat-num">Bending</div><div class="stat-label">Custom Fabrication</div></div>
-    <div class="stat-item"><div class="stat-num">Welding</div><div class="stat-label">Assembly Support</div></div>
-    <div class="stat-item"><div class="stat-num">OEM Supply</div><div class="stat-label">Container Parts</div></div>
   </div>
 
-  <!-- PRODUCTS -->
-  <section class="products-bg" id="products">
-    <div class="title-block">
-      <div class="section-label">Product Catalog</div>
-      <h2 class="section-title">Dry Container Parts</h2>
-      <div class="section-sub">Complete range of structural, sealing and hardware components for 20ft &amp; 40ft dry containers.</div>
+  <header>
+    <div class="container nav">
+      <div class="logo">Centro<span>Containers</span></div>
+      <nav class="nav-links">
+        <a href="#range">Product Range</a>
+        <a href="#parts">Spare Parts</a>
+        <a href="#factory">Factory Capability</a>
+        <a href="#quote">Quote</a>
+      </nav>
+      <a class="nav-cta" href="#quote">Get Quote</a>
     </div>
-    <section>
-  <h3>Container Parts for Repair, Replacement and OEM Supply</h3>
-  <p>
-    We supply a wide range of container parts for repair, replacement, and OEM production.
-    Our products are widely used by container depots, repair companies, and container manufacturers.
-  </p>
+  </header>
 
-  <ul>
-    <li>Container roof panel replacement</li>
-    <li>Container side panel and wall sheet supply</li>
-    <li>Container door panel and locking hardware</li>
-    <li>Container corner post and structural components</li>
-    <li>OEM container parts based on drawings</li>
-  </ul>
-</section>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">ISO Standard · OEM Parts · Wholesale Supply</div>
+        <h1>One-Stop Shipping Container & OEM Spare Parts Manufacturer Direct From China</h1>
+        <p>
+          We manufacture and supply ISO standard 20ft / 40ft dry containers and full-range shipping container spare parts,
+          including roof panels, side panels, corner castings, door locking hardware, EPDM gaskets and OEM structural components
+          for depots, distributors and container factories.
+        </p>
 
-    <div class="cat-tabs">
-      <div class="cat-tab active" onclick="filterCat('all',this)">All Products</div>
-      <div class="cat-tab" onclick="filterCat('structural',this)">Structural Panels</div>
-      <div class="cat-tab" onclick="filterCat('rails',this)">Rails &amp; Members</div>
-      <div class="cat-tab" onclick="filterCat('hardware',this)">Door Hardware</div>
-      <div class="cat-tab" onclick="filterCat('sealing',this)">Sealing &amp; Gaskets</div>
-      <div class="cat-tab" onclick="filterCat('accessories',this)">Accessories</div>
-    </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quote">Get a Wholesale Quote</a>
+          <a class="btn btn-outline" href="#catalog">Download Parts Catalog</a>
+        </div>
 
-    <div class="product-grid" id="productGrid">
-
-      <!-- STRUCTURAL -->
-      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Roof Panel" data-cat-label="Structural Panel" data-model="CC-P01" data-specs='[["Material","2.0mm Cold-Rolled Carbon Steel"],["Corrugations","4 or 5 CORR"],["Size (std)","2.0×1045×2356 mm"],["Variants","Custom size available"]]' data-desc="Standard 5-corrugation roof panels for 20ft/40ft dry containers. Also available in patch sizes for repairs.">
-        <div class="card-img"><img src="public/images/products/cc-p01-roof-panel.png" alt="Shipping container roof panel supplier in China"><div class="card-badge">HOT</div></div>
-        <div class="card-body">
-          <div class="card-cat">Structural Panel</div>
-          <div class="card-title">Roof Panel</div>
-          <div class="card-desc">5-corrugation cold-rolled steel roof panels. Patch sizes available for repair projects.</div>
-          <div class="card-footer"><span class="card-model">CC-P01</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
+        <div class="hero-points">
+          <div class="hero-point">Bulk 20ft / 40ft dry container supply</div>
+          <div class="hero-point">ISO container replacement parts wholesale</div>
+          <div class="hero-point">OEM fabrication based on drawings</div>
         </div>
       </div>
 
-      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Side Panel" data-cat-label="Structural Panel" data-model="CC-P02" data-specs='[["Material","Corten / Carbon Steel"],["Application","20ft & 40ft containers"],["Corrugations","Standard corrugated profile"],["Finish","Anti-corrosion paint"]]' data-desc="Corrugated side wall panels for standard and high-cube dry containers. Available in corten steel for extended corrosion resistance.">
-        <div class="card-img"><img src="public/images/products/cc-p02-side-panel.png" alt="Dry container side panel manufacturer"></div>
-        <div class="card-body">
-          <div class="card-cat">Structural Panel</div>
-          <div class="card-title">Side Panel</div>
-          <div class="card-desc">Corrugated side panels for 20ft and 40ft dry containers. Corten steel option available.</div>
-          <div class="card-footer"><span class="card-model">CC-P02</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
+      <div class="hero-card">
+        <h3>Built for B2B Buyers</h3>
+        <ul>
+          <li>For container repair depots and maintenance companies</li>
+          <li>For regional distributors and spare parts wholesalers</li>
+          <li>For container factories and modification projects</li>
+          <li>Support mixed loading of parts inside 20ft / 40ft containers</li>
+        </ul>
       </div>
-
-      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Front End Panel" data-cat-label="Structural Panel" data-model="CC-P03" data-specs='[["Material","High-Tensile Carbon Steel"],["Application","20ft & 40ft containers"],["Function","Front wall structural rigidity"],["Finish","Anti-corrosion paint"]]' data-desc="Heavy-duty front wall panels providing key structural rigidity to the container frame.">
-        <div class="card-img"><img src="public/images/products/cc-p03-front-end-panel.png" alt="Shipping container front end panel for dry container repair"></div>
-        <div class="card-body">
-          <div class="card-cat">Structural Panel</div>
-          <div class="card-title">Front End Panel</div>
-          <div class="card-desc">Heavy-duty front wall panels providing structural rigidity to the container frame.</div>
-          <div class="card-footer"><span class="card-model">CC-P03</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="structural" onclick="openModal(this)" data-title="Door Panel" data-cat-label="Structural Panel" data-model="CC-P04" data-specs='[["Material","Carbon Steel"],["Profile","Corrugated"],["Application","Rear door assembly"],["Finish","Anti-corrosion paint"]]' data-desc="Corrugated rear door panels with precision tolerances for airtight closure.">
-        <div class="card-img"><img src="public/images/products/cc-p04-door-panel.png" alt="Dry container door panel replacement part supplier"></div>
-        <div class="card-body">
-          <div class="card-cat">Structural Panel</div>
-          <div class="card-title">Door Panel</div>
-          <div class="card-desc">Corrugated rear door panels with precision tolerances for airtight closure.</div>
-          <div class="card-footer"><span class="card-model">CC-P04</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <!-- RAILS & MEMBERS -->
-      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Front Corner Post" data-cat-label="Rails & Members" data-model="CC-P05" data-specs='[["Material","High-Tensile Steel"],["Application","20ft & 40ft containers"],["Function","Front vertical structure"],["Compatibility","ISO standard"]]' data-desc="Load-bearing front vertical corner posts compatible with standard 20ft/40ft ISO containers.">
-        <div class="card-img"><img src="public/images/products/cc-p05-front-corner-post.png" alt="Shipping container front corner post structural part"></div>
-        <div class="card-body">
-          <div class="card-cat">Rails & Members</div>
-          <div class="card-title">Front Corner Post</div>
-          <div class="card-desc">Load-bearing front vertical corner posts. ISO compatible. 20ft &amp; 40ft versions available.</div>
-          <div class="card-footer"><span class="card-model">CC-P05</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Rear Corner Post (Outer/Inner)" data-cat-label="Rails & Members" data-model="CC-P06" data-specs='[["Material","High-Tensile Steel"],["Type","Outer & Inner"],["Function","Rear door frame structure"],["Compatibility","Standard ISO containers"]]' data-desc="Outer and inner rear corner posts for door frame assembly.">
-        <div class="card-img"><img src="public/images/products/cc-p06-rear-corner-post.png" alt="Rear corner post for shipping container door frame"></div>
-        <div class="card-body">
-          <div class="card-cat">Rails & Members</div>
-          <div class="card-title">Rear Corner Post (Outer/Inner)</div>
-          <div class="card-desc">Outer and inner rear corner posts for door frame assembly. Precision formed for ISO standard containers.</div>
-          <div class="card-footer"><span class="card-model">CC-P06</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Cross Member" data-cat-label="Rails & Members" data-model="CC-P07" data-specs='[["Material","High-Tensile Steel"],["Application","Container floor base"],["Function","Floor support"],["Variants","Multiple section profiles"]]' data-desc="Floor cross members supporting the container base with multiple section profiles available.">
-        <div class="card-img"><img src="public/images/products/cc-p07-cross-member.png" alt="Shipping container floor cross member manufacturer"><div class="card-badge">NEW</div></div>
-        <div class="card-body">
-          <div class="card-cat">Rails & Members</div>
-          <div class="card-title">Cross Member</div>
-          <div class="card-desc">Floor cross members supporting the container base. Multiple section profiles available.</div>
-          <div class="card-footer"><span class="card-model">CC-P07</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="rails" onclick="openModal(this)" data-title="Bottom Side Rail" data-cat-label="Rails & Members" data-model="CC-P08" data-specs='[["Material","High-Tensile Steel"],["Application","Base perimeter"],["Function","Connects corner posts"],["Finish","Anti-corrosion paint"]]' data-desc="Structural bottom side rails connecting front and rear corner posts at base level.">
-        <div class="card-img"><img src="public/images/products/cc-p08-bottom-side-rail.png" alt="Bottom side rail for dry container frame repair"></div>
-        <div class="card-body">
-          <div class="card-cat">Rails & Members</div>
-          <div class="card-title">Bottom Side Rail</div>
-          <div class="card-desc">Structural bottom side rails connecting corner posts. High-tensile steel construction.</div>
-          <div class="card-footer"><span class="card-model">CC-P08</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <!-- HARDWARE -->
-      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Corner Casting" data-cat-label="Hardware" data-model="CC-P09" data-specs='[["Standard","ISO 1161"],["Material","Cast Steel"],["Size","178×162×118 mm"],["Positions","BL / BR / TL / TR"],["Pack","Individual or set"]]' data-desc="ISO 1161 standard cast steel corner fittings for dry containers.">
-        <div class="card-img"><img src="public/images/products/cc-p09-corner-casting.png" alt="ISO corner casting for shipping containers"><div class="card-badge">ISO</div></div>
-        <div class="card-body">
-          <div class="card-cat">Hardware</div>
-          <div class="card-title">Corner Casting</div>
-          <div class="card-desc">ISO 1161 cast steel corner fittings. 178×162×118mm. BL/BR/TL/TR.</div>
-          <div class="card-footer"><span class="card-model">CC-P09</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Door Locking Hardware" data-cat-label="Door Hardware" data-model="CC-P10" data-specs='[["Hinge Blade","Forged / Welded"],["Hinge Pin","SUS304/SUS201"],["Bushings","Carbon steel + Nylon"],["Retainer","Forged / Press type"]]' data-desc="Complete door locking hardware set including hinge blades, hinge pins, lock rods, retainer plates, and bushings.">
-        <div class="card-img"><img src="public/images/products/cc-p10-door-locking-hardware.png" alt="Container door locking hardware supplier"><div class="card-badge">HOT</div></div>
-        <div class="card-body">
-          <div class="card-cat">Door Hardware</div>
-          <div class="card-title">Door Locking Hardware</div>
-          <div class="card-desc">Full set: hinge blades, stainless hinge pins, lock rods, retainer plates, bushings.</div>
-          <div class="card-footer"><span class="card-model">CC-P10</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="hardware" onclick="openModal(this)" data-title="Ventilator" data-cat-label="Hardware" data-model="CC-P11" data-specs='[["Material","Galvanized Steel"],["Function","Moisture & air circulation"],["Application","Dry cargo containers"],["Compliance","Standard dry container use"]]' data-desc="Standard container ventilators for moisture control and air circulation in dry cargo.">
-        <div class="card-img"><img src="public/images/products/cc-p11-ventilator.png" alt="Dry cargo container ventilator hardware"></div>
-        <div class="card-body">
-          <div class="card-cat">Hardware</div>
-          <div class="card-title">Ventilator</div>
-          <div class="card-desc">Standard container ventilators for moisture control and air circulation in dry cargo.</div>
-          <div class="card-footer"><span class="card-model">CC-P11</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <!-- SEALING -->
-      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Door Gasket" data-cat-label="Sealing" data-model="CC-P12" data-specs='[["Material","EPDM Rubber"],["Function","Weatherproof door seal"],["Profile","Various cross-sections"],["Application","Container rear doors"]]' data-desc="EPDM rubber door gaskets providing weatherproof and airtight door sealing.">
-        <div class="card-img"><img src="public/images/products/cc-p12-door-gasket.png" alt="Container door gasket for dry container repair"></div>
-        <div class="card-body">
-          <div class="card-cat">Sealing</div>
-          <div class="card-title">Door Gasket</div>
-          <div class="card-desc">EPDM rubber gaskets for weatherproof, airtight door sealing. Multiple cross-section profiles.</div>
-          <div class="card-footer"><span class="card-model">CC-P12</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Stainless Door Seal" data-cat-label="Sealing" data-model="CC-P13" data-specs='[["Material","Stainless Steel"],["Function","Door perimeter seal"],["Benefit","Corrosion resistant"],["Application","Container doors"]]' data-desc="Stainless steel door seal strips ensuring long-term corrosion resistance and tight closure.">
-        <div class="card-img"><img src="public/images/products/cc-p13-stainless-door-seal.png" alt="Stainless steel container door seal strip"></div>
-        <div class="card-body">
-          <div class="card-cat">Sealing</div>
-          <div class="card-title">Stainless Door Seal</div>
-          <div class="card-desc">Stainless steel door seal strips for long-term corrosion resistance in maritime environments.</div>
-          <div class="card-footer"><span class="card-model">CC-P13</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="sealing" onclick="openModal(this)" data-title="Sealant" data-cat-label="Sealing" data-model="CC-P14" data-specs='[["Type","Polyurethane / Silicone"],["Application","Joints & seams"],["Cure","Room temperature"],["Use","New build & repair"]]' data-desc="Polyurethane and silicone-based container sealants for joints, seams and repair applications.">
-        <div class="card-img"><img src="public/images/products/cc-p14-sealant.png" alt="Container seam sealant for repair materials"></div>
-        <div class="card-body">
-          <div class="card-cat">Sealing</div>
-          <div class="card-title">Sealant</div>
-          <div class="card-desc">PU and silicone sealants for container joints, seams and repair. UV and water resistant.</div>
-          <div class="card-footer"><span class="card-model">CC-P14</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <!-- ACCESSORIES -->
-      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Corten Plate" data-cat-label="Accessories" data-model="CC-P15" data-specs='[["Material","Corten Steel (Weathering)"],["Standard","ASTM A588 / EN10025-5"],["Application","Panel repair patches"],["Benefit","Self-rusting protective layer"]]' data-desc="Weathering steel plates for container repair and fabrication.">
-        <div class="card-img"><img src="public/images/products/cc-p15-corten-plate.png" alt="Corten steel plate for container repair materials"></div>
-        <div class="card-body">
-          <div class="card-cat">Accessories</div>
-          <div class="card-title">Corten Plate</div>
-          <div class="card-desc">Weathering steel plates for container repair. Self-protecting patina.</div>
-          <div class="card-footer"><span class="card-model">CC-P15</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Plywood" data-cat-label="Accessories" data-model="CC-P16" data-specs='[["Material","Hardwood / Bamboo Plywood"],["Thickness","28mm (standard)"],["Treatment","Anti-fungal & ISPM 15"],["Application","Container floor board"]]' data-desc="Container floor plywood boards. Hardwood or bamboo construction, 28mm standard thickness.">
-        <div class="card-img"><img src="public/images/products/cc-p16-plywood.png" alt="Container flooring plywood for dry container replacement"></div>
-        <div class="card-body">
-          <div class="card-cat">Accessories</div>
-          <div class="card-title">Plywood</div>
-          <div class="card-desc">28mm container floor plywood. Hardwood/bamboo. ISPM 15 certified.</div>
-          <div class="card-footer"><span class="card-model">CC-P16</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
-      <div class="product-card" data-cat="accessories" onclick="openModal(this)" data-title="Tapping Screw" data-cat-label="Accessories" data-model="CC-P17" data-specs='[["Material","Carbon Steel / SUS304"],["Head Type","Hex washer head"],["Standard","ISO / DIN"],["Application","Panel & component fixing"]]' data-desc="Self-tapping screws for container panel and component fastening.">
-        <div class="card-img"><img src="public/images/products/cc-p17-tapping-screw.png" alt="Self-tapping screw for shipping container panel fixing"></div>
-        <div class="card-body">
-          <div class="card-cat">Accessories</div>
-          <div class="card-title">Tapping Screw</div>
-          <div class="card-desc">Self-tapping screws for container panels. Carbon steel and SUS304 options.</div>
-          <div class="card-footer"><span class="card-model">CC-P17</span><a href="#quote" class="card-btn" onclick="event.stopPropagation()">Inquire</a></div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- SEO CONTENT -->
-  <section id="china-shipping-container-parts-supplier">
-    <div class="title-block">
-      <div class="section-label">B2B Sourcing</div>
-      <h2 class="section-title">China Shipping Container Parts Supplier</h2>
-      <p class="section-sub">Centro Containers supports international buyers with reliable shipping container parts and dry container parts for maintenance teams, depots, and fabrication workshops. Our supply scope covers container door hardware, ISO corner castings, roof panels, side panels, and other container repair materials used in replacement and overhaul projects. We also provide OEM processing for drawing-based production, including custom size container parts for project-specific dimensions, helping purchasing teams consolidate quality control, lead-time planning, and export coordination through one supplier.</p>
-    </div>
-  </section>
+  <section id="range">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Product Range</div>
+        <h2>Two Supply Lines for Bulk Buyers</h2>
+        <p>
+          Choose complete ISO dry containers or container spare parts and hardware for repair, replacement, modification and OEM projects.
+        </p>
+      </div>
 
-  <!-- WHY US -->
-  <section id="why-us">
-    <div class="title-block">
-      <div class="section-label">Why Choose Us</div>
-      <h2 class="section-title">Quality You Can Rely On</h2>
-      <div class="section-sub">We support international buyers with practical sourcing, stable supply coordination, and clear communication for container repair and replacement projects.</div>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feat-icon">🏭</div><div class="feat-title">Factory-Backed Supply</div><div class="feat-desc">Reliable sourcing support for dry container replacement parts and repair components.</div></div>
-      <div class="feature-card"><div class="feat-icon">✅</div><div class="feat-title">ISO-Focused Quality</div><div class="feat-desc">Products follow widely used international standards for dry container applications.</div></div>
-      <div class="feature-card"><div class="feat-icon">🌍</div><div class="feat-title">Global Shipping</div><div class="feat-desc">We support export shipments to buyers in multiple regions with practical delivery coordination.</div></div>
-      <div class="feature-card"><div class="feat-icon">📦</div><div class="feat-title">Full Parts Range</div><div class="feat-desc">One-stop sourcing from structural steel components to seals, hardware, and accessories.</div></div>
-      <div class="feature-card"><div class="feat-icon">💬</div><div class="feat-title">Technical Support</div><div class="feat-desc">Part matching, drawing review, and practical communication for inquiry-to-order workflows.</div></div>
-      <div class="feature-card"><div class="feat-icon">💰</div><div class="feat-title">Competitive Pricing</div><div class="feat-desc">Flexible MOQ and workable pricing for spot purchases and long-term supply cooperation.</div></div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="cta-section" id="contact">
-    <div class="section-label" style="color:rgba(255,255,255,.6)">Get In Touch</div>
-    <h2>Ready to Source Your Container Parts?</h2>
-    <p>Contact our team for pricing, technical specs, lead times, and export coordination.</p>
-    <a href="#quote" class="btn-primary">Request a Free Quote →</a>
-    <div class="contact-grid">
-      <div class="contact-card"><div class="cc-icon">📧</div><p>Email</p><strong>sales@centrocontainers.com</strong></div>
-      <div class="contact-card"><div class="cc-icon">📞</div><p>Phone / WhatsApp</p><strong>+86 186 6395 1355</strong></div>
-      <div class="contact-card"><div class="cc-icon">🌐</div><p>Website</p><strong>centrocontainers.com</strong></div>
-      <div class="contact-card"><div class="cc-icon">📍</div><p>Location</p><strong>Qingdao, China</strong></div>
-    </div>
-  </section>
-
-  <!-- QUOTE FORM -->
-  <section class="quote-section" id="quote">
-    <div class="title-block">
-      <div class="section-label">Quick Inquiry</div>
-      <h2 class="section-title">Request a Quote</h2>
-      <div class="section-sub">Fill in your requirements and we will get back to you as soon as possible.</div>
-    </div>
-    <div class="quote-wrap">
-      <form id="quoteForm" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
-        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
-        <input type="hidden" name="form_start_time" id="form_start_time">
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Full Name *</label>
-            <input type="text" name="name" placeholder="Your name" required>
+      <div class="split-grid">
+        <div class="category-card">
+          <div class="image-placeholder">
+            Image Placeholder: 20ft / 40ft dry containers in factory yard
           </div>
-          <div class="form-group">
+          <div class="category-body">
+            <h3>ISO Standard Dry Containers</h3>
+            <p>
+              Bulk supply of 20ft GP, 40ft GP and 40ft HC dry freight containers for distributors, project buyers and industrial users.
+            </p>
+            <div class="tag-list">
+              <span class="tag">20ft GP</span>
+              <span class="tag">40ft GP</span>
+              <span class="tag">40ft HC</span>
+              <span class="tag">CSC Certified</span>
+            </div>
+            <ul>
+              <li>Bulk 20ft shipping containers</li>
+              <li>40ft dry freight container manufacturer</li>
+              <li>ISO standard shipping containers wholesale</li>
+              <li>Corten steel shipping container construction</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="image-placeholder">
+            Image Placeholder: full set of container spare parts / exploded view
+          </div>
+          <div class="category-body">
+            <h3>Container Spare Parts & Hardware</h3>
+            <p>
+              Factory supply of ISO container replacement parts, intermodal container hardware and OEM components for repair depots and distributors.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Replacement Parts</span>
+              <span class="tag">Door Hardware</span>
+              <span class="tag">Steel Panels</span>
+              <span class="tag">OEM Parts</span>
+            </div>
+            <ul>
+              <li>Shipping container spare parts wholesale</li>
+              <li>ISO container replacement parts</li>
+              <li>Intermodal container hardware</li>
+              <li>Container repair parts manufacturer China</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-bg" id="parts">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Core Parts</div>
+        <h2>Container Parts We Manufacture and Supply</h2>
+        <p>
+          Main product categories for repair, replacement, wholesale distribution and OEM container manufacturing.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: ISO corner casting</div>
+          <div class="product-card-body">
+            <h3>ISO Container Corner Casting Supplier</h3>
+            <p>Corner castings compatible with ISO 1161 standard for container manufacturing and repair.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: Corten steel roof panel</div>
+          <div class="product-card-body">
+            <h3>Corten Steel Container Roof Panel</h3>
+            <p>Roof panels and roof sheets for 20ft / 40ft dry container replacement and OEM production.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: side panel replacement</div>
+          <div class="product-card-body">
+            <h3>Container Side Panel Replacement</h3>
+            <p>Side wall panels, front end panels and steel plates for container repair and refurbishment.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: door locking gear</div>
+          <div class="product-card-body">
+            <h3>Container Door Locking Gear Manufacturer</h3>
+            <p>Locking rods, keepers, handles and door locking hardware for dry freight containers.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: EPDM gasket</div>
+          <div class="product-card-body">
+            <h3>EPDM Container Door Gasket Supplier</h3>
+            <p>Door gasket, rubber seal and stainless steel door seal for container repair and maintenance.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">Image Placeholder: bridge fitting</div>
+          <div class="product-card-body">
+            <h3>Bridge Fitting for Shipping Containers</h3>
+            <p>Bridge fittings and connection hardware for container stacking and securing applications.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="keyword-panel">
+        <h3>Additional Container Spare Parts Available</h3>
+        <div class="keyword-columns">
+          <ul>
+            <li>Container corner post manufacturer</li>
+            <li>Container cross member supplier</li>
+            <li>Container top rail and bottom rail</li>
+            <li>Container front end panel replacement</li>
+          </ul>
+          <ul>
+            <li>Container door panel supplier</li>
+            <li>Container door hinge manufacturer</li>
+            <li>Container cam lock and cam keeper</li>
+            <li>Container lashing ring fittings</li>
+          </ul>
+          <ul>
+            <li>Container plywood floor supply</li>
+            <li>Corten steel plates for containers</li>
+            <li>Roll-up door parts manufacturing</li>
+            <li>OEM container parts based on drawings</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="factory" class="factory">
+    <div class="container factory-grid">
+      <div class="image-placeholder">
+        Image Placeholder: workshop / steel cutting / bending / welding
+      </div>
+
+      <div>
+        <div class="section-label" style="color:#fde68a;">Factory Capability</div>
+        <h2>Source Factory for Steel Container Parts, Not a Trading Desk</h2>
+        <p>
+          We support container factories, repair depots and regional distributors with stable supply of structural parts,
+          panels and hardware. Production can be arranged based on standard parts, samples or technical drawings.
+        </p>
+
+        <ul class="factory-list">
+          <li>Steel cutting, bending, forming and welding capability</li>
+          <li>SPA-H / Corten steel material options for container structures</li>
+          <li>OEM container parts manufacturing for bulk orders</li>
+          <li>Mixed loading of spare parts inside 20ft / 40ft containers to reduce ocean freight cost</li>
+          <li>Parts suitable for ISO standard dry container repair and manufacturing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Why Choose Us</div>
+        <h2>Designed for Procurement Teams, Depots and Distributors</h2>
+        <p>
+          We focus on stable manufacturing, practical communication and bulk supply support for B2B container projects.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <strong>Factory Direct</strong>
+          <p>Direct supply from a manufacturing workshop for container structural parts and hardware.</p>
+        </div>
+
+        <div class="why-card">
+          <strong>OEM Support</strong>
+          <p>Custom production based on drawings, samples or project requirements.</p>
+        </div>
+
+        <div class="why-card">
+          <strong>Bulk Supply</strong>
+          <p>Suitable for distributors, container depots and maintenance companies requiring repeated supply.</p>
+        </div>
+
+        <div class="why-card">
+          <strong>Mixed Loading</strong>
+          <p>Combine different spare parts inside one container shipment to save freight cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="configurator" id="quote">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Request Quote</div>
+        <h2>Tell Us What Parts You Need</h2>
+        <p>
+          Select your container type and required parts. We will check availability, production options and shipping support.
+        </p>
+      </div>
+
+      <form class="form-wrap" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
+        <div class="form-grid">
+          <div>
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="John Smith" required />
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="name@company.com" required />
+          </div>
+
+          <div>
             <label>Company</label>
-            <input type="text" name="company" placeholder="Company name">
+            <input type="text" name="company" placeholder="Company name" />
           </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" placeholder="your@email.com" required>
+          <div>
+            <label>Country / Region</label>
+            <input type="text" name="country" placeholder="USA / Korea / UAE / Brazil..." />
           </div>
-          <div class="form-group">
-            <label>Phone / WhatsApp</label>
-            <input type="tel" name="phone" placeholder="+1 234 567 8900">
-          </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Country</label>
-            <input type="text" name="country" placeholder="Your country">
-          </div>
-          <div class="form-group">
-            <label>Product Category</label>
-            <select name="product">
-              <option value="">-- Select category --</option>
-              <option>Structural Panels (Roof / Side / Front / Door)</option>
-              <option>Rails & Members (Cross Member / Side Rail / Corner Post)</option>
-              <option>Corner Casting</option>
-              <option>Door Locking Hardware</option>
-              <option>Sealing & Gaskets</option>
-              <option>Accessories (Plywood / Corten / Screws)</option>
-              <option>Multiple / Full Set</option>
+          <div>
+            <label>Buyer Type</label>
+            <select name="buyer_type">
+              <option value="">Select one</option>
+              <option>Container repair depot</option>
+              <option>Regional distributor / wholesaler</option>
+              <option>Container factory / OEM project</option>
+              <option>Logistics / shipping company</option>
+              <option>Trading company</option>
             </select>
           </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Quantity</label>
-            <input type="text" id="quantity" placeholder="e.g. 100 pcs / 5 sets">
+          <div>
+            <label>Container Type</label>
+            <select name="container_type">
+              <option value="">Select one</option>
+              <option>20ft GP</option>
+              <option>40ft GP</option>
+              <option>40ft HC</option>
+              <option>Spare parts only</option>
+              <option>Custom / not sure</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label>Reference Product Code</label>
-            <input type="text" id="reference_code" placeholder="e.g. CC-P01">
+
+          <div class="full">
+            <label>Required Products</label>
+            <div class="checkbox-area">
+              <label class="check-item"><input type="checkbox" name="parts" value="20ft/40ft dry containers" />20ft / 40ft dry containers</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="corner castings" />Corner castings</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="roof panels" />Roof panels</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="side panels" />Side panels</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="door locking hardware" />Door locking hardware</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="EPDM door gasket" />EPDM door gasket</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="cross member / rails" />Cross member / rails</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="bridge fittings" />Bridge fittings</label>
+              <label class="check-item"><input type="checkbox" name="parts" value="OEM parts based on drawings" />OEM parts based on drawings</label>
+            </div>
+          </div>
+
+          <div>
+            <label>Estimated Quantity</label>
+            <input type="text" name="quantity" placeholder="e.g. 200 pcs / 1 container load" />
+          </div>
+
+          <div>
+            <label>Destination Port</label>
+            <input type="text" name="destination" placeholder="e.g. Busan / Long Beach / Jebel Ali" />
+          </div>
+
+          <div class="full">
+            <label>Message / Specifications</label>
+            <textarea name="message" placeholder="Please tell us sizes, drawings, material requirements, order quantity or target shipment plan."></textarea>
           </div>
         </div>
 
-        <div class="form-group full" style="margin-bottom:16px">
-          <label>Product Details / Special Requirements *</label>
-          <textarea name="message" id="message" placeholder="Please describe the parts you need — product name, model number, dimensions, container size (20ft/40ft), and any special requirements..." required></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">📩 Send Inquiry</button>
-        <div class="form-note">We typically respond within 24 hours on business days.</div>
-        <div id="formStatus" class="form-status" aria-live="polite"></div>
+        <button class="submit-btn" type="submit">Submit Inquiry</button>
       </form>
     </div>
   </section>
 
-
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="title-block">
-      <h2 class="section-title">Frequently Asked Questions About Container Parts</h2>
+  <div class="download-strip" id="catalog">
+    <div class="container download-inner">
+      <div>
+        <h2>Need PDF Catalog or Technical Drawings?</h2>
+        <p>Send us your target parts list. We can provide product photos, catalog information and drawing-based quotation support.</p>
+      </div>
+      <a class="btn btn-primary" href="#quote">Request Catalog</a>
     </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h3>What container parts do you supply?</h3>
-        <p>We supply structural panels, door hardware, corner castings, gaskets, flooring materials, and container repair parts.</p>
+  </div>
+
+  <section class="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">FAQ</div>
+        <h2>Common Questions from Bulk Buyers</h2>
       </div>
-      <div class="faq-item">
-        <h3>Do you support custom size container parts?</h3>
-        <p>Yes, we support OEM processing and custom size production based on drawings or specifications.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What types of containers do your parts fit?</h3>
-        <p>Our parts are suitable for standard 20ft and 40ft dry containers.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do you support small quantity orders?</h3>
-        <p>Yes, we support flexible order quantities depending on product type.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How can I request a quote?</h3>
-        <p>You can submit your requirements through our inquiry form or contact us directly via email or WhatsApp.</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>Do you supply ISO container replacement parts wholesale?</h3>
+          <p>Yes. We supply container spare parts and hardware for repair depots, distributors and container manufacturing projects.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you manufacture container parts based on drawings?</h3>
+          <p>Yes. OEM fabrication based on drawings, samples or detailed specifications is supported.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you supply 20ft and 40ft dry containers?</h3>
+          <p>Yes. We can support bulk supply of ISO standard 20ft GP, 40ft GP and 40ft HC dry containers depending on project requirements.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you mix different container parts in one shipment?</h3>
+          <p>Yes. Mixed loading of spare parts inside a 20ft or 40ft container can help buyers reduce ocean freight cost.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What buyers do you mainly serve?</h3>
+          <p>Our target buyers include container repair depots, regional distributors, container factories, modification companies and logistics-related maintenance teams.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div>
-      <div class="footer-logo"><span class="logo-accent">CENTRO</span>CONTAINERS</div>
-      <div class="footer-desc">Your reliable source for dry container parts worldwide. ISO-focused supply, export support, and practical communication.</div>
-      <div style="font-size:.82rem;color:rgba(255,255,255,.4)">📧 sales@centrocontainers.com &nbsp;|&nbsp; 📞 +86 186 6395 1355</div>
-    </div>
-    <div>
-      <h4>Products</h4>
-      <ul>
-        <li><a href="#products">Structural Panels</a></li>
-        <li><a href="#products">Rails & Members</a></li>
-        <li><a href="#products">Corner Castings</a></li>
-        <li><a href="#products">Door Hardware</a></li>
-        <li><a href="#products">Seals & Gaskets</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#why-us">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://centrocontainers.com" target="_blank">Official Website</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="#quote">Request Quote</a></li>
-        <li><a href="#contact">Technical Support</a></li>
-        <li><a href="#products">Product Catalog</a></li>
-      </ul>
-    </div>
-    <div class="footer-bottom">© 2026 Centro Containers. All rights reserved.</div>
-  </footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Centro Containers</h3>
+        <p>
+          China-based manufacturer and supplier of shipping container spare parts, ISO dry containers and OEM steel components for B2B buyers.
+        </p>
+      </div>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('show')">✕</button>
-      <div class="modal-cat" id="mCat"></div>
-      <h3 id="mTitle"></h3>
-      <div class="modal-specs" id="mSpecs"></div>
-      <div class="modal-desc" id="mDesc"></div>
-      <div class="modal-btns">
-        <button class="mbtn-p" onclick="window.location='#quote'">Request Quote</button>
-        <button class="mbtn-o" onclick="document.getElementById('modalOverlay').classList.remove('show')">Close</button>
+      <div>
+        <h3>Main Products</h3>
+        <ul>
+          <li>ISO container corner castings</li>
+          <li>Corten steel roof panels</li>
+          <li>Container door locking hardware</li>
+          <li>EPDM door gaskets</li>
+          <li>OEM container parts</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li>Email: sales@centrocontainers.com</li>
+          <li>WhatsApp: +86 186 6395 1355</li>
+          <li>Factory supply from China</li>
+        </ul>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <script>
-    function filterCat(cat, el) {
-      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
-      document.querySelectorAll('.product-card').forEach(c => {
-        c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
-      });
-    }
-
-    function openModal(card) {
-      const title = card.dataset.title;
-      const catLabel = card.dataset.catLabel;
-      const model = card.dataset.model;
-      const desc = card.dataset.desc;
-      const specs = JSON.parse(card.dataset.specs || '[]');
-
-      document.getElementById('mTitle').textContent = title;
-      document.getElementById('mCat').textContent = catLabel + ' · ' + model;
-      document.getElementById('mDesc').textContent = desc;
-
-      let specsHtml = '';
-      specs.forEach(([k, v]) => {
-        specsHtml += `<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`;
-      });
-      document.getElementById('mSpecs').innerHTML = specsHtml;
-      document.getElementById('modalOverlay').classList.add('show');
-    }
-
-    function closeModal(e) {
-      if (e.target.id === 'modalOverlay') {
-        document.getElementById('modalOverlay').classList.remove('show');
-      }
-    }
-
-    async function submitForm(e) {
-      e.preventDefault();
-
-      const form = document.getElementById('quoteForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const status = document.getElementById('formStatus');
-      const startTime = document.getElementById('form_start_time');
-      const messageField = document.getElementById('message');
-      const quantity = document.getElementById('quantity').value.trim();
-      const referenceCode = document.getElementById('reference_code').value.trim();
-      const phone = form.querySelector('[name="phone"]').value.trim();
-
-      status.className = 'form-status';
-      status.textContent = '';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      const originalMessage = messageField.value.trim();
-      const extraLines = [];
-
-      if (phone) extraLines.push(`Phone / WhatsApp: ${phone}`);
-      if (quantity) extraLines.push(`Quantity: ${quantity}`);
-      if (referenceCode) extraLines.push(`Reference Product Code: ${referenceCode}`);
-
-      const finalMessage = extraLines.length
-        ? `${originalMessage}\n\n${extraLines.join('\n')}`
-        : originalMessage;
-
-      messageField.value = finalMessage;
-
-      try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: formData
-        });
-
-        if (!response.ok) throw new Error('Submit failed');
-
-        form.reset();
-        startTime.value = String(Date.now());
-        submitBtn.disabled = false;
-        submitBtn.textContent = '📩 Send Inquiry';
-        status.className = 'form-status ok';
-        status.textContent = '✅ Inquiry sent successfully. We will contact you within 24 hours.';
-      } catch (err) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '📩 Send Inquiry';
-        status.className = 'form-status err';
-        status.textContent = 'Submission failed. Please try again or email sales@centrocontainers.com.';
-      } finally {
-        messageField.value = '';
-      }
-    }
-
-    document.getElementById('quoteForm').addEventListener('submit', submitForm);
-    document.getElementById('form_start_time').value = String(Date.now());
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
-
-<a
-  class="whatsapp-float"
-  href="https://wa.me/8618663951355?text=Hi%2C%20I%20need%20a%20quote%20for%20container%20parts.%0AProduct%3A%0AQuantity%3A%0ADestination%3A"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Chat with us on WhatsApp"
->
-  <span class="whatsapp-float__icon-wrap" aria-hidden="true">
-    <svg class="whatsapp-float__icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M19.11 17.28c-.27-.14-1.58-.78-1.83-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.15.18-.31.2-.58.07-.27-.14-1.13-.41-2.15-1.31-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.41.12-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.6-1.45-.82-1.99-.22-.52-.44-.45-.6-.46h-.51c-.18 0-.47.07-.72.34-.24.27-.93.91-.93 2.22 0 1.31.95 2.57 1.09 2.75.13.18 1.87 2.86 4.53 4.01.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.58-.65 1.8-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.31Z"/>
-      <path d="M16.02 3.2c-7.08 0-12.83 5.73-12.83 12.79 0 2.26.6 4.47 1.74 6.41L3.1 28.8l6.58-1.72a12.88 12.88 0 0 0 6.34 1.62h.01c7.07 0 12.82-5.73 12.82-12.79 0-3.42-1.34-6.63-3.79-9.05A12.75 12.75 0 0 0 16.02 3.2Zm0 23.34h-.01a10.7 10.7 0 0 1-5.45-1.49l-.39-.23-3.91 1.02 1.04-3.8-.25-.39a10.57 10.57 0 0 1-1.64-5.66c0-5.87 4.78-10.64 10.66-10.64 2.84 0 5.5 1.1 7.5 3.09a10.55 10.55 0 0 1 3.13 7.53c0 5.87-4.79 10.65-10.67 10.65Z"/>
-    </svg>
-  </span>
-  <span class="whatsapp-float__text">
-    <span class="whatsapp-float__title">Quick Quote</span>
-    <span class="whatsapp-float__subtitle">via WhatsApp</span>
-  </span>
-</a>
-
-<script>
-  window.addEventListener('load', function () {
-    var widget = document.querySelector('.whatsapp-float');
-    if (!widget) return;
-    window.setTimeout(function () {
-      widget.classList.add('is-visible');
-    }, 180);
-  });
-</script>
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/8618663951355?text=Hi%2C%20I%20need%20a%20quote%20for%20container%20parts.%0AProduct%3A%0AQuantity%3A%0ADestination%3A"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+  >
+    WhatsApp Quote
+  </a>
 
 </body>
 </html>
