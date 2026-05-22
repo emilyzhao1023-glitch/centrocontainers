@@ -475,6 +475,14 @@
       margin-right: 8px;
     }
 
+    .factory-img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }
+
     .configurator {
       background: var(--light);
     }
@@ -696,6 +704,10 @@
         right: 16px;
         bottom: 16px;
         font-size: 14px;
+      }
+
+      .factory-img {
+        height: 260px;
       }
     }
   </style>
@@ -989,9 +1001,11 @@
 
   <section id="factory" class="factory">
     <div class="container factory-grid">
-      <div class="image-placeholder">
-        Image Placeholder: workshop / steel cutting / bending / welding
-      </div>
+      <img
+        src="public/images/metal-fabrication-workshop-container-parts.png"
+        alt="Metal fabrication workshop for container parts manufacturing"
+        class="factory-img"
+      />
 
       <div>
         <div class="section-label" style="color:#fde68a;">Factory Capability</div>
