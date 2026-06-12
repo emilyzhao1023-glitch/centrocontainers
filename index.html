@@ -764,6 +764,15 @@
     }
   </style>
 
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18230780035"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18230780035');
+  </script>
 </head>
 
 <body>
@@ -1292,6 +1301,11 @@
           }
 
           quoteForm.reset();
+          if (typeof gtag === "function") {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18230780035/QUOTE_FORM_SUBMIT'
+            });
+          }
           thankYouOverlay.classList.add("is-active");
         } catch (error) {
           alert("Sorry, something went wrong. Please try again or contact us by WhatsApp.");
