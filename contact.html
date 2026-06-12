@@ -136,7 +136,11 @@ async function submitForm(event) {
       body: formData
     });
 
-    if (!response.ok) {
+    const result = await response.json().catch(function () {
+      return null;
+    });
+
+    if (!response.ok || !result || result.success !== true) {
       throw new Error("Failed");
     }
 
@@ -144,7 +148,7 @@ async function submitForm(event) {
 
     if (typeof gtag === "function") {
       gtag('event', 'conversion', {
-        'send_to': 'AW-18230780035/QUOTE_FORM_SUBMIT'
+        'send_to': 'AW-18230780035/s1tvCNvnwb0cEIPBjvVD'
       });
     }
 
