@@ -198,6 +198,8 @@
     .content-card,
     .spec-card,
     .feature-card,
+    .gallery-card,
+    .drawing-card,
     .related-card,
     .faq-item {
       background: var(--white);
@@ -299,6 +301,31 @@
       padding: 30px;
     }
 
+    .content-card .spec-table {
+      margin-top: 24px;
+      box-shadow: none;
+      border: 1px solid var(--border);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: var(--secondary);
+      border: 1px solid #bfdbfe;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
     .spec-table {
       width: 100%;
       border-collapse: collapse;
@@ -328,10 +355,74 @@
       border-bottom: none;
     }
 
+    .drawing-card {
+      padding: 24px;
+      background: var(--white);
+    }
+
+    .drawing-frame,
+    .placeholder-frame {
+      min-height: 330px;
+      border: 2px dashed #cbd5e1;
+      border-radius: calc(var(--radius) - 4px);
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      text-align: center;
+      color: var(--muted);
+      padding: 24px;
+    }
+
+    .drawing-frame img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+    }
+
+    .drawing-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-card {
+      overflow: hidden;
+    }
+
+    .gallery-card .placeholder-frame {
+      min-height: 230px;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .gallery-caption {
+      padding: 18px;
+    }
+
+    .gallery-caption strong {
+      display: block;
+      color: var(--primary);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .gallery-caption p {
+      color: var(--muted);
+      font-size: 15px;
     }
 
     .feature-card,
@@ -485,7 +576,8 @@
         grid-template-columns: 1fr;
       }
 
-      .card-grid {
+      .card-grid,
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -563,17 +655,33 @@
 
     <section>
       <div class="container product-overview">
-        <div class="product-image-card">
-          <img src="../public/images/iso-container-corner-casting.png" alt="ISO container corner casting" />
+        <div class="product-image-card" aria-label="Product Main Image">
+          <img src="../public/images/iso-container-corner-casting.png" alt="ISO container corner casting product main image" />
         </div>
         <div class="content-card">
           <div class="section-label">Product Overview</div>
           <h2>ISO 1161 Corner Castings for Container Production and Repair</h2>
           <p>
             Centro Containers supplies cast steel corner castings for 20ft and 40ft dry container manufacturing,
-            depot repair work, structural replacement and modification projects. This template page uses corner
-            castings as the sample product and will be reused for future product detail pages.
+            depot repair work, structural replacement and modification projects. This unified template keeps the
+            product introduction, technical specifications, tags and image positions easy to copy for future product pages.
           </p>
+
+          <table class="spec-table" aria-label="Technical Specifications">
+            <tbody>
+              <tr><th>Standard</th><td>ISO 1161</td></tr>
+              <tr><th>Material</th><td>Cast Steel</td></tr>
+              <tr><th>Dimensions</th><td>178 × 162 × 118 mm</td></tr>
+              <tr><th>Surface</th><td>Shop Primer / Custom Coating</td></tr>
+              <tr><th>Supply Type</th><td>OEM / Wholesale</td></tr>
+            </tbody>
+          </table>
+
+          <div class="tag-list" aria-label="Product supply tags">
+            <span class="tag">OEM Manufacturing</span>
+            <span class="tag">Bulk Supply</span>
+            <span class="tag">Fast Quotation</span>
+          </div>
         </div>
       </div>
     </section>
@@ -581,34 +689,41 @@
     <section class="products-bg">
       <div class="container">
         <div class="section-head">
-          <div class="section-label">Technical Specifications</div>
-          <h2>Standard Product Parameters</h2>
-          <p>Common specifications for quotation review. Custom coating and OEM requirements can be confirmed by drawing.</p>
+          <div class="section-label">Dimensions / Technical Drawing</div>
+          <h2>Technical Drawing &amp; Dimensions</h2>
+          <p>Dimensions and drawings can be provided for buyer confirmation before quotation or production.</p>
         </div>
-        <table class="spec-table">
-          <tbody>
-            <tr>
-              <th>Standard</th>
-              <td>ISO 1161</td>
-            </tr>
-            <tr>
-              <th>Material</th>
-              <td>Cast Steel</td>
-            </tr>
-            <tr>
-              <th>Surface</th>
-              <td>Shop Primer / Custom Coating</td>
-            </tr>
-            <tr>
-              <th>Application</th>
-              <td>Container Manufacturing, Repair, Replacement</td>
-            </tr>
-            <tr>
-              <th>Supply Type</th>
-              <td>Bulk Supply / OEM Production</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="drawing-card">
+          <div class="drawing-frame">
+            <img src="../public/images/corner-casting-dimensions.png" alt="ISO container corner casting dimensions drawing" onerror="this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='block';" />
+            <div class="image-placeholder" style="display:none;">Dimensions / Drawing Image Placeholder<br />Upload product drawing here when available.</div>
+          </div>
+          <p class="drawing-note">Use this position for dimension drawings, engineering drawings or buyer confirmation diagrams.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Detail / Application Gallery</div>
+          <h2>Product Detail &amp; Application Images</h2>
+          <p>Reserved image cards for product details, export packing, loading, installation and application scenarios.</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <div class="placeholder-frame">Product Detail Image Placeholder</div>
+            <div class="gallery-caption"><strong>Product Detail</strong><p>Close-up view for material, casting quality, coating or inspection details.</p></div>
+          </div>
+          <div class="gallery-card">
+            <div class="placeholder-frame">Packing / Loading Image Placeholder</div>
+            <div class="gallery-caption"><strong>Packing / Loading</strong><p>Reserved for pallet packing, bulk loading or mixed container spare parts shipment.</p></div>
+          </div>
+          <div class="gallery-card">
+            <div class="placeholder-frame">Application / Installation Image Placeholder</div>
+            <div class="gallery-caption"><strong>Application / Installation</strong><p>Show installation use in container manufacturing, depot repair or structural replacement.</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -619,10 +734,10 @@
           <h2>Built for Container Industry Requirements</h2>
         </div>
         <div class="card-grid">
-          <div class="feature-card"><strong>ISO standard structure</strong><p>Designed for standard container corner connection and lifting requirements.</p></div>
-          <div class="feature-card"><strong>Cast steel body</strong><p>Durable cast steel construction for container structural applications.</p></div>
-          <div class="feature-card"><strong>20ft / 40ft containers</strong><p>Suitable for dry container manufacturing, repair and replacement use.</p></div>
-          <div class="feature-card"><strong>Factory direct supply</strong><p>Bulk export supply from China with OEM support for drawing-based projects.</p></div>
+          <div class="feature-card"><strong>ISO Standard</strong><p>Designed for standard container corner connection and lifting requirements.</p></div>
+          <div class="feature-card"><strong>Strong Material</strong><p>Durable cast steel construction for container structural applications.</p></div>
+          <div class="feature-card"><strong>OEM Support</strong><p>Drawing-based production support for custom coating, marking and project requirements.</p></div>
+          <div class="feature-card"><strong>Bulk Supply</strong><p>Factory direct export supply for container manufacturers, depots and wholesalers.</p></div>
         </div>
       </div>
     </section>
@@ -633,10 +748,11 @@
           <div class="section-label">Applications</div>
           <h2>Where Corner Castings Are Used</h2>
           <ul class="check-list">
-            <li>Container factory production</li>
-            <li>Depot repair projects</li>
-            <li>Structural replacement</li>
-            <li>Container modification projects</li>
+            <li>Container Manufacturing</li>
+            <li>Depot Repair</li>
+            <li>Structural Replacement</li>
+            <li>Container Modification</li>
+            <li>Intermodal Equipment</li>
           </ul>
         </div>
         <div class="content-card">
@@ -661,10 +777,10 @@
           </p>
         </div>
         <ul class="factory-list">
-          <li>ISO container spare parts and steel component supply experience</li>
-          <li>Bulk order support for depots, wholesalers and container factories</li>
-          <li>OEM production coordination based on drawings and specifications</li>
-          <li>Mixed loading support for multiple spare parts categories</li>
+          <li>Factory Direct Supply</li>
+          <li>OEM Production</li>
+          <li>Bulk Orders</li>
+          <li>Mixed Loading Available</li>
         </ul>
       </div>
     </section>
