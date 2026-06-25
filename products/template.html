@@ -292,18 +292,12 @@
 
     .product-image-frame,
     .drawing-frame,
-    .placeholder-frame {
-      border: 2px dashed #cbd5e1;
+    .gallery-image-frame {
       border-radius: calc(var(--radius) - 4px);
-      background:
-        radial-gradient(circle at center, rgba(18, 63, 115, 0.06), transparent 34%),
-        linear-gradient(135deg, #f8fafc, #eef2ff);
+      background: #f1f5f9;
       display: grid;
       place-items: center;
       overflow: hidden;
-      text-align: center;
-      color: var(--muted);
-      padding: 24px;
     }
 
     .product-image-frame {
@@ -315,43 +309,6 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-
-    .image-guidance {
-      padding: 0 18px 18px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .placeholder-content {
-      display: grid;
-      justify-items: center;
-      gap: 8px;
-    }
-
-    .placeholder-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      background: rgba(18, 63, 115, 0.08);
-      color: var(--secondary);
-      font-size: 24px;
-    }
-
-    .placeholder-title {
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 16px;
-    }
-
-    .placeholder-size {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
     }
 
     .content-card {
@@ -428,12 +385,6 @@
       object-fit: contain;
     }
 
-    .drawing-note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -450,19 +401,24 @@
       overflow: hidden;
     }
 
-    .gallery-card .placeholder-frame {
+    .gallery-card .gallery-image-frame {
       min-height: 0;
-      border: none;
       border-bottom: 1px solid var(--border);
       border-radius: var(--radius) var(--radius) 0 0;
     }
 
-    .gallery-card .placeholder-frame.square {
+    .gallery-card .gallery-image-frame.square {
       aspect-ratio: 1 / 1;
     }
 
-    .gallery-card .placeholder-frame.landscape {
+    .gallery-card .gallery-image-frame.landscape {
       aspect-ratio: 4 / 3;
+    }
+
+    .gallery-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .gallery-caption {
@@ -709,9 +665,8 @@
       <div class="container product-overview">
         <div class="product-image-card" aria-label="Product Main Image">
           <div class="product-image-frame">
-            <img src="../public/images/iso-container-corner-casting.png" alt="ISO container corner casting product main image" />
+            <img src="../public/images/iso-container-corner-casting.png" alt="ISO container corner casting product main image" onerror="this.style.display='none';" />
           </div>
-          <div class="image-guidance">Recommended Image Size: 1000 × 1000 px</div>
         </div>
         <div class="content-card">
           <div class="section-label">Product Overview</div>
@@ -750,14 +705,8 @@
         </div>
         <div class="drawing-card">
           <div class="drawing-frame">
-            <img src="../public/images/corner-casting-dimensions.png" alt="ISO container corner casting dimensions drawing" onerror="this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='grid';" />
-            <div class="image-placeholder placeholder-content" style="display:none;">
-              <span class="placeholder-icon" aria-hidden="true">⌗</span>
-              <span class="placeholder-title">Technical Drawing / Dimensions</span>
-              <span class="placeholder-size">Recommended Image Size: 1000 × 1000 px</span>
-            </div>
+            <img src="../public/images/corner-casting-dimensions.png" alt="ISO container corner casting dimensions drawing" onerror="this.style.display='none';" />
           </div>
-          <p class="drawing-note">Use this position for dimension drawings, engineering drawings or buyer confirmation diagrams. Recommended Image Size: 1000 × 1000 px.</p>
         </div>
       </div>
     </section>
@@ -767,38 +716,26 @@
         <div class="section-head">
           <div class="section-label">Detail / Application Gallery</div>
           <h2>Product Detail &amp; Application Images</h2>
-          <p>Reserved image cards for product details, export packing, loading, installation and application scenarios.</p>
+          <p>Product details, export packing, loading, installation and application scenarios for buyer reference.</p>
         </div>
         <div class="gallery-grid">
           <div class="gallery-card">
-            <div class="placeholder-frame square">
-              <div class="placeholder-content">
-                <span class="placeholder-icon" aria-hidden="true">▧</span>
-                <span class="placeholder-title">Product Detail</span>
-                <span class="placeholder-size">Recommended Image Size: 750 × 750 px</span>
-              </div>
+            <div class="gallery-image-frame square">
+              <img src="../public/images/corner-casting-detail.png" alt="ISO container corner casting product detail" onerror="this.style.display='none';" />
             </div>
-            <div class="gallery-caption"><strong>Product Detail</strong><p>Close-up view for material, casting quality, coating or inspection details.</p></div>
+            <div class="gallery-caption"><strong>Product Detail</strong><p>Close-up view of material, casting quality, coating and inspection details.</p></div>
           </div>
           <div class="gallery-card">
-            <div class="placeholder-frame landscape">
-              <div class="placeholder-content">
-                <span class="placeholder-icon" aria-hidden="true">▤</span>
-                <span class="placeholder-title">Packing / Loading</span>
-                <span class="placeholder-size">Recommended Image Size: 1000 × 750 px</span>
-              </div>
+            <div class="gallery-image-frame landscape">
+              <img src="../public/images/corner-casting-packing-loading.png" alt="ISO container corner casting packing and loading" onerror="this.style.display='none';" />
             </div>
-            <div class="gallery-caption"><strong>Packing / Loading</strong><p>Reserved for pallet packing, bulk loading or mixed container spare parts shipment.</p></div>
+            <div class="gallery-caption"><strong>Packing / Loading</strong><p>Pallet packing, bulk loading and mixed container spare parts shipment support.</p></div>
           </div>
           <div class="gallery-card">
-            <div class="placeholder-frame landscape">
-              <div class="placeholder-content">
-                <span class="placeholder-icon" aria-hidden="true">▥</span>
-                <span class="placeholder-title">Application / Installation</span>
-                <span class="placeholder-size">Recommended Image Size: 1000 × 750 px</span>
-              </div>
+            <div class="gallery-image-frame landscape">
+              <img src="../public/images/corner-casting-application.png" alt="ISO container corner casting application and installation" onerror="this.style.display='none';" />
             </div>
-            <div class="gallery-caption"><strong>Application / Installation</strong><p>Show installation use in container manufacturing, depot repair or structural replacement.</p></div>
+            <div class="gallery-caption"><strong>Application / Installation</strong><p>Installation use in container manufacturing, depot repair and structural replacement.</p></div>
           </div>
         </div>
       </div>
