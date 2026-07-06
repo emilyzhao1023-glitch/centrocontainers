@@ -143,8 +143,9 @@
       background:
         linear-gradient(90deg, rgba(11,31,58,0.96), rgba(18,63,115,0.88)),
         url("../public/images/products/corner-casting/corner-casting-main.png");
-      background-size: cover;
-      background-position: center;
+      background-size: cover, contain;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
       color: var(--white);
       padding: 92px 0 80px;
     }
@@ -448,6 +449,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      object-position: center;
     }
 
     .gallery-caption {
@@ -468,7 +470,20 @@
 
     .feature-card,
     .related-card {
-      padding: 22px;
+      padding: 24px;
+    }
+
+    .related-card {
+      display: grid;
+      gap: 10px;
+    }
+
+    .related-card img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      object-position: center;
+      margin-bottom: 4px;
     }
 
     .feature-card strong,
