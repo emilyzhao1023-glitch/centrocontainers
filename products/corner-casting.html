@@ -144,7 +144,7 @@
       }
       .hero-overview {
         display: grid;
-        grid-template-columns: 0.82fr 1fr;
+        grid-template-columns: 45fr 55fr;
         gap: 34px;
         align-items: center;
       }
@@ -156,11 +156,11 @@
         place-items: center;
         aspect-ratio: 1 / 1;
         overflow: hidden;
-        padding: 24px;
+        padding: 34px;
       }
       .main-image img {
-        width: 100%;
-        height: 100%;
+        width: 84%;
+        height: 84%;
         object-fit: contain;
         object-position: center;
       }
@@ -333,11 +333,15 @@
         overflow: hidden;
         border: 1px solid var(--border);
         background: #f8fafc;
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1000 / 765;
       }
       .application-image img {
         width: 100%;
-        height: 250px;
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
       }
       .check-list {
         list-style: none;
@@ -393,26 +397,30 @@
       }
       .related-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
       }
       .related-card {
         border: 1px solid var(--border);
         border-radius: 10px;
         background: #f8fafc;
-        padding: 14px 12px;
+        padding: 16px 14px;
         text-align: center;
         font-weight: 800;
         color: var(--primary);
-        font-size: 12px;
-        line-height: 1.35;
+        font-size: 13px;
+        line-height: 1.4;
+        min-height: 168px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       .related-card img {
-        height: 96px;
+        height: 118px;
         width: 100%;
         object-fit: contain;
         object-position: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .related-more {
         text-align: center;
@@ -510,9 +518,6 @@
         }
         .feature-item:nth-last-child(-n + 1) {
           border-bottom: 0;
-        }
-        .application-image img {
-          height: auto;
         }
         .quote-strip {
           border-radius: 0;
