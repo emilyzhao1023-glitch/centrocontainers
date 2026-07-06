@@ -154,13 +154,15 @@
         border-radius: 12px;
         display: grid;
         place-items: center;
-        aspect-ratio: 4/3;
+        aspect-ratio: 1 / 1;
         overflow: hidden;
+        padding: 24px;
       }
       .main-image img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        object-position: center;
       }
       .label {
         color: #d99a00;
@@ -305,6 +307,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
+        object-position: center;
       }
       .gallery-caption {
         padding: 14px;
@@ -391,23 +394,25 @@
       .related-grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
+        gap: 14px;
       }
       .related-card {
         border: 1px solid var(--border);
         border-radius: 10px;
         background: #f8fafc;
-        padding: 10px;
+        padding: 14px 12px;
         text-align: center;
         font-weight: 800;
         color: var(--primary);
         font-size: 12px;
+        line-height: 1.35;
       }
       .related-card img {
-        height: 82px;
+        height: 96px;
         width: 100%;
         object-fit: contain;
-        margin-bottom: 8px;
+        object-position: center;
+        margin-bottom: 10px;
       }
       .related-more {
         text-align: center;
