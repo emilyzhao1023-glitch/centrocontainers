@@ -149,12 +149,13 @@
         display: grid;
         place-items: center;
         aspect-ratio: 1 / 1;
-        overflow: hidden;
+        overflow: visible;
         padding: 34px;
       }
       .main-image img {
-        width: 84%;
-        height: 84%;
+        width: auto;
+        height: auto;
+        max-width: none;
         object-fit: contain;
         object-position: center;
       }
