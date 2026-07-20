@@ -18,6 +18,7 @@
     header { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; }
     .nav { height:72px; display:flex; justify-content:space-between; align-items:center; gap:18px; }
     .logo { font-size:22px; font-weight:800; color:var(--primary); letter-spacing:-.5px; white-space:nowrap; }
+    .logo img { display:block; height:60px; max-height:60px; width:auto; margin-left:-16px; }
     .logo span { color:var(--accent); }
     .nav-links { display:flex; gap:26px; font-size:15px; color:var(--text); }
     .nav-cta, .btn { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; font-weight:800; transition:.2s ease; }
@@ -49,6 +50,7 @@
     footer { background:#071424; color:#cbd5e1; padding:40px 0; }
     .footer-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:24px; }
     footer h3 { color:var(--white); margin-bottom:12px; }
+    .footer-logo { display:block; width:150px; height:auto; }
     footer p, footer li { color:#94a3b8; font-size:14px; }
     footer ul { list-style:none; display:grid; gap:8px; }
     .whatsapp-float { position:fixed; right:20px; bottom:20px; z-index:9999; display:inline-flex; align-items:center; background:var(--green); color:#fff; padding:12px 16px; border-radius:999px; font-weight:800; box-shadow:0 12px 28px rgba(0,0,0,.2); }
@@ -65,7 +67,7 @@
 
   <header>
     <div class="container nav">
-      <a class="logo" href="../">Centro<span>Containers</span></a>
+      <a class="logo" href="../"><img src="../public/images/logo-horizontal.png" alt="Centro Containers" /></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="./">Spare Parts</a>
         <a href="../#factory">Factory Capability</a>
@@ -156,7 +158,7 @@
 
   <footer>
     <div class="container footer-grid">
-      <div><h3>Centro Containers</h3><p>China-based manufacturer and supplier of shipping container spare parts, ISO dry containers and OEM steel components for B2B buyers.</p></div>
+      <div><h3><img class="footer-logo" src="../public/images/logo-stacked.png" alt="Centro Containers" /></h3><p>China-based manufacturer and supplier of shipping container spare parts, ISO dry containers and OEM steel components for B2B buyers.</p></div>
       <div><h3>Main Products</h3><ul><li>ISO container corner castings</li><li>Corten steel roof panels</li><li>Container door locking hardware</li><li>EPDM door gaskets</li><li>OEM container parts</li></ul></div>
       <div><h3>Contact</h3><ul><li>Email: sales@centrocontainers.com</li><li>WhatsApp: +86 186 6395 1355</li><li>Factory supply from China</li></ul></div>
     </div>
