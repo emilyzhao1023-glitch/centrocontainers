@@ -22,15 +22,15 @@ Centro Containers focuses on nine core ISO shipping container spare parts:
 
 Product pages:
 
-- [Corner Casting](https://centrocontainers.com/products/corner-casting.html)
-- [Corner Post](https://centrocontainers.com/products/corner-post.html)
-- [Cross Member](https://centrocontainers.com/products/cross-member.html)
-- [Roof Panel](https://centrocontainers.com/products/roof-panel.html)
-- [Side Panel](https://centrocontainers.com/products/side-panel.html)
-- [Door Panel](https://centrocontainers.com/products/door-panel.html)
-- [Door Gasket](https://centrocontainers.com/products/door-gasket.html)
-- [Door Locking Gear](https://centrocontainers.com/products/door-locking-gear.html)
-- [Bridge Fitting](https://centrocontainers.com/products/bridge-fitting.html)
+- [Corner Casting](https://centrocontainers.com/products/corner-casting)
+- [Corner Post](https://centrocontainers.com/products/corner-post)
+- [Cross Member](https://centrocontainers.com/products/cross-member)
+- [Roof Panel](https://centrocontainers.com/products/roof-panel)
+- [Side Panel](https://centrocontainers.com/products/side-panel)
+- [Door Panel](https://centrocontainers.com/products/door-panel)
+- [Door Gasket](https://centrocontainers.com/products/door-gasket)
+- [Door Locking Gear](https://centrocontainers.com/products/door-locking-gear)
+- [Bridge Fitting](https://centrocontainers.com/products/bridge-fitting)
 
 ## Target Customers
 
@@ -51,7 +51,7 @@ Available product information includes common materials such as cast steel, SPA-
 ## Contact Information
 
 - Website: https://centrocontainers.com/
-- Products: https://centrocontainers.com/products/index.html
-- Contact page: https://centrocontainers.com/contact.html
+- Products: https://centrocontainers.com/products/
+- Contact page: https://centrocontainers.com/contact
 - Email: sales@centrocontainers.com
 - WhatsApp: +86 186 6395 1355
