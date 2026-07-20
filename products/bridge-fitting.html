@@ -151,6 +151,13 @@
         letter-spacing: -0.5px;
         white-space: nowrap;
       }
+      .logo img {
+        display: block;
+        height: 60px;
+        max-height: 60px;
+        width: auto;
+        margin-left: -16px;
+      }
       .logo span {
         color: var(--accent);
       }
@@ -541,6 +548,11 @@
         color: #fff;
         margin-bottom: 12px;
       }
+      .footer-logo {
+        display: block;
+        width: 150px;
+        height: auto;
+      }
       footer p,
       footer li {
         color: #94a3b8;
@@ -638,7 +650,7 @@
     </div>
     <header>
       <div class="container nav">
-        <a class="logo" href="../">Centro<span>Containers</span></a>
+        <a class="logo" href="../"><img src="../public/images/logo-horizontal.png" alt="Centro Containers" /></a>
         <nav class="nav-links" aria-label="Main navigation">
           <a href="./">Spare Parts</a><a href="../#factory">Factory Capability</a><a href="../#quote">Quote</a>
         </nav>
@@ -840,7 +852,7 @@
 <footer>
       <div class="container footer-grid">
         <div>
-          <h3>Centro Containers</h3>
+          <h3><img class="footer-logo" src="../public/images/logo-stacked.png" alt="Centro Containers" /></h3>
           <p>
             China-based manufacturer and supplier of shipping container spare
             parts, ISO dry containers and OEM steel components for B2B buyers.
