@@ -52,6 +52,7 @@ Available product information includes common materials such as cast steel, SPA-
 
 - Website: https://centrocontainers.com/
 - Products: https://centrocontainers.com/products/
+- About Us: https://centrocontainers.com/about
 - Contact page: https://centrocontainers.com/contact
 - Email: sales@centrocontainers.com
 - WhatsApp: +86 186 6395 1355
