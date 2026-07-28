@@ -55,3 +55,7 @@ Available product information includes common materials such as cast steel, SPA-
 - Contact page: https://centrocontainers.com/contact
 - Email: sales@centrocontainers.com
 - WhatsApp: +86 186 6395 1355
+
+## About Centro Containers
+
+The [About page](https://centrocontainers.com/about) provides a factual overview of Centro Containers as a Jiaozhou, Qingdao-based B2B supplier and manufacturing partner. It explains practical manufacturing coordination, quality checks, OEM support from drawings or samples, mixed-product supply and export coordination for ISO shipping container spare parts.
