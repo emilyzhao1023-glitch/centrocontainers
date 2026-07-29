@@ -909,6 +909,7 @@
     gtag('js', new Date());
     gtag('config', 'AW-18230780035');
   </script>
+  <link rel="stylesheet" href="/quote-modal.css" />
 </head>
 
 <body>
@@ -1242,86 +1243,21 @@
         </p>
       </div>
 
-      <form id="quoteForm" class="form-wrap" action="https://centro-email.emilyzhao1023.workers.dev" method="POST">
-        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+      <form id="quoteForm" class="form-wrap" action="https://centro-email.emilyzhao1023.workers.dev" method="POST" data-form-type="homepage">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
         <input type="hidden" name="form_start_time" />
+        <input type="hidden" name="form_type" value="homepage" />
         <div class="form-grid">
-          <div>
-            <label>Your Name</label>
-            <input type="text" name="name" placeholder="John Smith" required />
-          </div>
-
-          <div>
-            <label>Email</label>
-            <input type="email" name="email" placeholder="name@company.com" required />
-          </div>
-
-          <div>
-            <label>Company</label>
-            <input type="text" name="company" placeholder="Company name" />
-          </div>
-
-          <div>
-            <label>Country / Region</label>
-            <input type="text" name="country" placeholder="USA / Korea / UAE / Brazil..." required />
-          </div>
-
-          <div>
-            <label>Buyer Type</label>
-            <select name="buyer_type" required>
-              <option value="">Select one</option>
-              <option>Container repair depot</option>
-              <option>Regional distributor / wholesaler</option>
-              <option>Container factory / OEM project</option>
-              <option>Logistics / shipping company</option>
-              <option>Trading company</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Container Type</label>
-            <select name="container_type" required>
-              <option value="">Select one</option>
-              <option>20ft GP</option>
-              <option>40ft GP</option>
-              <option>40ft HC</option>
-              <option>Spare parts only</option>
-              <option>Custom / not sure</option>
-            </select>
-          </div>
-
-          <div class="full">
-            <label>Required Products</label>
-            <div class="checkbox-area">
-              <label class="check-item"><input type="checkbox" name="parts" value="20ft/40ft dry containers" />20ft / 40ft dry containers</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="corner castings" />Corner castings</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="roof panels" />Roof panels</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="side panels" />Side panels</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="door locking hardware" />Door locking hardware</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="EPDM door gasket" />EPDM door gasket</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="cross member / rails" />Cross member / rails</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="bridge fittings" />Bridge fittings</label>
-              <label class="check-item"><input type="checkbox" name="parts" value="OEM parts based on drawings" />OEM parts based on drawings</label>
-            </div>
-          </div>
-
-          <div>
-            <label>Estimated Quantity</label>
-            <input type="text" name="quantity" placeholder="e.g. 200 pcs / 1 container load" required />
-          </div>
-
-          <div>
-            <label>Destination Port</label>
-            <input type="text" name="destination" placeholder="e.g. Busan / Long Beach / Jebel Ali" />
-          </div>
-
-          <div class="full">
-            <label>Message / Specifications</label>
-            <textarea name="message" placeholder="Please tell us sizes, drawings, material requirements, order quantity or target shipment plan." required></textarea>
-          </div>
+          <div><label>Name</label><input type="text" name="name" autocomplete="name" required /></div>
+          <div><label>Email</label><input type="email" name="email" autocomplete="email" required /></div>
+          <div><label>Company</label><input type="text" name="company" autocomplete="organization" /></div>
+          <div><label>Country / Region</label><input type="text" name="country" autocomplete="country-name" /></div>
+          <div><label>Product Interested In</label><select name="product" required><option value="">Select a product</option><option>Dry shipping containers</option><option>Corner castings</option><option>Roof panels</option><option>Side panels</option><option>Door panels</option><option>Door locking gear</option><option>Door gaskets</option><option>Corner posts</option><option>Cross members and rails</option><option>Bridge fittings</option><option>OEM parts based on drawings</option></select></div>
+          <div><label>Estimated Quantity</label><input type="text" name="quantity" placeholder="e.g. 200 pcs / 1 container load" /></div>
+          <div class="full"><label>WhatsApp / Phone</label><input type="tel" name="phone" autocomplete="tel" /></div>
+          <div class="full"><label>Message / Specifications</label><textarea name="message" required placeholder="Please tell us sizes, specifications, destination or target shipment plan."></textarea></div>
+          <div class="full"><button class="submit-btn" type="submit">Send Inquiry</button><div class="cc-form-error" role="alert" aria-live="polite"></div></div>
         </div>
-
-        <button class="submit-btn" type="submit">Submit Inquiry</button>
       </form>
     </div>
   </section>
@@ -1415,89 +1351,6 @@
 
 
 
-  <div class="thank-you-overlay" id="thankYouOverlay">
-    <div class="thank-you-box">
-      <h2>Thank you!</h2>
-      <p>Your inquiry has been submitted successfully. We will contact you within 24 hours.</p>
-      <button class="thank-you-close" type="button" id="thankYouClose">Close</button>
-    </div>
-  </div>
-
-  <script>
-    const quoteForm = document.getElementById("quoteForm");
-    const thankYouOverlay = document.getElementById("thankYouOverlay");
-    const thankYouClose = document.getElementById("thankYouClose");
-
-    if (quoteForm) {
-      const formStartTimeField = quoteForm.querySelector('input[name="form_start_time"]');
-      if (formStartTimeField) {
-        formStartTimeField.value = String(Date.now());
-      }
-
-      quoteForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const requiredParts = quoteForm.querySelectorAll("input[name='parts']");
-        const hasSelectedPart = Array.from(requiredParts).some(function (checkbox) {
-          return checkbox.checked;
-        });
-
-        if (!hasSelectedPart) {
-          alert("Please select at least one required product.");
-          return;
-        }
-
-        if (!quoteForm.checkValidity()) {
-          quoteForm.reportValidity();
-          return;
-        }
-
-        const submitButton = quoteForm.querySelector("button[type='submit']");
-        const originalText = submitButton ? submitButton.textContent : "";
-
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.textContent = "Submitting...";
-        }
-
-        try {
-          const response = await fetch(quoteForm.action, {
-            method: "POST",
-            body: new FormData(quoteForm)
-          });
-
-          const result = await response.json().catch(function () {
-            return null;
-          });
-
-          if (!response.ok || !result || result.success !== true) {
-            throw new Error("Form submission failed");
-          }
-
-          quoteForm.reset();
-          if (typeof gtag === "function") {
-            gtag('event', 'conversion', {
-              'send_to': 'AW-18230780035/s1tvCNvnwb0cEIPBjvVD'
-            });
-          }
-          thankYouOverlay.classList.add("is-active");
-        } catch (error) {
-          alert("Sorry, something went wrong. Please try again or contact us by WhatsApp.");
-        } finally {
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = originalText;
-          }
-        }
-      });
-    }
-
-    if (thankYouClose) {
-      thankYouClose.addEventListener("click", function () {
-        thankYouOverlay.classList.remove("is-active");
-      });
-    }
-  </script>
-
+  <script src="/quote-modal.js" defer></script>
 </body>
 </html>
