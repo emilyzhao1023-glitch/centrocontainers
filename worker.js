@@ -21,6 +21,7 @@ function countUrls(text) { return (text.match(URL_REGEX) || []).length; }
 function extractClientMetadata(request) {
   return {
     ipAddress: request.headers.get("CF-Connecting-IP") || "",
+    countryCode: request.cf?.country || "",
     userAgent: request.headers.get("User-Agent") || "",
     referrer: request.headers.get("Referer") || "",
     submissionTime: new Date().toISOString()
@@ -40,7 +41,7 @@ function section(title, rows) {
 }
 
 function emailShell(heading, content, metadata) {
-  const technicalRows = fieldRows(metadata, [["ipAddress", "IP address"], ["userAgent", "User agent"], ["referrer", "Referrer"], ["submissionTime", "Submission time"]]);
+  const technicalRows = fieldRows(metadata, [["ipAddress", "IP address"], ["countryCode", "Detected Country (IP)"], ["userAgent", "User agent"], ["referrer", "Referrer"], ["submissionTime", "Submission time"]]);
   return `<!doctype html><html><body style="margin:0;background:#f5f7fb;font-family:Arial,sans-serif;color:#1f2937"><div style="max-width:680px;margin:20px auto;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:24px"><div style="color:#0b1f3a;font-size:16px;font-weight:800;letter-spacing:.05em">CENTRO CONTAINERS</div><h1 style="font-size:22px;margin:5px 0 16px;color:#123f73">${heading}</h1>${content}${section("Technical Details", technicalRows)}</div></body></html>`;
 }
 
