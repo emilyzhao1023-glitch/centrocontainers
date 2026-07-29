@@ -223,14 +223,95 @@
     }
 
     .hero {
-      background:
-        linear-gradient(90deg, rgba(11,31,58,0.96), rgba(18,63,115,0.88)),
-        url("public/images/hero-container-factory.jpg");
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--primary);
       color: var(--white);
       padding: 92px 0 80px;
     }
+
+    .hero-media,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.45s ease;
+    }
+
+    .hero-video.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(7,20,36,0.92), rgba(11,31,58,0.76));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
+      background: rgba(7,20,36,0.48);
+      color: var(--white);
+      font-size: 29px;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .hero-arrow:hover,
+    .hero-arrow:focus-visible,
+    .hero-dot:focus-visible {
+      background: var(--accent);
+      color: #111827;
+      outline: 3px solid rgba(255,255,255,0.9);
+      outline-offset: 2px;
+    }
+
+    .hero-arrow--previous { left: 18px; }
+    .hero-arrow--next { right: 18px; }
+
+    .hero-dots {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      bottom: 22px;
+      display: flex;
+      gap: 10px;
+      transform: translateX(-50%);
+    }
+
+    .hero-dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .hero-dot.is-active { background: var(--accent); }
 
     .hero-grid {
       display: grid;
@@ -845,6 +926,24 @@
       .factory-img {
         height: 260px;
       }
+
+      .hero-arrow {
+        top: auto;
+        bottom: 14px;
+        width: 40px;
+        height: 40px;
+        font-size: 25px;
+        transform: none;
+      }
+
+      .hero-arrow--previous { left: 16px; }
+      .hero-arrow--next { right: 16px; }
+
+      .hero-dots { bottom: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video { transition: none; }
     }
   </style>
 
@@ -927,7 +1026,15 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="aboutHero" aria-roledescription="carousel" aria-label="About Centro Containers videos" tabindex="0">
+    <div class="hero-media" aria-live="off">
+      <video class="hero-video is-active" src="/videos/about-video-1.mp4" preload="metadata" autoplay muted loop playsinline aria-label="Factory video 1 of 3"></video>
+      <video class="hero-video" src="/videos/about-video-2.mp4" preload="none" muted loop playsinline aria-label="Factory video 2 of 3"></video>
+      <video class="hero-video" src="/videos/about-video-3.mp4" preload="none" muted loop playsinline aria-label="Factory video 3 of 3"></video>
+    </div>
+    <div class="hero-overlay"></div>
+    <button class="hero-arrow hero-arrow--previous" type="button" aria-label="Show previous video">&#8249;</button>
+    <button class="hero-arrow hero-arrow--next" type="button" aria-label="Show next video">&#8250;</button>
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">ISO Standard · OEM Parts · Wholesale Supply</div>
@@ -959,6 +1066,11 @@
           <li>Support mixed loading of parts inside 20ft / 40ft containers</li>
         </ul>
       </div>
+    </div>
+    <div class="hero-dots" role="group" aria-label="Choose a video">
+      <button class="hero-dot is-active" type="button" aria-label="Show video 1" aria-current="true"></button>
+      <button class="hero-dot" type="button" aria-label="Show video 2"></button>
+      <button class="hero-dot" type="button" aria-label="Show video 3"></button>
     </div>
   </section>
 
@@ -1424,6 +1536,102 @@
   </div>
 
   <script>
+    const aboutHero = document.getElementById("aboutHero");
+
+    if (aboutHero) {
+      const videos = Array.from(aboutHero.querySelectorAll(".hero-video"));
+      const dots = Array.from(aboutHero.querySelectorAll(".hero-dot"));
+      const previousButton = aboutHero.querySelector(".hero-arrow--previous");
+      const nextButton = aboutHero.querySelector(".hero-arrow--next");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let activeIndex = 0;
+      let touchStartX = null;
+
+      function updatePlayback() {
+        videos.forEach(function (video, index) {
+          if (index !== activeIndex || reducedMotion.matches || document.hidden) {
+            video.pause();
+            return;
+          }
+
+          const playPromise = video.play();
+          if (playPromise) {
+            playPromise.catch(function () {
+              // Browser autoplay policies can require the user to interact first.
+            });
+          }
+        });
+      }
+
+      function showVideo(index) {
+        activeIndex = (index + videos.length) % videos.length;
+
+        videos.forEach(function (video, videoIndex) {
+          const isActive = videoIndex === activeIndex;
+          video.classList.toggle("is-active", isActive);
+          video.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        dots.forEach(function (dot, dotIndex) {
+          const isActive = dotIndex === activeIndex;
+          dot.classList.toggle("is-active", isActive);
+          if (isActive) {
+            dot.setAttribute("aria-current", "true");
+          } else {
+            dot.removeAttribute("aria-current");
+          }
+        });
+
+        updatePlayback();
+      }
+
+      previousButton.addEventListener("click", function () { showVideo(activeIndex - 1); });
+      nextButton.addEventListener("click", function () { showVideo(activeIndex + 1); });
+      dots.forEach(function (dot, index) {
+        dot.addEventListener("click", function () { showVideo(index); });
+      });
+
+      aboutHero.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          showVideo(activeIndex + (event.key === "ArrowLeft" ? -1 : 1));
+        }
+      });
+
+      aboutHero.addEventListener("touchstart", function (event) {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      aboutHero.addEventListener("touchend", function (event) {
+        if (touchStartX === null) return;
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(distance) >= 50) {
+          showVideo(activeIndex + (distance < 0 ? 1 : -1));
+        }
+      }, { passive: true });
+
+      function handleMotionPreference() {
+        if (reducedMotion.matches) {
+          videos.forEach(function (video) {
+            video.removeAttribute("autoplay");
+            video.pause();
+          });
+        } else {
+          updatePlayback();
+        }
+      }
+
+      if (typeof reducedMotion.addEventListener === "function") {
+        reducedMotion.addEventListener("change", handleMotionPreference);
+      } else {
+        reducedMotion.addListener(handleMotionPreference);
+      }
+      document.addEventListener("visibilitychange", updatePlayback);
+      showVideo(0);
+      handleMotionPreference();
+    }
+
     const quoteForm = document.getElementById("quoteForm");
     const thankYouOverlay = document.getElementById("thankYouOverlay");
     const thankYouClose = document.getElementById("thankYouClose");
