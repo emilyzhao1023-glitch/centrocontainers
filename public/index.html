@@ -619,6 +619,33 @@
       border-radius: 18px;
     }
 
+    .factory-slideshow {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
+    .factory-slideshow .factory-img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      opacity: 0;
+      border-radius: 0;
+      transition: opacity 800ms ease-in-out;
+    }
+
+    .factory-slideshow .factory-img.is-active {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .factory-slideshow .factory-img {
+        transition: none;
+      }
+    }
+
     .configurator {
       background: var(--light);
     }
@@ -843,6 +870,10 @@
       }
 
       .factory-img {
+        height: 260px;
+      }
+
+      .factory-slideshow {
         height: 260px;
       }
     }
@@ -1174,11 +1205,12 @@
 
   <section id="factory" class="factory">
     <div class="container factory-grid">
-      <img
-        src="/images/metal-fabrication-workshop-container-parts.png"
-        alt="Metal fabrication workshop for container parts manufacturing"
-        class="factory-img"
-      />
+      <div class="factory-slideshow" data-factory-slideshow aria-label="Factory capability gallery">
+        <img src="/images/about/about-factory-overview.png" alt="Overview of the container manufacturing factory" class="factory-img is-active" />
+        <img src="/images/about/about-production-line.png" alt="Container production line inside the workshop" class="factory-img" loading="lazy" aria-hidden="true" />
+        <img src="/images/about/about-sheet-processing.png" alt="Automated sheet processing equipment in the factory" class="factory-img" loading="lazy" aria-hidden="true" />
+        <img src="/images/about/about-welding-workshop.png" alt="Welding process in the container manufacturing workshop" class="factory-img" loading="lazy" aria-hidden="true" />
+      </div>
 
       <div>
         <div class="section-label" style="color:#fde68a;">Factory Capability</div>
@@ -1351,6 +1383,7 @@
 
 
 
+  <script src="/factory-slideshow.js" defer></script>
   <script src="/quote-modal.js" defer></script>
 </body>
 </html>
