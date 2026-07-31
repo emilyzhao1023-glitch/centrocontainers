@@ -30,7 +30,21 @@
       finally { sending=false;button.disabled=false;button.textContent=old; }
     });
   }
-  document.addEventListener('DOMContentLoaded',function(){ document.body.insertAdjacentHTML('beforeend',modalMarkup()); var rfq=document.getElementById('rfqModal');
+  document.addEventListener('DOMContentLoaded',function(){
+    var landingForm=document.querySelector('form[data-form-type="landing-door-locking-gear"]');
+    if(landingForm){
+      var topbar=document.querySelector('.topbar-inner');
+      if(topbar&&topbar.children.length>1){
+        topbar.children[0].textContent='China factory supply · ISO container spare parts · OEM fabrication';
+        topbar.children[1].textContent='Email: sales@centrocontainers.com | WhatsApp: +86 186 6395 1355';
+      }
+      var sparePartsLink=document.querySelector('.nav-links a[href="/products/"]');
+      if(sparePartsLink) sparePartsLink.textContent='Spare Parts';
+      var navCta=document.querySelector('a.nav-cta');
+      if(navCta) navCta.textContent='Get Quote';
+    }
+
+    document.body.insertAdjacentHTML('beforeend',modalMarkup()); var rfq=document.getElementById('rfqModal');
     Array.prototype.forEach.call(document.querySelectorAll('a,button'),function(el){ if(/^get (a )?quote$/i.test(el.textContent.trim())) el.addEventListener('click',function(e){e.preventDefault();openModal(rfq,el);}); });
     setupForm(document.getElementById('rfqForm')); setupForm(document.getElementById('quoteForm')); setupForm(document.getElementById('contactForm'));
     document.querySelectorAll('.cc-modal').forEach(function(modal){ modal.addEventListener('mousedown',function(e){if(e.target===modal)closeModal(modal);}); modal.querySelectorAll('.cc-modal__close,.cc-success-close').forEach(function(b){b.addEventListener('click',function(){closeModal(modal);});}); });
