@@ -20,13 +20,31 @@
   function closeModal(modal, restore) { modal.hidden=true; activeModal=null; if(!document.querySelector('.cc-modal:not([hidden])')) document.body.classList.remove('cc-modal-open'); if(restore!==false && lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
   function showSuccess() { if(activeModal) closeModal(activeModal,false); openModal(document.getElementById('successModal'),lastFocus); }
   function startTimer(form){ var timer=form.querySelector('[name="form_start_time"]'); if(timer) timer.value=String(Date.now()); }
+  function wait(ms){ return new Promise(function(resolve){ window.setTimeout(resolve,ms); }); }
+  function serverErrorMessage(result){
+    if(!result) return 'The server did not return a valid response.';
+    var message=result.error||'The inquiry was rejected.';
+    if(Array.isArray(result.missing_fields)&&result.missing_fields.length) message+=' Missing: '+result.missing_fields.join(', ')+'.';
+    return message;
+  }
   function setupForm(form) {
     if(!form || form.dataset.ccReady) return; form.dataset.ccReady='true'; startTimer(form); var sending=false;
     form.addEventListener('submit',async function(e){ e.preventDefault(); var error=form.querySelector('.cc-form-error, .form-status'); if(error){error.textContent='';error.classList.remove('success');}
       if(form.dataset.formType==='rfq' && !form.querySelector('[name="parts"]:checked')) { error.textContent='Please select at least one required product.'; return; }
       if(!form.checkValidity()){form.reportValidity();return;} if(sending)return; sending=true; var button=form.querySelector('[type="submit"]'), old=button.textContent; button.disabled=true; button.textContent='Sending...';
-      try { var response=await fetch(form.action||endpoint,{method:'POST',body:new FormData(form)}); var result=await response.json().catch(function(){return null;}); if(!response.ok||!result||result.success!==true) throw new Error('failed'); form.reset(); startTimer(form); if(typeof window.gtag==='function') window.gtag('event','conversion',{send_to:conversionId}); showSuccess(); }
-      catch(err){ if(error) error.textContent='Sorry, your inquiry could not be sent. Please try again or contact us by WhatsApp.'; }
+      try {
+        if(form.dataset.formType==='landing-door-locking-gear'){
+          var timer=form.querySelector('[name="form_start_time"]');
+          var started=timer?Number(timer.value):0;
+          var remaining=3000-(Date.now()-started);
+          if(remaining>0) await wait(remaining+100);
+        }
+        var response=await fetch(form.action||endpoint,{method:'POST',body:new FormData(form)});
+        var result=await response.json().catch(function(){return null;});
+        if(!response.ok||!result||result.success!==true) throw new Error(serverErrorMessage(result));
+        form.reset(); startTimer(form); if(typeof window.gtag==='function') window.gtag('event','conversion',{send_to:conversionId}); showSuccess();
+      }
+      catch(err){ if(error) error.textContent='Sorry, your inquiry could not be sent. '+(err&&err.message?err.message:'Please try again or contact us by WhatsApp.'); }
       finally { sending=false;button.disabled=false;button.textContent=old; }
     });
   }
