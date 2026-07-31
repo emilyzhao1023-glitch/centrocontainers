@@ -38,8 +38,11 @@
           var started=timer?Number(timer.value):0;
           var remaining=3000-(Date.now()-started);
           if(remaining>0) await wait(remaining+100);
+          var honeypot=form.querySelector('[name="website"]');
+          if(honeypot) honeypot.value='';
         }
-        var response=await fetch(form.action||endpoint,{method:'POST',body:new FormData(form)});
+        var formData=new FormData(form);
+        var response=await fetch(form.action||endpoint,{method:'POST',body:formData});
         var result=await response.json().catch(function(){return null;});
         if(!response.ok||!result||result.success!==true) throw new Error(serverErrorMessage(result));
         form.reset(); startTimer(form); if(typeof window.gtag==='function') window.gtag('event','conversion',{send_to:conversionId}); showSuccess();
