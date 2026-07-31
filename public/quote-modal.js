@@ -5,6 +5,43 @@
   var lastFocus = null;
   var activeModal = null;
 
+  function normalizeLandingStructuredData() {
+    var path = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    if (path !== '/landing/container-door-locking-gear') return;
+
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (script) {
+      try {
+        var data = JSON.parse(script.textContent);
+        if (!data || data['@type'] !== 'Product') return;
+
+        script.textContent = JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Bulk Container Door Locking Gear Sets',
+          description: 'Bulk left-hand and right-hand container door locking gear sets with custom rod lengths, confirmed component lists and export packing.',
+          url: 'https://centrocontainers.com/landing/container-door-locking-gear',
+          isPartOf: {
+            '@type': 'WebSite',
+            name: 'Centro Containers',
+            url: 'https://centrocontainers.com/'
+          },
+          about: {
+            '@type': 'Thing',
+            name: 'Container Door Locking Gear Sets'
+          },
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            url: 'https://centrocontainers.com/images/products/door-locking-gear/door-locking-gear-main.png'
+          }
+        });
+      } catch (error) {
+        // Ignore unrelated or malformed structured data blocks.
+      }
+    });
+  }
+
+  normalizeLandingStructuredData();
+
   function modalMarkup() {
     return '<div class="cc-modal" id="rfqModal" hidden role="dialog" aria-modal="true" aria-labelledby="rfqTitle"><div class="cc-modal__panel" tabindex="-1"><button class="cc-modal__close" type="button" aria-label="Close quote form">&times;</button><h2 id="rfqTitle">Request a Quote</h2><p class="cc-modal__intro">Tell us what you need and our team will respond within 24 hours.</p>' +
       '<form id="rfqForm" action="' + endpoint + '" method="post" data-form-type="rfq"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px"/><input type="hidden" name="form_start_time"><input type="hidden" name="form_type" value="rfq"><div class="cc-form-grid">' +
