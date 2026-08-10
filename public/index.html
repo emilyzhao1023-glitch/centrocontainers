@@ -524,6 +524,46 @@
       box-shadow: 0 10px 20px rgba(245,179,1,0.22);
     }
 
+    .additional-product-line {
+      background: var(--white);
+    }
+
+    .industrial-door-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 36px;
+      align-items: center;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .industrial-door-card h2 {
+      color: var(--primary);
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .industrial-door-card h3 {
+      color: var(--text);
+      font-size: 21px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .industrial-door-card p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .industrial-door-card .btn {
+      white-space: nowrap;
+    }
+
     .keyword-panel {
       margin-top: 34px;
       background: var(--white);
@@ -831,6 +871,7 @@
     @media (max-width: 900px) {
       .hero-grid,
       .split-grid,
+      .industrial-door-card,
       .factory-grid,
       .footer-grid {
         grid-template-columns: 1fr;
@@ -849,6 +890,20 @@
 
       .section-head h2 {
         font-size: 30px;
+      }
+
+      .industrial-door-card {
+        gap: 24px;
+        padding: 28px;
+      }
+
+      .industrial-door-card h2 {
+        font-size: 30px;
+      }
+
+      .industrial-door-card .btn {
+        justify-self: start;
+        white-space: normal;
       }
 
       .nav-links {
@@ -1199,6 +1254,20 @@
             <li>OEM container parts based on drawings</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="additional-product-line" aria-labelledby="industrial-door-solutions-title">
+    <div class="container">
+      <div class="industrial-door-card">
+        <div>
+          <div class="section-label">Additional Product Line</div>
+          <h2 id="industrial-door-solutions-title">Industrial Door Solutions</h2>
+          <h3>Custom Industrial Rolling Shutter Doors</h3>
+          <p>Factory-built rolling shutter door systems for warehouses, industrial buildings and commercial projects. Custom sizes, operation requirements and export packing can be confirmed for each project.</p>
+        </div>
+        <a class="btn btn-primary" href="/landing/rolling-shutter-door">Explore Rolling Shutter Door Solutions</a>
       </div>
     </div>
   </section>
