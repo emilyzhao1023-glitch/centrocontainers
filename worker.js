@@ -4,6 +4,9 @@ const MAX_URL_COUNT = 3;
 const URL_REGEX = /https?:\/\/|www\./gi;
 const JUNK_REPEAT_REGEX = /(.)\1{9,}/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const HTML_LINK_REGEX = /<\s*a\b[^>]*\bhref\s*=|\bhref\s*=\s*["']/i;
+const PROMOTIONAL_SPAM_REGEX = /\b(?:promo(?:tional)?\s*code|golden\s*ticket|jackpot|lottery|giveaway|claim\s+(?:your|the)\s+(?:prize|reward|bonus)|cash\s+(?:prize|reward|bonus)|coupon\s*code|free\s+(?:gift|money|bonus)|winner\s+(?:announcement|offer)|win\s+(?:up\s+to|\$|€|£))\b/i;
+const PHONE_LIKE_QUANTITY_REGEX = /^\d{8,}$/;
 
 const FORM_CONFIG = {
   contact: { subject: "New Contact Message - Centro Containers", heading: "New Contact Message" },
@@ -76,7 +79,7 @@ function requiredFieldsFor(formType) {
 }
 
 function validateSubmission(formType, fields, honeypotValue, formStartTime, now) {
-  if (honeypotValue) return { error: "Spam detected" };
+  if (honeypotValue) return { error: "Spam detected", reason: "honeypot", isSpam: true };
   const parsedStart = Number(formStartTime);
   if (!Number.isFinite(parsedStart) || now - parsedStart < MIN_SUBMISSION_AGE_MS) return { error: "Submission rejected" };
   const missing = requiredFieldsFor(formType).filter(field => field === "parts" ? !fields.parts.length : !fields[field]);
@@ -85,7 +88,11 @@ function validateSubmission(formType, fields, honeypotValue, formStartTime, now)
   if (!EMAIL_REGEX.test(fields.email)) return { error: "Please provide a valid email" };
   if (fields.message && fields.message.length > 8000) return { error: "Message is too long" };
   const combined = Object.values(fields).flat().filter(Boolean).join(" ");
-  if (countUrls(combined) > MAX_URL_COUNT) return { error: "Too many URLs in submission" };
+  const urlCount = countUrls(combined);
+  if (HTML_LINK_REGEX.test(combined)) return { error: "Spam detected", reason: "html-link", isSpam: true };
+  if (urlCount && PROMOTIONAL_SPAM_REGEX.test(combined)) return { error: "Spam detected", reason: "promotional-link", isSpam: true };
+  if (urlCount && PHONE_LIKE_QUANTITY_REGEX.test(fields.quantity.replace(/[\s,.-]/g, ""))) return { error: "Spam detected", reason: "invalid-quantity-with-link", isSpam: true };
+  if (urlCount > MAX_URL_COUNT) return { error: "Too many URLs in submission" };
   if (JUNK_REPEAT_REGEX.test(combined)) return { error: "Suspicious content detected" };
   return null;
 }
@@ -110,7 +117,13 @@ export default {
         destination: trimField(data.get("destination")), tradeTerm: trimField(data.get("trade_term")), message: trimField(data.get("message"))
       };
       const validationError = validateSubmission(formType, fields, trimField(data.get("website")), trimField(data.get("form_start_time")), Date.now());
-      if (validationError) return jsonResponse({ success: false, ...validationError }, 400);
+      if (validationError) {
+        if (validationError.isSpam) {
+          console.warn("Blocked inquiry", { reason: validationError.reason, ip: request.headers.get("CF-Connecting-IP") || "" });
+          return jsonResponse({ success: true });
+        }
+        return jsonResponse({ success: false, ...validationError }, 400);
+      }
       await sendInquiryEmail(env, formType, fields, extractClientMetadata(request), config);
       return jsonResponse({ success: true });
     } catch (error) { return jsonResponse({ success: false, error: "Failed to submit inquiry" }, 500); }
