@@ -1,101 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Centro Containers | Container Parts Inquiries</title>
-  <meta name="description" content="Contact Centro Containers for quotations, specifications, OEM requirements and international shipping inquiries for ISO shipping container spare parts." />
-  <link rel="canonical" href="https://centrocontainers.com/contact" />
-  <meta property="og:title" content="Contact Centro Containers | Container Parts Inquiries" />
-  <meta property="og:description" content="Request quotations, specifications, OEM support and international shipping assistance for ISO shipping container spare parts." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://centrocontainers.com/contact" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ContactPage","name":"Contact Centro Containers","url":"https://centrocontainers.com/contact","description":"Contact Centro Containers for ISO shipping container spare parts inquiries.","mainEntity":{"@type":"Organization","name":"Centro Containers","url":"https://centrocontainers.com/","email":"sales@centrocontainers.com","address":{"@type":"PostalAddress","addressLocality":"Jiaozhou","addressRegion":"Qingdao","addressCountry":"CN"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+86 186 6395 1355","email":"sales@centrocontainers.com"}}}
-  </script>
-  <style>
-    :root { --primary:#0b1f3a; --secondary:#123f73; --accent:#f5b301; --green:#25d366; --text:#1f2937; --muted:#64748b; --light:#f5f7fb; --border:#e2e8f0; --white:#fff; --shadow:0 16px 40px rgba(15,23,42,.08); --radius:18px; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
-    body { font-family:Arial,Helvetica,sans-serif; color:var(--text); background:var(--white); line-height:1.6; }
-    a { color:inherit; text-decoration:none; }
-    .container { max-width:1180px; margin:0 auto; padding:0 22px; }
-    .topbar { background:var(--primary); color:#dbeafe; font-size:14px; padding:10px 0; }
-    .topbar-inner { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-    header { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; }
-    .nav { min-height:72px; display:flex; justify-content:space-between; align-items:center; gap:18px; }
-    .logo { font-size:22px; font-weight:800; color:var(--primary); letter-spacing:-.5px; white-space:nowrap; }
-    .logo span { color:var(--accent); }
-    .nav-links { display:flex; gap:26px; font-size:15px; }
-    .nav-cta,.btn { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; font-weight:800; transition:.2s ease; border:0; cursor:pointer; font:inherit; }
-    .nav-cta { background:var(--accent); color:#111827; padding:10px 16px; font-size:14px; white-space:nowrap; }
-    .btn { min-height:48px; padding:0 22px; }
-    .btn-primary { background:var(--accent); color:#111827; }
-    .btn-outline { color:var(--white); border:1px solid rgba(255,255,255,.65); background:transparent; }
-    .btn:hover,.nav-cta:hover { transform:translateY(-2px); }
-    .hero { background:linear-gradient(100deg,var(--primary),var(--secondary)); color:var(--white); padding:88px 0 80px; }
-    .eyebrow,.section-label { color:var(--accent); font-size:14px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }
-    h1 { font-size:48px; line-height:1.12; letter-spacing:-1.5px; margin-bottom:20px; }
-    .hero p { color:#dbeafe; font-size:18px; max-width:780px; }
-    .hero-actions,.cta-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; }
-    section { padding:72px 0; }
-    h2 { color:var(--primary); font-size:36px; line-height:1.2; letter-spacing:-.8px; margin-bottom:14px; }
-    .section-intro { color:var(--muted); max-width:720px; margin-bottom:30px; }
-    .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    .contact-card,.feature,.guidance,.form-wrap,.faq-item { border:1px solid var(--border); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
-    .contact-card { padding:26px; }
-    .contact-card h3,.feature h3 { color:var(--primary); margin-bottom:8px; }
-    .contact-card a { color:var(--secondary); font-weight:700; overflow-wrap:anywhere; }
-    .light { background:var(--light); }
-    .quote-grid { display:grid; grid-template-columns:1.5fr .75fr; gap:28px; align-items:start; }
-    .form-wrap,.guidance { padding:30px; }
-    .form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-    .full { grid-column:1/-1; }
-    label { display:block; color:var(--primary); font-size:14px; font-weight:800; margin-bottom:7px; }
-    input,select,textarea { width:100%; border:1px solid #cbd5e1; border-radius:10px; padding:12px 13px; color:var(--text); background:#fff; font:inherit; }
-    textarea { min-height:140px; resize:vertical; }
-    input:focus,select:focus,textarea:focus { outline:3px solid rgba(245,179,1,.25); border-color:var(--accent); }
-    .form-status { display:none; margin-top:18px; padding:13px 15px; border-radius:10px; font-weight:700; }
-    .form-status.success { display:block; color:#166534; background:#dcfce7; }
-    .form-status.error { display:block; color:#991b1b; background:#fee2e2; }
-    .guidance ul { padding-left:20px; color:var(--muted); display:grid; gap:8px; }
-    .features { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-    .feature { padding:24px; }
-    .feature p { color:var(--muted); }
-    .faq-list { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-    .faq-item { padding:24px; box-shadow:none; }
-    .faq-item h3 { color:var(--primary); font-size:18px; margin-bottom:7px; }
-    .faq-item p { color:var(--muted); }
-    .final-cta { background:#fff7dd; border-top:1px solid #fde68a; border-bottom:1px solid #fde68a; }
-    .cta-inner { display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
-    .cta-inner h2 { font-size:30px; }
-    .cta-actions { margin-top:0; }
-    .cta-actions .btn-outline { color:var(--primary); border-color:var(--primary); }
-    footer { background:#071424; color:#cbd5e1; padding:40px 0; }
-    .footer-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:24px; }
-    footer h3 { color:var(--white); margin-bottom:12px; }
-    footer p,footer li { color:#94a3b8; font-size:14px; }
-    footer ul { list-style:none; display:grid; gap:8px; }
-    footer a:hover { color:var(--white); }
-    @media (max-width:900px) { .nav-links { display:none; } .contact-grid,.features { grid-template-columns:repeat(2,1fr); } .quote-grid { grid-template-columns:1fr; } h1 { font-size:38px; } h2 { font-size:30px; } }
-    @media (max-width:600px) { .topbar-inner>div:first-child { display:none; } .nav { min-height:64px; } .logo { font-size:19px; } .nav-cta { padding:9px 13px; } .hero { padding:60px 0; } h1 { font-size:34px; } section { padding:56px 0; } .contact-grid,.features,.faq-list,.form-grid,.footer-grid { grid-template-columns:1fr; } .form-wrap,.guidance { padding:22px; } .hero-actions .btn,.cta-actions .btn { width:100%; } }
-  </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18230780035"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18230780035');</script>
-  <link rel="stylesheet" href="/quote-modal.css" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manufacturing RFQ | Custom Container Components</title>
+  <meta name="description" content="Send a manufacturing RFQ for custom container components. Share drawing status, material, batch quantity, annual volume, destination and timing for review.">
+  <link rel="canonical" href="https://centrocontainers.com/contact"><meta property="og:title" content="Manufacturing RFQ | Centro Containers"><meta property="og:description" content="Submit the technical and commercial basics for a drawing-based container component review."><meta property="og:type" content="website"><meta property="og:url" content="https://centrocontainers.com/contact">
+  <link rel="stylesheet" href="/manufacturing-site.css?v=20260904c"><link rel="stylesheet" href="/quote-modal.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Manufacturing RFQ - Centro Containers","url":"https://centrocontainers.com/contact","description":"Request a manufacturing review for custom or standard container components.","mainEntity":{"@type":"Organization","name":"Centro Containers","url":"https://centrocontainers.com/","email":"sales@centrocontainers.com","address":{"@type":"PostalAddress","addressLocality":"Jiaozhou","addressRegion":"Qingdao","addressCountry":"CN"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+86 186 6395 1355","email":"sales@centrocontainers.com"}}}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18230780035"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});gtag('js',new Date());gtag('config','AW-18230780035');</script>
 </head>
 <body>
-  <div class="topbar"><div class="container topbar-inner"><div>China factory supply · ISO container spare parts · OEM fabrication</div><div>Email: sales@centrocontainers.com | WhatsApp: +86 186 6395 1355</div></div></div>
-  <header><div class="container nav"><a class="logo" href="/">Centro<span>Containers</span></a><nav class="nav-links" aria-label="Main navigation"><a href="/products/">Spare Parts</a><a href="/about">About Us</a><a href="/contact" aria-current="page">Contact</a></nav><a class="nav-cta" href="/contact#quote-form">Get Quote</a></div></header>
+  <div class="topbar"><div class="container"><span>Manufacturing RFQ · Drawing and volume review</span><span>Email: sales@centrocontainers.com · WhatsApp: +86 186 6395 1355</span></div></div>
+  <header class="site-header"><div class="container site-nav"><a class="brand" href="/">Centro<span>Containers</span></a><nav class="nav-links" aria-label="Main navigation"><a href="/custom-container-components">Custom Manufacturing</a><a href="/products/">Components</a><a href="/manufacturing-capabilities">Capabilities</a><a href="/about">About</a><a href="/contact" aria-current="page">RFQ</a></nav><a class="nav-cta" href="#manufacturing-rfq">Start RFQ</a></div></header>
   <main>
-    <section class="hero"><div class="container"><div class="eyebrow">Sales &amp; Product Inquiries</div><h1>Contact Centro Containers</h1><p>Contact us for quotations, product specifications, OEM requirements and international shipping inquiries for ISO shipping container spare parts.</p><div class="hero-actions"><a class="btn btn-primary" href="#quote-form">Get a Quote</a><a class="btn btn-outline" href="https://wa.me/8618663951355?text=Hi%2C%20I%20need%20a%20quote%20for%20container%20parts.%0AProduct%3A%0AQuantity%3A%0ADestination%3A" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div></div></section>
-    <section><div class="container"><div class="section-label">Contact Information</div><h2>Talk With Our Sales Team</h2><p class="section-intro">Contact us directly for pricing, specifications, OEM production and shipping discussions.</p><div class="contact-grid"><article class="contact-card"><h3>Email</h3><a href="mailto:sales@centrocontainers.com">sales@centrocontainers.com</a></article><article class="contact-card"><h3>WhatsApp</h3><a href="https://wa.me/8618663951355?text=Hi%2C%20I%20need%20a%20quote%20for%20container%20parts.%0AProduct%3A%0AQuantity%3A%0ADestination%3A" target="_blank" rel="noopener noreferrer">+86 186 6395 1355</a></article><article class="contact-card"><h3>Business Location</h3><p>Jiaozhou, Qingdao, China</p></article></div></div></section>
-    <section class="light" id="quote-form"><div class="container"><div class="section-label">Request a Quote</div><h2>Send Your Product Requirements</h2><p class="section-intro">Complete the form below and include as much detail as possible so we can review your inquiry.</p><div class="quote-grid"><form id="contactForm" class="form-wrap" action="https://centrocontainers.com/api/inquiry" method="POST" data-form-type="contact"><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" /><input type="hidden" name="form_start_time" /><input type="hidden" name="form_type" value="contact" /><div class="form-grid"><div><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required /></div><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div><div><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization" /></div><div><label for="phone">WhatsApp / Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div><div class="full"><label for="country">Country / Region</label><input id="country" name="country" type="text" autocomplete="country-name" /></div><div class="full"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div><div class="full"><button class="btn btn-primary" type="submit">Send Message</button><div class="cc-form-error" role="alert" aria-live="polite"></div></div></div></form><aside class="guidance"><h2>For a Faster Quotation</h2><p class="section-intro">Please provide:</p><ul><li>Product name</li><li>Quantity</li><li>Dimensions or specifications</li><li>Drawings or photos, if available</li><li>Destination port or delivery address</li><li>Required trade term, such as FOB, CFR, CIF or DDP</li></ul></aside></div></div></section>
-    <section><div class="container"><div class="section-label">Why Contact Us</div><h2>Support for Your Container Parts Inquiry</h2><div class="features"><article class="feature"><h3>Fast Quotation Response</h3><p>Clear requirement details help our team prepare an efficient quotation.</p></article><article class="feature"><h3>OEM and Custom Support</h3><p>Share drawings and specifications for production review.</p></article><article class="feature"><h3>Worldwide Shipping Assistance</h3><p>Discuss destination and trade terms for international orders.</p></article><article class="feature"><h3>Professional Product Guidance</h3><p>Get help identifying suitable parts and specifications.</p></article></div></div></section>
-    <section class="light"><div class="container"><div class="section-label">FAQ</div><h2>Contact and Quotation Questions</h2><div class="faq-list"><article class="faq-item"><h3>What information is required for a quotation?</h3><p>Please provide the product, quantity, specifications, destination and preferred trade term. Drawings or photos are helpful when available.</p></article><article class="faq-item"><h3>Can you manufacture according to drawings?</h3><p>Yes. Send your drawings, material and technical requirements so the team can review OEM production options.</p></article><article class="faq-item"><h3>What is the minimum order quantity?</h3><p>Minimum quantities depend on the product and specification. Send your required quantity for confirmation.</p></article><article class="faq-item"><h3>Can you arrange international shipping?</h3><p>Shipping assistance is available. Provide your destination port or delivery address and preferred trade term.</p></article><article class="faq-item"><h3>How soon will I receive a reply?</h3><p>The sales team will review your inquiry and reply as soon as practical. Complete details help us respond efficiently.</p></article><article class="faq-item"><h3>Can I request samples?</h3><p>Sample availability and related costs depend on the product. Include your sample requirements in your inquiry for review.</p></article></div></div></section>
-    <section class="final-cta"><div class="container cta-inner"><div><h2>Ready to Send Your Requirements?</h2><p>Tell us the product, quantity, specifications and destination for a tailored quotation.</p></div><div class="cta-actions"><a class="btn btn-primary" href="#quote-form">Send an Inquiry</a><a class="btn btn-outline" href="https://wa.me/8618663951355?text=Hi%2C%20I%20need%20a%20quote%20for%20container%20parts.%0AProduct%3A%0AQuantity%3A%0ADestination%3A" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></div></div></section>
+    <section class="hero"><div class="container hero-grid"><div><div class="eyebrow">Manufacturing project review</div><h1>Request a Manufacturing Review</h1><p class="lead">Share the basic technical and commercial details of your project. We will review the part, production route and batch requirements before discussing drawings and sampling.</p></div><div class="card"><h3>Before you start</h3><ul><li>Use a business email where possible.</li><li>Provide the expected quantity per batch.</li><li>State whether a drawing, STEP/DWG file or sample exists.</li><li>Confidential drawings can be shared separately through an agreed channel after the initial project review.</li></ul></div></div></section>
+    <section class="section soft" id="manufacturing-rfq"><div class="container grid-2 rfq-layout"><form id="manufacturingForm" class="form-shell" action="https://centrocontainers.com/api/inquiry" method="post" data-form-type="manufacturing"><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><input type="hidden" name="form_start_time"><input type="hidden" name="form_type" value="manufacturing"><div class="section-head"><div class="section-label">Manufacturing RFQ</div><h2>Project and buyer details</h2><p>Fields marked * are required for the first review.</p></div><div class="form-grid">
+      <div><label for="name">Name *</label><input id="name" name="name" autocomplete="name" required></div><div><label for="email">Business Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="company">Company *</label><input id="company" name="company" autocomplete="organization" required></div><div><label for="country">Country / Region *</label><input id="country" name="country" autocomplete="country-name" required></div>
+      <div class="full"><label for="phone">WhatsApp / Phone <span class="secondary-note">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="full"><label for="project_description">Component / Project Description *</label><textarea id="project_description" name="project_description" required placeholder="What is the part, where is it used, and what needs to be manufactured?"></textarea></div>
+      <fieldset class="full" style="border:0"><legend>Do you have a drawing or sample? *</legend><div class="radio-row"><label><input type="radio" name="drawing_available" value="Drawing available" required> Drawing</label><label><input type="radio" name="drawing_available" value="STEP or 3D file available"> STEP / 3D file</label><label><input type="radio" name="drawing_available" value="Physical sample available"> Physical sample</label><label><input type="radio" name="drawing_available" value="Not yet available"> Not yet</label></div></fieldset>
+      <div><label for="drawing_type">Drawing / File Type</label><input id="drawing_type" name="drawing_type" placeholder="PDF, DWG, DXF, STEP…"></div><div><label for="material">Material / Specification</label><input id="material" name="material" placeholder="Steel grade, thickness, finish…"></div>
+      <div><label for="batch_quantity">Quantity per Batch *</label><input id="batch_quantity" name="batch_quantity" required placeholder="e.g. 500 pcs per order"></div><div><label for="annual_volume">Estimated Annual Volume <span class="secondary-note">(optional)</span></label><input id="annual_volume" name="annual_volume" placeholder="Approximate annual requirement if known, or Not confirmed yet"></div>
+      <div><label for="part_numbers">Number of Part Numbers <span class="secondary-note">(optional)</span></label><input id="part_numbers" name="part_numbers" inputmode="numeric" placeholder="Optional"></div><div><label for="destination">Delivery Destination *</label><input id="destination" name="destination" required placeholder="City, country or port"></div>
+      <div><label for="timing">Required Sample / Production Timing <span class="secondary-note">(optional)</span></label><input id="timing" name="timing" placeholder="Target date or programme timing"></div><div><label for="target_cost">Current / Target Unit Cost <span class="secondary-note">(optional)</span></label><input id="target_cost" name="target_cost" placeholder="If available, include currency and trade basis"></div>
+      <div class="full"><label for="message">Additional Requirements</label><textarea id="message" name="message" placeholder="Critical dimensions, packaging, inspection or delivery notes"></textarea></div>
+      <div class="full"><button class="btn btn-primary" type="submit">Submit Manufacturing RFQ</button><p class="helper">After submission, the sales team can arrange an appropriate channel for confidential drawings or samples.</p><div class="cc-form-error" role="alert" aria-live="polite"></div></div>
+    </div></form><aside><div class="card"><h3>What happens next</h3><ol class="check-list"><li>The commercial and technical basics are reviewed.</li><li>Open questions and file-sharing requirements are identified.</li><li>A manufacturing and quotation route is confirmed if the project fits.</li><li>Sample or first-article requirements can then be agreed.</li></ol></div><div class="card" style="margin-top:18px"><h3>Direct contact</h3><p><a class="card-link" href="mailto:sales@centrocontainers.com">sales@centrocontainers.com</a></p><p><a class="card-link" href="https://wa.me/8618663951355">WhatsApp +86 186 6395 1355</a></p></div></aside></div></section>
+    <section class="section"><div class="container"><div class="section-head"><div class="section-label">Fit check</div><h2>Designed for repeat manufacturing programmes</h2></div><div class="grid-3"><article class="card"><h3>Good fit</h3><p>You own the product or drawing and expect repeat batch requirements.</p></article><article class="card"><h3>Needs review</h3><p>You have only a sample or concept, but can define use, material and likely volume.</p></article><article class="card"><h3>Not our primary focus</h3><p>One-off or very small quantities of standard replacement parts.</p></article></div></div></section>
   </main>
-  <footer><div class="container footer-grid"><div><h3>Centro Containers</h3><p>China-based manufacturer and supplier of shipping container spare parts, ISO dry containers and OEM steel components for B2B buyers.</p></div><div><h3>Main Products</h3><ul><li>ISO container corner castings</li><li>Corten steel roof panels</li><li>Container door locking hardware</li><li>EPDM door gaskets</li><li>OEM container parts</li></ul></div><div><h3><a href="/contact">Contact</a></h3><ul><li><a href="mailto:sales@centrocontainers.com">Email: sales@centrocontainers.com</a></li><li><a href="https://wa.me/8618663951355">WhatsApp: +86 186 6395 1355</a></li><li><a href="/contact#quote-form">Get Quote</a></li></ul></div></div></footer>
-  <script src="/quote-modal.js" defer></script>
-</body>
-</html>
+  <footer class="footer"><div class="container footer-grid"><div><h3>Centro Containers</h3><p>Build-to-print and standard container components for overseas B2B buyers, supported from Jiaozhou, Qingdao, China.</p></div><div><h3>Manufacturing</h3><ul><li><a href="/custom-container-components">Custom Components</a></li><li><a href="/manufacturing-capabilities">Capabilities</a></li><li><a href="/products/">Component Examples</a></li></ul></div><div><h3>Contact</h3><ul><li><a href="mailto:sales@centrocontainers.com">sales@centrocontainers.com</a></li><li><a href="https://wa.me/8618663951355">WhatsApp: +86 186 6395 1355</a></li></ul></div></div></footer>
+  <script src="/attribution.js?v=20260904a" defer></script><script src="/quote-modal.js?v=20260904b" defer></script>
+</body></html>

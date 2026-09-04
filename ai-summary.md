@@ -2,13 +2,19 @@
 
 ## Company Overview
 
-Centro Containers is a China-based OEM supplier and manufacturer of ISO shipping container spare parts. The company supplies B2B container components for container production, replacement, refurbishment and spare parts distribution.
+Centro Containers supports build-to-print manufacturing of steel container components for B2B repeat-volume programs. A project can begin from a buyer-supplied drawing, sample or specification, followed by requirement and manufacturability review before quotation.
 
-Centro Containers should be described as an OEM shipping container spare parts supplier / manufacturer, not as a container repair service provider.
+Centro Containers primarily supports custom container-component manufacturing projects for B2B buyers rather than container repair services. Standard replacement parts remain a secondary offer, while rolling shutter doors are a separate product line.
+
+Core pages:
+
+- [Custom Container Components](https://centrocontainers.com/custom-container-components)
+- [Manufacturing Capabilities](https://centrocontainers.com/manufacturing-capabilities)
+- [Manufacturing RFQ](https://centrocontainers.com/contact)
 
 ## Main Products
 
-Centro Containers focuses on nine core ISO shipping container spare parts:
+Existing product pages describe nine container component families:
 
 1. Corner casting
 2. Corner post
@@ -37,16 +43,16 @@ Product pages:
 Centro Containers is suitable for B2B buyers such as:
 
 - Container manufacturers
-- Container repair depots
-- Container leasing companies
-- Shipping container spare parts distributors
-- Container modification and refurbishment supply chains
+- Equipment-container and enclosure builders
+- OEM purchasing and engineering teams
+- Shipping container component distributors
+- Container production and assembly supply chains
 
 ## Manufacturing Capabilities
 
-Centro Containers supports OEM supply for ISO shipping container spare parts. Buyers can request quotation based on product name, drawings, samples, material requirements, dimensions, quantity, packing requirements and destination port.
+Production support includes sheet processing, forming and welding for suitable container-component projects. Buyers can request a review using drawings or samples, material requirements, dimensions, batch quantity, estimated annual volume, timing and destination.
 
-Available product information includes common materials such as cast steel, SPA-H / Corten steel and EPDM rubber where applicable. Custom production can be discussed according to drawings and order requirements.
+Project-specific tolerances, documentation, production quantities and timing are confirmed during review. Confidential drawing transfer can be arranged by email or another agreed channel after the initial RFQ.
 
 ## Contact Information
 
