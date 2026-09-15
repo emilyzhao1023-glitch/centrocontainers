@@ -1,9 +1,16 @@
 (function () {
   "use strict";
   var endpoint = "https://centrocontainers.com/api/inquiry";
-  var conversionId = "AW-18230780035/s1tvCNvnwb0cEIPBjvVD";
   var lastFocus = null;
   var activeModal = null;
+
+  function trackGoogleAdsLeadConversion() {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18230780035/s1tyCNnwb0cEIPBjyVD"
+      });
+    }
+  }
 
   function normalizeLandingStructuredData() {
     var path = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
@@ -82,7 +89,7 @@
         var response=await fetch(form.action||endpoint,{method:'POST',body:formData});
         var result=await response.json().catch(function(){return null;});
         if(!response.ok||!result||result.success!==true) throw new Error(serverErrorMessage(result));
-        form.reset(); startTimer(form); if(typeof window.gtag==='function') window.gtag('event','conversion',{send_to:conversionId}); showSuccess();
+        form.reset(); startTimer(form); trackGoogleAdsLeadConversion(); showSuccess();
       }
       catch(err){ if(error) error.textContent='Sorry, your inquiry could not be sent. '+(err&&err.message?err.message:'Please try again or contact us by WhatsApp.'); }
       finally { sending=false;button.disabled=false;button.textContent=old; }
