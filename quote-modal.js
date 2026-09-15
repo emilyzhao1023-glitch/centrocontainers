@@ -1,9 +1,16 @@
 (function () {
   "use strict";
   var endpoint = "https://centrocontainers.com/api/inquiry";
-  var conversionId = "AW-18230780035/s1tvCNvnwb0cEIPBjvVD";
   var lastFocus = null;
   var activeModal = null;
+
+  function trackGoogleAdsLeadConversion() {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18230780035/s1tyCNnwb0cEIPBjyVD"
+      });
+    }
+  }
 
   function modalMarkup() {
     return '<div class="cc-modal" id="rfqModal" hidden role="dialog" aria-modal="true" aria-labelledby="rfqTitle"><div class="cc-modal__panel" tabindex="-1"><button class="cc-modal__close" type="button" aria-label="Close quote form">&times;</button><h2 id="rfqTitle">Request a Quote</h2><p class="cc-modal__intro">Tell us what you need and our team will respond within 24 hours.</p>' +
@@ -25,7 +32,7 @@
     form.addEventListener('submit',async function(e){ e.preventDefault(); var error=form.querySelector('.cc-form-error, .form-status'); if(error){error.textContent='';error.classList.remove('success');}
       if(form.dataset.formType==='rfq' && !form.querySelector('[name="parts"]:checked')) { error.textContent='Please select at least one required product.'; return; }
       if(!form.checkValidity()){form.reportValidity();return;} if(sending)return; sending=true; var button=form.querySelector('[type="submit"]'), old=button.textContent; button.disabled=true; button.textContent='Sending...';
-      try { var response=await fetch(form.action||endpoint,{method:'POST',body:new FormData(form)}); var result=await response.json().catch(function(){return null;}); if(!response.ok||!result||result.success!==true) throw new Error('failed'); form.reset(); startTimer(form); if(typeof window.gtag==='function') window.gtag('event','conversion',{send_to:conversionId}); showSuccess(); }
+      try { var response=await fetch(form.action||endpoint,{method:'POST',body:new FormData(form)}); var result=await response.json().catch(function(){return null;}); if(!response.ok||!result||result.success!==true) throw new Error('failed'); form.reset(); startTimer(form); trackGoogleAdsLeadConversion(); showSuccess(); }
       catch(err){ if(error) error.textContent='Sorry, your inquiry could not be sent. Please try again or contact us by WhatsApp.'; }
       finally { sending=false;button.disabled=false;button.textContent=old; }
     });
