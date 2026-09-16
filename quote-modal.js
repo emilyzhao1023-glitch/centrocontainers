@@ -7,7 +7,7 @@
   function trackGoogleAdsLeadConversion() {
     if (typeof window.gtag === "function") {
       window.gtag("event", "conversion", {
-        send_to: "AW-18230780035/s1tyCNnwb0cEIPBjyVD"
+        send_to: "AW-18230780035/s1tvCNvnwb0cEIPBjvVD"
       });
     }
   }
