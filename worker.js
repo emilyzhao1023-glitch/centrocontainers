@@ -122,7 +122,7 @@ export default {
         destination: trimField(data.get("destination"), 300), tradeTerm: trimField(data.get("trade_term"), 80), timing: trimField(data.get("timing"), 300), targetCost: trimField(data.get("target_cost"), 300), message: trimField(data.get("message"), 8000),
         utmSource: trimField(data.get("utm_source"), 500), utmMedium: trimField(data.get("utm_medium"), 500), utmCampaign: trimField(data.get("utm_campaign"), 500), utmTerm: trimField(data.get("utm_term"), 500), utmContent: trimField(data.get("utm_content"), 500), gclid: trimField(data.get("gclid"), 500), gbraid: trimField(data.get("gbraid"), 500), wbraid: trimField(data.get("wbraid"), 500), landingPage: trimField(data.get("landing_page"), 1000), referrer: trimField(data.get("referrer"), 1000)
       };
-      const validationError = validateSubmission(formType, fields, trimField(data.get("website"), 500), trimField(data.get("form_start_time"), 40), Date.now());
+      const validationError = validateSubmission(formType, fields, trimField(data.get("contact_check"), 500), trimField(data.get("form_start_time"), 40), Date.now());
       if (validationError) {
         if (validationError.isSpam) { console.warn("Blocked inquiry", { reason: validationError.reason, ip: request.headers.get("CF-Connecting-IP") || "" }); return jsonResponse({ success: true }); }
         return jsonResponse({ success: false, ...validationError }, 400);

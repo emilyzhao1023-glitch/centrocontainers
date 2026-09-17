@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const quoteModalSource = fs.readFileSync(new URL('../quote-modal.js', import.meta.url), 'utf8');
+const contactSource = fs.readFileSync(new URL('../contact.html', import.meta.url), 'utf8');
 const lockingGearSource = fs.readFileSync(new URL('../landing/container-door-locking-gear.html', import.meta.url), 'utf8');
 const rollingShutterSource = fs.readFileSync(new URL('../landing/rolling-shutter-door.html', import.meta.url), 'utf8');
 
@@ -57,6 +58,8 @@ async function runFrontendCase(options) {
 const hiddenProduct = await runFrontendCase({ choices:false });
 expect(hiddenProduct.fetchCount === 1, 'Case A: hidden fixed product was incorrectly blocked');
 expect(!hiddenProduct.error.includes('select at least one'), 'Case A: false part-selection error was shown');
+expect(quoteModalSource.includes('name="contact_check"') && quoteModalSource.includes('class="cc-honeypot"'), 'Case A: shared modal contact_check honeypot is missing');
+expect(contactSource.includes('name="contact_check"') && contactSource.includes('class="cc-honeypot"'), 'Case A: Manufacturing RFQ contact_check honeypot is missing');
 
 const noChoice = await runFrontendCase({ choices:true, selected:false });
 expect(noChoice.fetchCount === 0, 'Case B: unselected checkbox/radio RFQ was not blocked');
@@ -69,12 +72,13 @@ const lockingForm = formBlock(lockingGearSource);
 expect(lockingForm.includes('data-form-type="rfq"'), 'Case A: Door Locking Gear data-form-type is not rfq');
 expect(valueOf(lockingForm, 'form_type') === 'rfq', 'Case A: Door Locking Gear Worker form type is not rfq');
 expect(valueOf(lockingForm, 'parts') === 'Door locking gear', 'Case A: Door Locking Gear hidden product is incorrect');
+expect(lockingForm.includes('name="contact_check"') && lockingForm.includes('class="cc-honeypot"'), 'Case A: Door Locking Gear contact_check honeypot is missing');
 
 const rollingForm = formBlock(rollingShutterSource);
 expect(rollingForm.includes('data-form-type="rfq"'), 'Case C: Rolling Shutter Door data-form-type is not rfq');
 expect(!rollingForm.includes('data-form-type="landing-door-locking-gear"'), 'Case C: stale analytics form type remains');
 expect(valueOf(rollingForm, 'form_type') === 'rfq', 'Case C: Rolling Shutter Door Worker form type is not rfq');
 expect(valueOf(rollingForm, 'parts') === 'Industrial rolling shutter door', 'Case C: Rolling Shutter Door hidden product is incorrect');
+expect(rollingForm.includes('name="contact_check"') && rollingForm.includes('class="cc-honeypot"'), 'Case C: Rolling Shutter Door contact_check honeypot is missing');
 
 console.log('FRONTEND_FORM_QA_OK: hidden-product RFQ proceeds; empty choices block; selected choice proceeds; landing form types/products are correct');
-
