@@ -1,6 +1,8 @@
 # Centro Containers
 
-Centro Containers is a China-based OEM supplier and manufacturer of ISO shipping container spare parts.
+Centro Containers supports build-to-print manufacturing of steel container components for B2B repeat-volume programs. Buyers can begin with a drawing, sample or specification; manufacturability and quotation are reviewed against the supplied requirement.
+
+Project-specific tolerances, documentation, economical quantities and production timing are confirmed during manufacturing review and quotation.
 
 Main products:
 - Corner casting
@@ -13,10 +15,12 @@ Main products:
 - Door locking gear
 - Bridge fitting
 
-Centro Containers supplies B2B buyers including container manufacturers, repair depots, leasing companies and spare parts distributors.
+Primary buyers include container manufacturers, equipment-container builders, OEM purchasing teams and component distributors. Standard replacement parts remain available as a secondary offer. Rolling shutter doors are presented as a separate product line.
 
 Important pages:
 - Home: https://centrocontainers.com/
+- Custom Container Components: https://centrocontainers.com/custom-container-components
+- Manufacturing Capabilities: https://centrocontainers.com/manufacturing-capabilities
 - Products: https://centrocontainers.com/products/
 - Corner Casting: https://centrocontainers.com/products/corner-casting
 - Corner Post: https://centrocontainers.com/products/corner-post
@@ -28,6 +32,7 @@ Important pages:
 - Door Locking Gear: https://centrocontainers.com/products/door-locking-gear
 - Bridge Fitting: https://centrocontainers.com/products/bridge-fitting
 - Contact: https://centrocontainers.com/contact
+- Rolling Shutter Door: https://centrocontainers.com/landing/rolling-shutter-door
 
 Contact:
 - Email: sales@centrocontainers.com

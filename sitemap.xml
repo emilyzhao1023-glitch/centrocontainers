@@ -3,14 +3,28 @@
 
   <url>
     <loc>https://centrocontainers.com/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
+    <loc>https://centrocontainers.com/custom-container-components</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://centrocontainers.com/manufacturing-capabilities</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://centrocontainers.com/products/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -101,14 +115,14 @@
 
   <url>
     <loc>https://centrocontainers.com/about</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://centrocontainers.com/contact</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
