@@ -22,4 +22,4 @@ Only create these assets from real Centro-authorised production activity. Do not
 - Obtain approval before recording or publishing customer work.
 - Do not expose customer names, part numbers, sensitive dimensions, drawings, STEP/DWG files or commercial documents.
 - Use Centro-owned, demonstration or explicitly approved references only.
-- Confirm whether a facility is owned or a partner facility before writing captions.
+- Confirm each facility shown is Centro's own before writing captions.

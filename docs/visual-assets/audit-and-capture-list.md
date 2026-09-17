@@ -4,7 +4,7 @@
 
 - Product detail photographs and technical drawings: retain on all existing product pages.
 - Side-panel drawing and finished component: use as the homepage drawing-to-part proof pair.
-- Factory video 1: partner manufacturing hall and completed-container yard. Label exactly as partner-facility footage.
+- Factory video 1: manufacturing hall and completed-container yard. Confirm the footage shows Centro's facility before publishing.
 - Factory video 2: sheet stock, formed parts and large sheet-processing equipment. Label as sheet-processing workshop.
 - Existing About videos: materials/production floor and workshop operations; retain with factual captions.
 
