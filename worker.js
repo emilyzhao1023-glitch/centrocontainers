@@ -1,5 +1,5 @@
 const RESEND_API_URL = "https://api.resend.com/emails";
-const MIN_SUBMISSION_AGE_MS = 3000;
+const MIN_SUBMISSION_AGE_MS = 4000;
 const MAX_URL_COUNT = 3;
 const MAX_FIELD_LENGTH = 2000;
 const URL_REGEX = /https?:\/\/|www\./gi;
@@ -8,6 +8,30 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const HTML_LINK_REGEX = /<\s*a\b[^>]*\bhref\s*=|\bhref\s*=\s*["']/i;
 const PROMOTIONAL_SPAM_REGEX = /\b(?:promo(?:tional)?\s*code|golden\s*ticket|jackpot|lottery|giveaway|claim\s+(?:your|the)\s+(?:prize|reward|bonus)|cash\s+(?:prize|reward|bonus)|coupon\s*code|free\s+(?:gift|money|bonus)|winner\s+(?:announcement|offer)|win\s+(?:up\s+to|\$|€|£))\b/i;
 const PHONE_LIKE_QUANTITY_REGEX = /^\d{8,}$/;
+
+const VERIFICATION_ERROR = "Security verification could not be completed. Please refresh the page and try again.";
+const TURNSTILE_HOSTNAMES = new Set(["centrocontainers.com", "www.centrocontainers.com"]);
+const EXPLICIT_SPAM_REGEX = /\b(?:xevil|captcha\s+solver|solve\s+captcha|captcha\s+killer|seo\s*\/\s*smm|password\s+recovery|backlink\s+service|guest\s+post\s+service)\b/i;
+function logBlocked(request, reason) {
+  console.warn("Blocked inquiry", { reason, ip: request.headers.get("CF-Connecting-IP") || "" });
+}
+async function verifyTurnstile(request, env, token) {
+  if (!token) return "missing-turnstile-token";
+  if (!env.TURNSTILE_SECRET_KEY) return "turnstile-unavailable";
+  try {
+    const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: token });
+    const ip = request.headers.get("CF-Connecting-IP");
+    if (ip) body.set("remoteip", ip);
+    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST", body, signal: AbortSignal.timeout(10000)
+    });
+    if (!response.ok) return "turnstile-siteverify-failure";
+    const result = await response.json();
+    if (result.success !== true) return "invalid-turnstile-token";
+    if (!TURNSTILE_HOSTNAMES.has(result.hostname)) return "unexpected-turnstile-hostname";
+    return null;
+  } catch { return "turnstile-siteverify-failure"; }
+}
 
 const FORM_CONFIG = {
   contact: { subject: "New Contact Message - Centro Containers", heading: "New Contact Message" },
@@ -85,20 +109,24 @@ function requiredFieldsFor(formType) {
 }
 function validateSubmission(formType, fields, honeypotValue, formStartTime, now) {
   if (honeypotValue) return { error: "Spam detected", reason: "honeypot", isSpam: true };
+  if (!formStartTime) return { error: "Submission rejected", reason: "missing-form-start-time" };
   const parsedStart = Number(formStartTime);
-  if (!Number.isFinite(parsedStart) || now - parsedStart < MIN_SUBMISSION_AGE_MS) return { error: "Submission rejected" };
+  if (!/^\d+$/.test(formStartTime) || !Number.isSafeInteger(parsedStart) || parsedStart <= 0) return { error: "Submission rejected", reason: "invalid-form-start-time" };
+  if (now - parsedStart < MIN_SUBMISSION_AGE_MS) return { error: "Submission rejected", reason: "too-fast", isSpam: true };
+  const freeText = [fields.message, fields.projectDescription, fields.company, fields.material, fields.drawingType, fields.timing, fields.targetCost];
+  if (freeText.some(value => value && EXPLICIT_SPAM_REGEX.test(value))) return { error: "Spam detected", reason: "explicit-spam-content", isSpam: true };
   const missing = requiredFieldsFor(formType).filter(field => field === "parts" ? !fields.parts.length : !fields[field]);
-  if (missing.length) return { error: "Missing required fields", missing_fields: missing };
-  if (fields.name.length < 2 || fields.name.length > 120) return { error: "Please provide a valid name" };
-  if (!EMAIL_REGEX.test(fields.email)) return { error: "Please provide a valid email" };
-  if (fields.message && fields.message.length > 8000) return { error: "Message is too long" };
+  if (missing.length) return { error: "Missing required fields", reason: "missing-required-fields", missing_fields: missing };
+  if (fields.name.length < 2 || fields.name.length > 120) return { error: "Please provide a valid name", reason: "invalid-name" };
+  if (!EMAIL_REGEX.test(fields.email)) return { error: "Please provide a valid email", reason: "invalid-email" };
+  if (fields.message && fields.message.length > 8000) return { error: "Message is too long", reason: "message-too-long" };
   const combined = Object.values(fields).flat().filter(Boolean).join(" ");
   const urlCount = countUrls(combined);
   if (HTML_LINK_REGEX.test(combined)) return { error: "Spam detected", reason: "html-link", isSpam: true };
   if (urlCount && PROMOTIONAL_SPAM_REGEX.test(combined)) return { error: "Spam detected", reason: "promotional-link", isSpam: true };
   if (urlCount && PHONE_LIKE_QUANTITY_REGEX.test((fields.quantity || fields.batchQuantity || "").replace(/[\s,.-]/g, ""))) return { error: "Spam detected", reason: "invalid-quantity-with-link", isSpam: true };
-  if (urlCount > MAX_URL_COUNT) return { error: "Too many URLs in submission" };
-  if (JUNK_REPEAT_REGEX.test(combined)) return { error: "Suspicious content detected" };
+  if (urlCount > MAX_URL_COUNT) return { error: "Too many URLs in submission", reason: "too-many-urls" };
+  if (JUNK_REPEAT_REGEX.test(combined)) return { error: "Suspicious content detected", reason: "repeated-characters" };
   return null;
 }
 async function sendInquiryEmail(env, formType, fields, metadata, config) {
@@ -109,12 +137,12 @@ async function sendInquiryEmail(env, formType, fields, metadata, config) {
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "Content-Type", "Cache-Control": "no-store" } });
-    if (request.method !== "POST") return jsonResponse({ success: false, error: "Method not allowed" }, 405);
+    if (request.method !== "POST") { logBlocked(request, "method-not-allowed"); return jsonResponse({ success: false, error: "Method not allowed" }, 405); }
     try {
       const data = await request.formData();
       const formType = trimField(data.get("form_type"), 40);
       const config = FORM_CONFIG[formType];
-      if (!config) return jsonResponse({ success: false, error: "Invalid form type" }, 400);
+      if (!config) { logBlocked(request, "invalid-form-type"); return jsonResponse({ success: false, error: "Invalid form type" }, 400); }
       const fields = {
         name: trimField(data.get("name"), 120), email: trimField(data.get("email"), 254), company: trimField(data.get("company"), 200), phone: trimField(data.get("phone"), 100), country: trimField(data.get("country"), 120),
         buyerType: trimField(data.get("buyer_type"), 120), containerType: trimField(data.get("container_type"), 120), parts: data.getAll("parts").map(value => trimField(value, 160)).filter(Boolean).slice(0, 30), product: trimField(data.get("product"), 200), quantity: trimField(data.get("quantity"), 200),
@@ -122,15 +150,25 @@ export default {
         destination: trimField(data.get("destination"), 300), tradeTerm: trimField(data.get("trade_term"), 80), timing: trimField(data.get("timing"), 300), targetCost: trimField(data.get("target_cost"), 300), message: trimField(data.get("message"), 8000),
         utmSource: trimField(data.get("utm_source"), 500), utmMedium: trimField(data.get("utm_medium"), 500), utmCampaign: trimField(data.get("utm_campaign"), 500), utmTerm: trimField(data.get("utm_term"), 500), utmContent: trimField(data.get("utm_content"), 500), gclid: trimField(data.get("gclid"), 500), gbraid: trimField(data.get("gbraid"), 500), wbraid: trimField(data.get("wbraid"), 500), landingPage: trimField(data.get("landing_page"), 1000), referrer: trimField(data.get("referrer"), 1000)
       };
-      const validationError = validateSubmission(formType, fields, trimField(data.get("contact_check"), 500), trimField(data.get("form_start_time"), 40), Date.now());
+      const validationError = validateSubmission(formType, fields, trimField(data.get("contact_check"), 500) || trimField(data.get("website"), 500), trimField(data.get("form_start_time"), 40), Date.now());
       if (validationError) {
-        if (validationError.isSpam) { console.warn("Blocked inquiry", { reason: validationError.reason, ip: request.headers.get("CF-Connecting-IP") || "" }); return jsonResponse({ success: true }); }
+        logBlocked(request, validationError.reason);
+        if (validationError.isSpam) return jsonResponse({ success: true });
         return jsonResponse({ success: false, ...validationError }, 400);
+      }
+      if (Date.now() - Number(data.get("form_start_time")) > 6 * 60 * 60 * 1000) {
+        console.warn("Suspicious inquiry", { reason: "long-form-time", ip: request.headers.get("CF-Connecting-IP") || "" });
+      }
+      const verificationFailure = await verifyTurnstile(request, env, trimField(data.get("cf-turnstile-response"), 2048));
+      if (verificationFailure) {
+        logBlocked(request, verificationFailure);
+        return jsonResponse({ success: false, error: VERIFICATION_ERROR, code: "verification-failed" }, 400);
       }
       await sendInquiryEmail(env, formType, fields, extractClientMetadata(request, fields), config);
       return jsonResponse({ success: true });
     } catch (error) {
-      console.error("Inquiry submission failed", { message: error instanceof Error ? error.message : "Unknown error" });
+      logBlocked(request, "inquiry-processing-failure");
+      console.error("Inquiry submission failed");
       return jsonResponse({ success: false, error: "Failed to submit inquiry" }, 500);
     }
   }

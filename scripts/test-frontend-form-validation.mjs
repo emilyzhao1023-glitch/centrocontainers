@@ -13,10 +13,10 @@ function valueOf(form, name) { return form.match(new RegExp(`name="${name}"\\s+v
 function makeForm({ selected = false, choices = false }) {
   const timer = { value:'' };
   const error = { textContent:'', classList:{ remove() {} } };
-  const button = { textContent:'Send', disabled:false };
+  const button = { textContent:'Send', disabled:false, parentNode:{insertBefore(){}} };
   const partChoices = choices ? [{ checked:selected, type:'checkbox', name:'parts' }] : [];
   const form = {
-    dataset:{ formType:'rfq' }, action:'https://centrocontainers.com/api/inquiry', listener:null,
+    closest(){return null;}, dataset:{ formType:'rfq' }, action:'https://centrocontainers.com/api/inquiry', listener:null,
     querySelector(selector) {
       if (selector === '[name="form_start_time"]') return timer;
       if (selector === '.cc-form-error,.form-status') return error;
@@ -33,8 +33,9 @@ function makeForm({ selected = false, choices = false }) {
 
 async function runFrontendCase(options) {
   const test = makeForm(options);
-  let fetchCount = 0;
+  let fetchCount = 0; let resetCount=0; let widgetOptions; let submittedToken; const scriptTags=[];
   const document = {
+    createElement(){return {};}, head:{appendChild(script){scriptTags.push(script)}},
     body:{ insertAdjacentHTML() {}, classList:{ add() {}, remove() {} } },
     activeElement:null,
     addEventListener(type, callback) { if (type === 'DOMContentLoaded') callback(); },
@@ -43,16 +44,19 @@ async function runFrontendCase(options) {
     contains() { return false; }, querySelector() { return null; }
   };
   const window = {
+    turnstile:{render(element,config){widgetOptions=config;config.callback('frontend-test-token');return 0;},reset(){resetCount++;}},
     setTimeout(callback) { callback(); },
     dispatchEvent() {}, dataLayer:[], CentroAttribution:null, gtag() {}
   };
-  class FormDataStub { constructor(form) { this.form = form; } }
-  const fetch = async () => { fetchCount += 1; return { ok:false, async json() { return { success:false }; } }; };
+  class FormDataStub { constructor(form) { this.form = form; } set(name,value){expect(name==='cf-turnstile-response','Token field incorrect');submittedToken=value;} }
+  const fetch = async () => { fetchCount += 1; return { ok:false, async json() { return options.serverVerificationFailure ? {success:false,code:'verification-failed'} : { success:false }; } }; };
   vm.runInNewContext(quoteModalSource, { window, document, FormData:FormDataStub, fetch, console, CustomEvent:class {}, Date });
   expect(typeof test.form.listener === 'function', 'frontend submit listener was not installed');
   test.timer.value = String(Date.now() - 5000);
+  if(options.missingToken)widgetOptions['expired-callback']();
+  if(options.widgetError)widgetOptions['error-callback']();
   await test.form.listener({ preventDefault() {} });
-  return { fetchCount, error:test.error.textContent };
+  return { fetchCount, error:test.error.textContent, resetCount, submittedToken, widgetOptions };
 }
 
 const hiddenProduct = await runFrontendCase({ choices:false });
@@ -82,3 +86,14 @@ expect(valueOf(rollingForm, 'parts') === 'Industrial rolling shutter door', 'Cas
 expect(rollingForm.includes('name="contact_check"') && rollingForm.includes('class="cc-honeypot"'), 'Case C: Rolling Shutter Door contact_check honeypot is missing');
 
 console.log('FRONTEND_FORM_QA_OK: hidden-product RFQ proceeds; empty choices block; selected choice proceeds; landing form types/products are correct');
+
+const securityMessage='Security verification could not be completed. Please refresh the page and try again.';
+for (const options of [{missingToken:true},{widgetError:true}]) {
+ const result=await runFrontendCase(options);
+ expect(result.fetchCount===0 && result.error===securityMessage, 'Expired/missing/error token did not block submission');
+}
+const serverFailure=await runFrontendCase({serverVerificationFailure:true});
+expect(serverFailure.error===securityMessage && serverFailure.resetCount===1,'Server verification failure not shown or token not reset');
+expect(hiddenProduct.submittedToken==='frontend-test-token' && hiddenProduct.resetCount===1,'Token submission/retry reset failed');
+expect(hiddenProduct.widgetOptions.sitekey==='0x4AAAAAAFS7VfPgJkyl6Egh','Incorrect site key');
+console.log('TURNSTILE_FRONTEND_QA_OK: token submission, expiry/error blocking, retry reset and explicit server verification error');
