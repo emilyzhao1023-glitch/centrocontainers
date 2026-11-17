@@ -108,7 +108,7 @@ if (!/name=["']annual_volume["'][^>]*placeholder=["'][^"']*Not confirmed yet/i.t
 
 const quoteModal = fs.readFileSync(path.join(root, 'quote-modal.js'), 'utf8');
 if (quoteModal.indexOf("emit('rfq_success'") < quoteModal.indexOf('response.ok')) fail('rfq_success can fire before backend confirmation');
-if (!quoteModal.includes("field('Estimated Annual Volume (optional)','annual_volume','text',false")) fail('Modal annual volume is not optional');
+if (!quoteModal.includes("field(copy.annual,'annual_volume','text',false")) fail('Modal annual volume is not optional');
 
 const productKeywordChecks = {
   'roof-panel.html': /(?:container.*roof panel|roof panel.*container)/i,
