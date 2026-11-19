@@ -9,30 +9,10 @@ const HTML_LINK_REGEX = /<\s*a\b[^>]*\bhref\s*=|\bhref\s*=\s*["']/i;
 const PROMOTIONAL_SPAM_REGEX = /\b(?:promo(?:tional)?\s*code|golden\s*ticket|jackpot|lottery|giveaway|claim\s+(?:your|the)\s+(?:prize|reward|bonus)|cash\s+(?:prize|reward|bonus)|coupon\s*code|free\s+(?:gift|money|bonus)|winner\s+(?:announcement|offer)|win\s+(?:up\s+to|\$|€|£))\b/i;
 const PHONE_LIKE_QUANTITY_REGEX = /^\d{8,}$/;
 
-const VERIFICATION_ERROR = "Security verification could not be completed. Please refresh the page and try again.";
-const TURNSTILE_HOSTNAMES = new Set(["centrocontainers.com", "www.centrocontainers.com"]);
 const EXPLICIT_SPAM_REGEX = /\b(?:xevil|captcha\s+solver|solve\s+captcha|captcha\s+killer|seo\s*\/\s*smm|password\s+recovery|backlink\s+service|guest\s+post\s+service)\b/i;
 function logBlocked(request, reason) {
   console.warn("Blocked inquiry", { reason, ip: request.headers.get("CF-Connecting-IP") || "" });
 }
-async function verifyTurnstile(request, env, token) {
-  if (!token) return "missing-turnstile-token";
-  if (!env.TURNSTILE_SECRET_KEY) return "turnstile-unavailable";
-  try {
-    const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: token });
-    const ip = request.headers.get("CF-Connecting-IP");
-    if (ip) body.set("remoteip", ip);
-    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST", body, signal: AbortSignal.timeout(10000)
-    });
-    if (!response.ok) return "turnstile-siteverify-failure";
-    const result = await response.json();
-    if (result.success !== true) return "invalid-turnstile-token";
-    if (!TURNSTILE_HOSTNAMES.has(result.hostname)) return "unexpected-turnstile-hostname";
-    return null;
-  } catch { return "turnstile-siteverify-failure"; }
-}
-
 const FORM_CONFIG = {
   contact: { subject: "New Contact Message - Centro Containers", heading: "New Contact Message" },
   homepage: { subject: "New Homepage Product Inquiry - Centro Containers", heading: "Homepage Product Inquiry" },
@@ -158,11 +138,6 @@ export default {
       }
       if (Date.now() - Number(data.get("form_start_time")) > 6 * 60 * 60 * 1000) {
         console.warn("Suspicious inquiry", { reason: "long-form-time", ip: request.headers.get("CF-Connecting-IP") || "" });
-      }
-      const verificationFailure = await verifyTurnstile(request, env, trimField(data.get("cf-turnstile-response"), 2048));
-      if (verificationFailure) {
-        logBlocked(request, verificationFailure);
-        return jsonResponse({ success: false, error: VERIFICATION_ERROR, code: "verification-failed" }, 400);
       }
       await sendInquiryEmail(env, formType, fields, extractClientMetadata(request, fields), config);
       return jsonResponse({ success: true });
