@@ -16,6 +16,7 @@
     if(!window.turnstile||form.ccWidget!==undefined||form.closest('[hidden]'))return;
     form.ccWidget=window.turnstile.render(form.ccVerification,{
       sitekey:'0x4AAAAAAFS7VfPgJkyl6Egh',
+      appearance:'interaction-only',
       callback:function(token){form.ccToken=token},
       'expired-callback':function(){form.ccToken=''},
       'error-callback':function(){form.ccToken='';var error=form.querySelector('.cc-form-error,.form-status');if(error)error.textContent=verificationError}

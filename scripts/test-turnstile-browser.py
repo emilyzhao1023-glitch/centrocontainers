@@ -47,6 +47,7 @@ with sync_playwright() as p:
   assert page.locator('#rfqForm .cc-turnstile').inner_text()=='Verification test widget'
   assert page.evaluate('document.querySelector("#rfqForm").ccToken')=='browser-test-token'
   assert page.evaluate('window.testWidgets.length')==expected,relative
+  assert page.evaluate('window.testWidgets.every(widget=>widget.appearance==="interaction-only")'),relative
   count+=1
  # Real DOM/FormData, server error and retry reset on contact form.
  page.goto('http://127.0.0.1:8001/contact')
