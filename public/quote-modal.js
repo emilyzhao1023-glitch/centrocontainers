@@ -10,20 +10,6 @@
     it:{verificationError:'Non è stato possibile completare la verifica di sicurezza. Aggiornate la pagina e riprovate.',closeRfq:'Chiudi richiesta di preventivo',title:'Richiesta di preventivo di produzione',intro:'Comunicate i dati tecnici e i volumi. I disegni riservati potranno essere inviati dopo la prima valutazione.',name:'Nome',email:'E-mail aziendale',company:'Azienda',country:'Paese / Regione',phone:'WhatsApp / Telefono',drawing:'Disegno o campione',selectOne:'Seleziona un’opzione',drawingOptions:['Disegno disponibile','File STEP o 3D disponibile','Campione fisico disponibile','Non ancora disponibile'],description:'Descrizione componente / progetto',descriptionPlaceholder:'Pezzo, applicazione e lavorazione richiesta',batch:'Quantità per lotto',batchPlaceholder:'Es.: 500 pezzi per ordine',annual:'Volume annuo stimato (facoltativo)',annualPlaceholder:'Fabbisogno annuo approssimativo, se noto',material:'Materiale / Specifica',materialPlaceholder:'Grado acciaio, spessore, finitura',destination:'Destinazione di consegna',destinationPlaceholder:'Città, paese o porto',additional:'Requisiti aggiuntivi',additionalPlaceholder:'Tempi, dimensioni critiche, controllo o imballaggio',submit:'Invia richiesta di preventivo',successClose:'Chiudi conferma',successTitle:'Richiesta ricevuta',successText:'I dati del progetto sono stati inviati correttamente. Il nostro team li esaminerà e risponderà via e-mail.',close:'Chiudi',selectProduct:'Selezionate almeno un prodotto.',sending:'Invio in corso…',sendError:'Non è stato possibile inviare la richiesta. Riprovate o scrivete a sales@centrocontainers.com.'}
   };
   var copy=copies[language]||copies.en;
-  var verificationError=copy.verificationError;
-  var turnstileForms=[];
-  function renderVerification(form){
-    if(!window.turnstile||form.ccWidget!==undefined||form.closest('[hidden]'))return;
-    form.ccWidget=window.turnstile.render(form.ccVerification,{
-      sitekey:'0x4AAAAAAFS7VfPgJkyl6Egh',
-      appearance:'interaction-only',
-      callback:function(token){form.ccToken=token},
-      'expired-callback':function(){form.ccToken=''},
-      'error-callback':function(){form.ccToken='';var error=form.querySelector('.cc-form-error,.form-status');if(error)error.textContent=verificationError}
-    });
-  }
-  function resetVerification(form){form.ccToken='';if(window.turnstile&&form.ccWidget!==undefined)window.turnstile.reset(form.ccWidget)}
-  window.centroTurnstileReady=function(){turnstileForms.forEach(renderVerification)};
   var lastFocus=null;
   var activeModal=null;
 
@@ -38,7 +24,7 @@
       '<div class="cc-full"><label>'+copy.additional+'<textarea name="message" placeholder="'+copy.additionalPlaceholder+'"></textarea></label></div><div class="cc-full"><button class="cc-submit" type="submit">'+copy.submit+'</button><div class="cc-form-error" role="alert" aria-live="polite"></div></div></div></form></div></div>'+
       '<div class="cc-modal" id="successModal" hidden role="dialog" aria-modal="true" aria-labelledby="successTitle"><div class="cc-modal__panel cc-modal__panel--success" tabindex="-1"><button class="cc-modal__close" type="button" aria-label="'+copy.successClose+'">&times;</button><h2 id="successTitle">'+copy.successTitle+'</h2><p>'+copy.successText+'</p><button class="cc-success-close" type="button">'+copy.close+'</button></div></div>'
   }
-  function openModal(modal,trigger){lastFocus=trigger||document.activeElement;activeModal=modal;modal.hidden=false;var form=modal.querySelector("form");if(form)renderVerification(form);document.body.classList.add('cc-modal-open');var description=modal.querySelector('[name="project_description"]');var heading=document.querySelector('h1');if(description&&!description.value&&heading)description.value=heading.textContent.trim();if(window.CentroAttribution)window.CentroAttribution.attach(modal.querySelector('form'));modal.querySelector('.cc-modal__panel').focus()}
+  function openModal(modal,trigger){lastFocus=trigger||document.activeElement;activeModal=modal;modal.hidden=false;document.body.classList.add('cc-modal-open');var description=modal.querySelector('[name="project_description"]');var heading=document.querySelector('h1');if(description&&!description.value&&heading)description.value=heading.textContent.trim();if(window.CentroAttribution)window.CentroAttribution.attach(modal.querySelector('form'));modal.querySelector('.cc-modal__panel').focus()}
   function closeModal(modal,restore){modal.hidden=true;activeModal=null;if(!document.querySelector('.cc-modal:not([hidden])'))document.body.classList.remove('cc-modal-open');if(restore!==false&&lastFocus&&document.contains(lastFocus))lastFocus.focus()}
   function showSuccess(){if(activeModal)closeModal(activeModal,false);openModal(document.getElementById('successModal'),lastFocus)}
   function startTimer(form){var input=form.querySelector('[name="form_start_time"]');if(input)input.value=String(Date.now())}
@@ -47,33 +33,28 @@
   function setupForm(form){
     if(!form||form.dataset.ccReady)return;
     form.dataset.ccReady='true';
-    form.ccToken='';form.ccVerification=document.createElement('div');form.ccVerification.className='cc-turnstile';
-    var submit=form.querySelector('[type="submit"]');submit.parentNode.insertBefore(form.ccVerification,submit);
-    turnstileForms.push(form);renderVerification(form);startTimer(form);if(window.CentroAttribution)window.CentroAttribution.attach(form);var sending=false;
+    startTimer(form);if(window.CentroAttribution)window.CentroAttribution.attach(form);var sending=false;
     form.addEventListener('submit',async function(event){
       event.preventDefault();var error=form.querySelector('.cc-form-error,.form-status');if(error){error.textContent='';error.classList.remove('success')}
       var partChoices=form.querySelectorAll('input[name="parts"][type="checkbox"],input[name="parts"][type="radio"]');
       if(form.dataset.formType==='rfq'&&partChoices.length>0&&!form.querySelector('input[name="parts"][type="checkbox"]:checked,input[name="parts"][type="radio"]:checked')){if(error)error.textContent=copy.selectProduct;return}
       if(!form.checkValidity()){form.reportValidity();return}if(sending)return;
-      if(!form.ccToken){if(error)error.textContent=verificationError;return}
       sending=true;var button=form.querySelector('[type="submit"]');var old=button.textContent;button.disabled=true;button.textContent=copy.sending;
       try{
         var timer=form.querySelector('[name="form_start_time"]');var remaining=4100-(Date.now()-Number(timer&&timer.value||0));if(remaining>0)await wait(remaining);
         emit('rfq_submit',{form_type:form.dataset.formType||''});
-        if(!form.ccToken)throw new Error(verificationError);
-        var data=new FormData(form);data.set('cf-turnstile-response',form.ccToken);
+        var data=new FormData(form);
         var response=await fetch(form.action||endpoint,{method:'POST',body:data});var result=await response.json().catch(function(){return null});
-        if(!response.ok||!result||result.success!==true)throw new Error(result&&result.code==='verification-failed'?verificationError:'submission failed');
+        if(!response.ok||!result||result.success!==true)throw new Error('submission failed');
         emit('rfq_success',{form_type:form.dataset.formType||''});if(typeof window.gtag==='function')window.gtag('event','conversion',{send_to:conversionId});form.reset();startTimer(form);showSuccess();
-      }catch(failure){if(error)error.textContent=failure.message===verificationError?verificationError:copy.sendError}
-      finally{resetVerification(form);sending=false;button.disabled=false;button.textContent=old}
+      }catch(failure){if(error)error.textContent=copy.sendError}
+      finally{sending=false;button.disabled=false;button.textContent=old}
     })
   }
   document.addEventListener('DOMContentLoaded',function(){
     document.body.insertAdjacentHTML('beforeend',modalMarkup());var modal=document.getElementById('rfqModal');
     Array.prototype.forEach.call(document.querySelectorAll('a,button'),function(element){if(element.hasAttribute('data-rfq-open')||/^get (a )?quote$/i.test(element.textContent.trim()))element.addEventListener('click',function(event){event.preventDefault();openModal(modal,element)})});
     document.querySelectorAll('form[data-form-type]').forEach(setupForm);
-    if(!window.turnstile){var script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=centroTurnstileReady&render=explicit';script.async=true;script.defer=true;script.onerror=function(){turnstileForms.forEach(function(form){var error=form.querySelector('.cc-form-error,.form-status');if(error)error.textContent=verificationError})};document.head.appendChild(script)}
     document.querySelectorAll('.cc-modal').forEach(function(item){item.addEventListener('mousedown',function(event){if(event.target===item)closeModal(item)});item.querySelectorAll('.cc-modal__close,.cc-success-close').forEach(function(button){button.addEventListener('click',function(){closeModal(item)})})});
     document.addEventListener('keydown',function(event){if(!activeModal)return;if(event.key==='Escape')closeModal(activeModal);if(event.key==='Tab'){var items=activeModal.querySelectorAll('button:not([disabled]),input:not([disabled]):not([tabindex="-1"]),select,textarea,a[href]');if(!items.length)return;var first=items[0],last=items[items.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}})
   })

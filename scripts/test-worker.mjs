@@ -4,23 +4,10 @@ const workerSource = fs.readFileSync(new URL('../worker.js', import.meta.url), '
 const lockingGearSource = fs.readFileSync(new URL('../landing/container-door-locking-gear.html', import.meta.url), 'utf8');
 const rollingShutterSource = fs.readFileSync(new URL('../landing/rolling-shutter-door.html', import.meta.url), 'utf8');
 const worker = (await import(`data:text/javascript;base64,${Buffer.from(workerSource).toString('base64')}`)).default;
-const env = { TURNSTILE_SECRET_KEY:'test-only-secret', RESEND_API_KEY:'test', RESEND_FROM_EMAIL:'forms@example.com', RESEND_TO_EMAIL:'sales@example.com' };
+const env = { RESEND_API_KEY:'test', RESEND_FROM_EMAIL:'forms@example.com', RESEND_TO_EMAIL:'sales@example.com' };
 let outbound = [];
 let backendFailure = false;
-let verification = { success:true, hostname:'centrocontainers.com' };
-let verifyMode = 'ok';
-let verifiedRequests = 0;
 globalThis.fetch = async (_url, options) => {
-  if (_url === 'https://challenges.cloudflare.com/turnstile/v0/siteverify') {
-    verifiedRequests++;
-    expect(options.body.get('secret') === env.TURNSTILE_SECRET_KEY, 'Siteverify secret binding missing');
-    expect(options.body.get('response') === 'valid-test-token', 'Siteverify token missing');
-    expect(options.body.get('remoteip') === '192.0.2.10', 'Siteverify client IP missing');
-    if (verifyMode === 'network') throw new Error('network failure');
-    if (verifyMode === 'http') return new Response('unavailable', { status:503 });
-    if (verifyMode === 'json') return new Response('not json');
-    return new Response(JSON.stringify(verification));
-  }
   expect(_url === 'https://api.resend.com/emails', 'Unexpected outbound destination');
   outbound.push(JSON.parse(options.body));
   return backendFailure ? new Response('service unavailable', { status: 503 }) : new Response('{"id":"test"}', { status: 200 });
@@ -28,7 +15,7 @@ globalThis.fetch = async (_url, options) => {
 
 function base(overrides = {}) {
   return {
-    form_type:'manufacturing', form_start_time:String(Date.now() - 4000), contact_check:'', 'cf-turnstile-response':'valid-test-token',
+    form_type:'manufacturing', form_start_time:String(Date.now() - 4000), contact_check:'',
     name:'Test Buyer', email:'buyer@example.com', company:'Example OEM', country:'Germany',
     project_description:'Steel container component to supplied drawing', drawing_available:'Drawing available',
     batch_quantity:'500', destination:'Hamburg, Germany', ...overrides
@@ -42,6 +29,7 @@ async function submit(values) {
   return { status:response.status, body:await response.json() };
 }
 function expect(condition, message) { if (!condition) throw new Error(message); }
+expect(!/turnstile|cf-turnstile/i.test(workerSource), 'Worker still requires Cloudflare Turnstile');
 
 outbound = [];
 let result = await submit(base({ annual_volume:'6000' }));
@@ -118,7 +106,7 @@ expect(/name="contact_check"/i.test(lockingGearForm), '12 Door Locking Gear cont
 for (const field of intendedLockingGearFields) expect(new RegExp(`name="${field}"`, 'i').test(lockingGearForm), `12 Door Locking Gear form missing ${field}`);
 
 const lockingGearPayload = {
-  form_type:lockingGearType, form_start_time:String(Date.now() - 4000), contact_check:'', 'cf-turnstile-response':'valid-test-token', parts:lockingGearParts,
+  form_type:lockingGearType, form_start_time:String(Date.now() - 4000), contact_check:'', parts:lockingGearParts,
   name:'Landing Buyer', email:'landing.buyer@example.com', phone:'+49 30 555 0199', country:'Germany',
   quantity:'80 sets', destination:'Hamburg, Germany', message:'40 left, 40 right; confirmed rod length and zinc finish',
   utm_source:'google', utm_medium:'cpc', utm_campaign:'locking-gear', utm_term:'matched locking gear keyword',
@@ -150,7 +138,7 @@ expect(/name="contact_check"/i.test(rollingShutterForm), '13 Rolling Shutter Doo
 
 outbound = [];
 result = await submit({
-  form_type:rollingShutterType, form_start_time:String(Date.now() - 4000), contact_check:'', 'cf-turnstile-response':'valid-test-token', parts:rollingShutterParts,
+  form_type:rollingShutterType, form_start_time:String(Date.now() - 4000), contact_check:'', parts:rollingShutterParts,
   name:'Door Buyer', email:'door.buyer@example.com', country:'Australia', quantity:'8 doors',
   destination:'Melbourne, Australia', message:'Confirmed opening sizes and operation requirements'
 });
@@ -189,22 +177,6 @@ try {
     if (elapsed > 6*60*60*1000) expect(auditLogs.some(([label,d]) => label === 'Suspicious inquiry' && d.reason === 'long-form-time' && d.ip === '192.0.2.10'), 'Long form warning missing');
   }
   for (const field of ['website','contact_check']) await blockedCase({[field]:'bot'}, 'honeypot', 200);
-  const count = verifiedRequests;
-  response = await blockedCase({'cf-turnstile-response':''}, 'missing-turnstile-token');
-  expect(verifiedRequests === count, 'Missing token called Siteverify');
-  expect(response.body.error === 'Security verification could not be completed. Please refresh the page and try again.', 'Verification error missing');
-  verification = {success:false};
-  await blockedCase({}, 'invalid-turnstile-token');
-  verification = {success:true, hostname:'evil.example'};
-  await blockedCase({}, 'unexpected-turnstile-hostname');
-  for (const hostname of ['www.centrocontainers.com','centrocontainers.com']) {
-    verification = {success:true, hostname}; outbound=[];
-    response=await submit(base()); expect(outbound.length===1 && response.body.success, 'Allowed hostname rejected');
-  }
-  for (const mode of ['network','http','json']) { verifyMode=mode; await blockedCase({}, 'turnstile-siteverify-failure'); }
-  verifyMode='ok';
-  const secret = env.TURNSTILE_SECRET_KEY; delete env.TURNSTILE_SECRET_KEY;
-  await blockedCase({}, 'turnstile-unavailable'); env.TURNSTILE_SECRET_KEY=secret;
   for (const phrase of ['XEvil','CAPTCHA SOLVER','solve captcha','captcha killer','SEO/SMM','password recovery','backlink service','guest post service']) {
     for (const field of ['message','project_description','company']) await blockedCase({[field]:phrase}, 'explicit-spam-content', 200);
   }
@@ -218,4 +190,4 @@ try {
     {form_type:'rfq', parts:'Roof panel', quantity:'500'}
   ]) { outbound=[]; response=await submit(base(values)); expect(outbound.length===1 && response.body.success, 'Supported form type rejected'); }
 } finally { Date.now=savedNow; console.warn=savedWarn; }
-console.log('ANTI_SPAM_QA_OK: timestamp boundaries, dual honeypots, Siteverify failures/hostnames, explicit phrases, B2B false positives, all form types and privacy-safe logs');
+console.log('ANTI_SPAM_QA_OK: timestamp boundaries, dual honeypots, explicit phrases, B2B false positives, all form types and privacy-safe logs');

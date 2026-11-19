@@ -109,7 +109,7 @@ if (!/name=["']annual_volume["'][^>]*placeholder=["'][^"']*Not confirmed yet/i.t
 const quoteModal = fs.readFileSync(path.join(root, 'quote-modal.js'), 'utf8');
 if (quoteModal.indexOf("emit('rfq_success'") < quoteModal.indexOf('response.ok')) fail('rfq_success can fire before backend confirmation');
 if (!quoteModal.includes("field(copy.annual,'annual_volume','text',false")) fail('Modal annual volume is not optional');
-if (!quoteModal.includes("appearance:'interaction-only'")) fail('Turnstile must remain hidden unless visitor interaction is required');
+if (/turnstile|challenges\.cloudflare\.com|cf-turnstile-response/i.test(quoteModal)) fail('Cloudflare Turnstile must not be loaded by the form script');
 
 const productKeywordChecks = {
   'roof-panel.html': /(?:container.*roof panel|roof panel.*container)/i,
